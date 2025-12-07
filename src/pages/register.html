@@ -1,0 +1,605 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+  <head>
+    <meta charset="UTF-8" />
+    <title>إنشاء حساب | متجر الأناقة</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;600;700&display=swap"
+      rel="stylesheet"
+    />
+    <!-- Tailwind / مشروعك -->
+    <script type="module" src="/src/main.ts"></script>
+  </head>
+  <body class="font-sans bg-brand-50 text-gray-900 text-right">
+    <!-- Toast -->
+    <div
+      id="toast"
+      class="fixed top-4 right-4 z-50 hidden rounded-xl bg-gray-900 text-white px-4 py-3 text-sm shadow-lg"
+    >
+      <span id="toast-message">تم إنشاء الحساب (نموذج تجريبي)</span>
+    </div>
+
+    <div class="min-h-screen flex flex-col">
+      <!-- HEADER -->
+      <header class="border-b border-gray-200 bg-white">
+        <div
+          class="container mx-auto px-4 py-4 flex items-center justify-between"
+        >
+          <a href="index.html" class="text-2xl font-bold tracking-wide"
+            >متجر الأناقة</a
+          >
+          <a href="cart.html" class="relative text-xl" title="السلة">
+            🛒
+            <span
+              id="cart-count-badge"
+              class="absolute -top-2 -left-2 rounded-full bg-brand-500 text-white text-xs w-5 h-5 flex items-center justify-center"
+            >
+              0
+            </span>
+          </a>
+        </div>
+      </header>
+
+      <!-- MAIN -->
+      <main class="flex-1 flex items-center justify-center px-4 py-10">
+        <div
+          class="w-full max-w-5xl bg-white rounded-3xl shadow-soft border border-gray-100 overflow-hidden grid md:grid-cols-2"
+        >
+          <!-- القسم الأيمن – الصورة (تظهر فقط في الشاشات المتوسطة وفوق) -->
+          <div class="hidden md:block relative">
+            <img
+              src="/src/assets/images/girl-img.avif"
+              alt="تسجيل حساب جديد"
+              class="w-full h-full object-cover"
+            />
+            <div class="absolute inset-0 bg-gradient-to-t from-black/30 to-black/0"></div>
+            <div class="absolute bottom-5 right-5 text-white">
+              <h2 class="text-xl font-semibold">ابدأ رحلتك معنا</h2>
+              <p class="text-sm opacity-90">تجربة تسوق مريحة وسريعة 🎁</p>
+            </div>
+          </div>
+
+          <!-- القسم الأيسر – الفورم -->
+          <div class="p-6 sm:p-8">
+            <!-- Breadcrumb -->
+            <nav class="text-[11px] text-gray-500 mb-3">
+              <ol class="flex flex-wrap gap-1 items-center">
+                <li>
+                  <a href="index.html" class="hover:text-brand-600">الرئيسية</a>
+                </li>
+                <li>/</li>
+                <li><span class="text-gray-700">إنشاء حساب</span></li>
+              </ol>
+            </nav>
+
+            <div class="mb-5 text-right">
+              <h1 class="text-2xl font-semibold mb-1">إنشاء حساب جديد</h1>
+              <p class="text-xs text-gray-600">
+                أنشئ حسابك للاستمتاع بتجربة تسوق أسهل وأسرع.
+              </p>
+            </div>
+
+            <!-- Register form -->
+            <form id="register-form" class="space-y-4" novalidate>
+              <!-- Name -->
+              <div>
+                <label
+                  for="register-name"
+                  class="block text-xs font-semibold mb-1.5"
+                >
+                  الاسم الكامل
+                </label>
+                <input
+                  type="text"
+                  id="register-name"
+                  name="fullName"
+                  required
+                  class="w-full rounded-2xl border border-gray-200 bg-gray-50 py-2.5 px-4 text-xs outline-none focus:bg-white focus:ring-2 focus:ring-brand-500/70 focus:border-brand-500"
+                  placeholder="اكتب اسمك الكامل"
+                />
+                <p
+                  class="text-red-500 text-[11px] mt-1 hidden"
+                  id="error-register-name"
+                ></p>
+              </div>
+
+              <!-- Email -->
+              <div>
+                <label
+                  for="register-email"
+                  class="block text-xs font-semibold mb-1.5"
+                >
+                  البريد الإلكتروني
+                </label>
+                <input
+                  type="email"
+                  id="register-email"
+                  name="email"
+                  required
+                  class="w-full rounded-2xl border border-gray-200 bg-gray-50 py-2.5 px-4 text-xs outline-none focus:bg-white focus:ring-2 focus:ring-brand-500/70 focus:border-brand-500"
+                  placeholder="example@email.com"
+                />
+                <p
+                  class="text-red-500 text-[11px] mt-1 hidden"
+                  id="error-register-email"
+                ></p>
+              </div>
+
+              <!-- Phone -->
+              <div>
+                <label
+                  for="register-phone"
+                  class="block text-xs font-semibold mb-1.5"
+                >
+                  رقم الجوال
+                </label>
+                <input
+                  type="tel"
+                  id="register-phone"
+                  name="phone"
+                  required
+                  class="w-full rounded-2xl border text-right border-gray-200 bg-gray-50 py-2.5 px-4 text-xs outline-none focus:bg-white focus:ring-2 focus:ring-brand-500/70 focus:border-brand-500"
+                  placeholder="مثال: 770807260"
+                />
+                <p
+                  class="text-red-500 text-[11px] mt-1 hidden"
+                  id="error-register-phone"
+                ></p>
+              </div>
+
+              <!-- Password - Register -->
+              <div>
+                <div class="flex items-center justify-between mb-1.5">
+                  <label
+                    for="register-password"
+                    class="block text-xs font-semibold"
+                  >
+                    كلمة المرور
+                  </label>
+                  <button
+                    type="button"
+                    class="text-[11px] text-gray-500 hover:text-gray-800 toggle-password-btn"
+                    data-target="register-password"
+                  >
+                    إظهار
+                  </button>
+                </div>
+
+                <div class="relative">
+                  <input
+                    type="password"
+                    id="register-password"
+                    name="password"
+                    required
+                    minlength="6"
+                    class="w-full rounded-2xl border border-gray-200 bg-gray-50 py-2.5 px-4 text-xs outline-none focus:bg-white focus:ring-2 focus:ring-brand-500/70 focus:border-brand-500"
+                    placeholder="اختر كلمة مرور قوية"
+                  />
+                  <p
+                    class="text-red-500 text-[11px] mt-1 hidden"
+                    id="error-register-password"
+                  ></p>
+                </div>
+              </div>
+
+              <!-- Confirm password -->
+              <div>
+                <div class="flex items-center justify-between mb-1.5">
+                  <label
+                    for="register-password-confirm"
+                    class="block text-xs font-semibold"
+                  >
+                    تأكيد كلمة المرور
+                  </label>
+                  <button
+                    type="button"
+                    class="text-[11px] text-gray-500 hover:text-gray-800 toggle-password-btn"
+                    data-target="register-password-confirm"
+                  >
+                    إظهار
+                  </button>
+                </div>
+
+                <div class="relative">
+                  <input
+                    type="password"
+                    id="register-password-confirm"
+                    name="passwordConfirm"
+                    required
+                    minlength="6"
+                    class="w-full rounded-2xl border border-gray-200 bg-gray-50 py-2.5 px-4 text-xs outline-none focus:bg-white focus:ring-2 focus:ring-brand-500/70 focus:border-brand-500"
+                    placeholder="أعد إدخال كلمة المرور"
+                  />
+                  <p
+                    class="text-red-500 text-[11px] mt-1 hidden"
+                    id="error-register-password2"
+                  ></p>
+                </div>
+              </div>
+
+              <!-- Newsletter + terms -->
+              <div class="space-y-2 text-[11px] text-gray-600">
+                <label class="flex items-center gap-2">
+                  <input
+                    type="checkbox"
+                    class="rounded border-gray-300 text-brand-600 focus:ring-brand-500"
+                  />
+                  <span>
+                    أرغب في استلام عروض وخصومات حصرية على بريدي الإلكتروني.
+                  </span>
+                </label>
+                <label class="flex items-start gap-2">
+                  <input
+                    type="checkbox"
+                    id="register-terms"
+                    required
+                    class="mt-0.5 rounded border-gray-300 text-brand-600 focus:ring-brand-500"
+                  />
+                  <span>
+                    أوافق على
+                    <a
+                      href="return-policy.html"
+                      class="text-brand-700 hover:underline"
+                      >سياسة الاستبدال والاسترجاع</a
+                    >
+                    و
+                    <a
+                      href="shipping-policy.html"
+                      class="text-brand-700 hover:underline"
+                      >سياسة الشحن</a
+                    >.
+                  </span>
+                </label>
+              </div>
+
+              <!-- Submit -->
+              <button
+                type="submit"
+              class="w-full mt-2 inline-flex items-center justify-center rounded-2xl bg-black text-white py-2.5 text-sm font-semibold shadow-soft hover:bg-brand-800 focus:outline-none focus:ring-2 focus:ring-brand-500/70 focus:ring-offset-2 focus:ring-offset-white transition"
+
+               >
+                إنشاء الحساب
+              </button>
+
+              <!-- Link to login -->
+              <p class="text-[11px] text-gray-600 text-center mt-2">
+                لديك حساب بالفعل؟
+                <a
+                  href="login.html"
+                  class="text-brand-700 hover:underline font-semibold"
+                >
+                  تسجيل الدخول
+                </a>
+              </p>
+            </form>
+          </div>
+        </div>
+      </main>
+
+      <!-- FOOTER -->
+      <footer class="border-t border-gray-200 bg-white mt-10">
+        <div class="container mx-auto px-4 py-10">
+          <div class="grid md:grid-cols-4 gap-8 text-sm">
+            <div>
+              <h4 class="font-semibold mb-3">متجر الأناقة</h4>
+              <p class="text-xs text-gray-600 mb-3">
+                متجر إلكتروني للملابس يقدم أحدث صيحات الموضة بجودة عالية وخدمة
+                مميزة لعملائنا في العالم العربي.
+              </p>
+              <p class="text-xs text-gray-500">
+                ساعات العمل: من الأحد إلى الخميس، 9 صباحاً - 6 مساءً.
+              </p>
+            </div>
+            <div>
+              <h4 class="font-semibold mb-3">روابط مهمة</h4>
+              <ul class="space-y-2 text-xs text-gray-600">
+                <li>
+                  <a href="/src/pages/about.html" class="hover:text-brand-600"
+                    >من نحن</a
+                  >
+                </li>
+                <li>
+                  <a
+                    href="/src/pages/shipping-policy.html"
+                    class="hover:text-brand-600"
+                    >سياسة الشحن</a
+                  >
+                </li>
+                <li>
+                  <a
+                    href="/src/pages/return-policy.html"
+                    class="hover:text-brand-600"
+                    >سياسة الاستبدال والاسترجاع</a
+                  >
+                </li>
+                <li>
+                  <a href="/src/pages/faq.html" class="hover:text-brand-600"
+                    >الأسئلة الشائعة</a
+                  >
+                </li>
+                <li>
+                  <a href="/src/pages/contact.html" class="hover:text-brand-600"
+                    >تواصل معنا</a
+                  >
+                </li>
+              </ul>
+            </div>
+            <div>
+              <h4 class="font-semibold mb-3">حسابي</h4>
+              <ul class="space-y-2 text-xs text-gray-600">
+                <li>
+                  <a href="/src/pages/account.html" class="hover:text-brand-600"
+                    >لوحة التحكم</a
+                  >
+                </li>
+                <li>
+                  <a href="/src/pages/cart.html" class="hover:text-brand-600"
+                    >سلة التسوق</a
+                  >
+                </li>
+                <li>
+                  <a
+                    href="/src/pages/checkout.html"
+                    class="hover:text-brand-600"
+                    >إتمام الشراء</a
+                  >
+                </li>
+              </ul>
+            </div>
+            <div>
+              <h4 class="font-semibold mb-3">تابعنا</h4>
+              <div class="flex gap-4 text-lg mb-3">
+                <!-- Instagram -->
+                <a href="#" class="hover:text-brand-600" aria-label="Instagram">
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    class="w-6 h-6"
+                    fill="currentColor"
+                    viewBox="0 0 24 24"
+                  >
+                    <path
+                      d="M7.75 2h8.5A5.75 5.75 0 0 1 22 7.75v8.5A5.75 5.75 0 0 1 16.25 22h-8.5A5.75 5.75 0 0 1 2 16.25v-8.5A5.75 5.75 0 0 1 7.75 2zm0 1.5A4.25 4.25 0 0 0 3.5 7.75v8.5A4.25 4.25 0 0 0 7.75 20.5h8.5A4.25 4.25 0 0 0 20.5 16.25v-8.5A4.25 4.25 0 0 0 16.25 3.5h-8.5zM12 7a5 5 0 1 1 0 10 5 5 0 0 1 0-10zm0 1.5a3.5 3.5 0 1 0 0 7 3.5 3.5 0 0 0 0-7zm5-1.75a1.25 1.25 0 1 1 0 2.5 1.25 1.25 0 0 1 0-2.5z"
+                    />
+                  </svg>
+                </a>
+
+                <!-- Twitter (X) -->
+                <a
+                  href="#"
+                  class="hover:text-brand-600"
+                  aria-label="Twitter / X"
+                >
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    class="w-6 h-6"
+                    fill="currentColor"
+                    viewBox="0 0 24 24"
+                  >
+                    <path
+                      d="M18.146 2h3.123l-6.817 7.79L22 22h-6.343l-4.96-6.507L4.8 22H1.674l7.31-8.35L2 2h6.47l4.474 5.932L18.146 2zm-2.217 17.597h1.727L8.173 4.295H6.314l9.615 15.302z"
+                    />
+                  </svg>
+                </a>
+
+                <!-- TikTok -->
+                <a href="#" class="hover:text-brand-600" aria-label="TikTok">
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    class="w-6 h-6"
+                    fill="currentColor"
+                    viewBox="0 0 24 24"
+                  >
+                    <path
+                      d="M12.95 2h3.03c.15 1.33.76 2.54 1.72 3.44A6.3 6.3 0 0 0 19.7 7v3.03a9.3 9.3 0 0 1-3.47-.7 9.55 9.55 0 0 1-1.32-.67v6.55a6.82 6.82 0 0 1-1.25 3.97A6.36 6.36 0 0 1 9.4 22a6.4 6.4 0 0 1-1.9-.29 6.45 6.45 0 0 1-1.62-.83 6.37 6.37 0 0 1-2.31-3.05A6.5 6.5 0 0 1 3.4 15c0-1.3.37-2.56 1.06-3.64A6.37 6.37 0 0 1 7.74 8.4a6.28 6.28 0 0 1 3.48.07v3.29a3.1 3.1 0 0 0-1.47-.38 3.16 3.16 0 0 0-2.19.9A3.3 3.3 0 0 0 6.7 15c0 .86.33 1.66.93 2.26.6.6 1.4.94 2.24.94a3.16 3.16 0 0 0 2.23-.92 3.1 3.1 0 0 0 .93-2.25V2z"
+                    />
+                  </svg>
+                </a>
+              </div>
+
+              <p class="text-xs text-gray-600 mb-2">
+                اشترك في النشرة البريدية للحصول على أحدث العروض.
+              </p>
+              <form class="flex gap-2">
+                <input
+                  type="email"
+                  class="flex-1 rounded-full border border-gray-200 px-3 py-1.5 text-xs focus:outline-none focus:border-brand-500"
+                  placeholder="أدخل بريدك الإلكتروني"
+                />
+                <button
+                  type="submit"
+                  class="rounded-full bg-gray-900 text-white text-xs px-4 py-1.5 hover:bg-gray-800"
+                >
+                  اشتراك
+                </button>
+              </form>
+            </div>
+          </div>
+          <div
+            class="mt-8 border-t border-gray-100 pt-4 flex flex-col md:flex-row items-center justify-between text-[11px] text-gray-500 gap-2"
+          >
+            <p>© <span id="year"></span> متجر الأناقة. جميع الحقوق محفوظة.</p>
+            <p>تم تطوير الموقع من قبل م/ايمن عجلان.</p>
+          </div>
+        </div>
+      </footer>
+    </div>
+
+    <!-- JS -->
+    <script src="assets/js/main.js"></script>
+    <script src="assets/js/cart.js"></script>
+    <script>
+      // Toggle show/hide password
+      document.querySelectorAll(".toggle-password-btn").forEach((btn) => {
+        btn.addEventListener("click", () => {
+          const targetId = btn.getAttribute("data-target");
+          const input = document.getElementById(targetId);
+
+          if (!input) return;
+
+          if (input.type === "password") {
+            input.type = "text";
+            btn.textContent = "إخفاء";
+          } else {
+            input.type = "password";
+            btn.textContent = "إظهار";
+          }
+        });
+      });
+
+      // Footer year
+      const yearEl = document.getElementById("year");
+      if (yearEl) {
+        yearEl.textContent = new Date().getFullYear();
+      }
+
+      const registerForm = document.getElementById("register-form");
+
+      const nameInput = document.getElementById("register-name");
+      const emailInput = document.getElementById("register-email");
+      const phoneInput = document.getElementById("register-phone");
+      const pass = document.getElementById("register-password");
+      const pass2 = document.getElementById("register-password-confirm");
+      const terms = document.getElementById("register-terms");
+
+      const errName = document.getElementById("error-register-name");
+      const errEmail = document.getElementById("error-register-email");
+      const errPhone = document.getElementById("error-register-phone");
+      const errPass = document.getElementById("error-register-password");
+      const errPass2 = document.getElementById("error-register-password2");
+
+      function clearErrors() {
+        [errName, errEmail, errPhone, errPass, errPass2].forEach((el) => {
+          if (!el) return;
+          el.textContent = "";
+          el.classList.add("hidden");
+        });
+
+        [nameInput, emailInput, phoneInput, pass, pass2].forEach((input) => {
+          if (!input) return;
+          input.classList.remove("border-red-400");
+        });
+      }
+
+      function setError(input, errorEl, message) {
+        if (!input || !errorEl) return;
+        errorEl.textContent = message;
+        errorEl.classList.remove("hidden");
+        input.classList.add("border-red-400");
+      }
+
+      registerForm.addEventListener("submit", (e) => {
+        e.preventDefault();
+        clearErrors();
+
+        let hasError = false;
+
+        const nameVal = nameInput.value.trim();
+        const emailVal = emailInput.value.trim();
+        const phoneVal = phoneInput.value.trim();
+        const passVal = pass.value.trim();
+        const pass2Val = pass2.value.trim();
+
+        // الاسم
+        if (!nameVal) {
+          setError(nameInput, errName, "يرجى إدخال الاسم الكامل.");
+          hasError = true;
+        }
+
+        // الإيميل
+        const emailPattern = /^\S+@\S+\.\S+$/;
+        if (!emailVal) {
+          setError(emailInput, errEmail, "يرجى إدخال البريد الإلكتروني.");
+          hasError = true;
+        } else if (!emailPattern.test(emailVal)) {
+          setError(emailInput, errEmail, "صيغة البريد الإلكتروني غير صحيحة.");
+          hasError = true;
+        }
+
+        // رقم الجوال (يمني)
+        const phonePattern = /^0?7[0-9]{8}$/;
+        if (!phoneVal) {
+          setError(phoneInput, errPhone, "يرجى إدخال رقم الجوال.");
+          hasError = true;
+        } else if (!phonePattern.test(phoneVal)) {
+          setError(
+            phoneInput,
+            errPhone,
+            "رجاءً أدخل رقم جوال يمني صحيح مكوّن من 9 أرقام ويبدأ بـ 7."
+          );
+          hasError = true;
+        }
+
+        // كلمة المرور
+        if (!passVal) {
+          setError(pass, errPass, "يرجى إدخال كلمة المرور.");
+          hasError = true;
+        } else if (passVal.length < 6) {
+          setError(
+            pass,
+            errPass,
+            "يجب أن تكون كلمة المرور 6 أحرف على الأقل."
+          );
+          hasError = true;
+        }
+
+        // تأكيد كلمة المرور
+        if (!pass2Val) {
+          setError(pass2, errPass2, "يرجى تأكيد كلمة المرور.");
+          hasError = true;
+        } else if (passVal && passVal !== pass2Val) {
+          setError(pass2, errPass2, "كلمتا المرور غير متطابقتين.");
+          hasError = true;
+        }
+
+        // الشروط
+        if (!terms.checked) {
+          if (window.showToast) {
+            window.showToast(
+              "يجب الموافقة على الشروط قبل إنشاء الحساب.",
+              "error"
+            );
+          } else {
+            alert("يجب الموافقة على الشروط قبل إنشاء الحساب.");
+          }
+          hasError = true;
+        }
+
+        if (hasError) {
+          const firstError = document.querySelector(
+            "p.text-red-500:not(.hidden)"
+          );
+          if (firstError) {
+            firstError.scrollIntoView({ behavior: "smooth", block: "center" });
+          }
+          return;
+        }
+
+        // ✅ نجاح (تجريبي فقط)
+        if (window.showToast) {
+          window.showToast(
+            "تم إنشاء الحساب بنجاح (نموذج تجريبي فقط).",
+            "success"
+          );
+        } else {
+          alert("تم إنشاء الحساب بنجاح (نموذج تجريبي فقط).");
+        }
+
+        // في مشروع حقيقي:
+        // إرسال البيانات للسيرفر ثم:
+        // window.location.href = 'login.html';
+      });
+
+      // تنظيف الأخطاء عند الكتابة
+      [nameInput, emailInput, phoneInput, pass, pass2].forEach((input) => {
+        if (!input) return;
+        input.addEventListener("input", () => {
+          clearErrors();
+        });
+      });
+    </script>
+  </body>
+</html>

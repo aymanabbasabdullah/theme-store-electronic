@@ -1,0 +1,1297 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+  <head>
+    <meta charset="UTF-8" />
+    <title>إتمام الشراء | متجر الأناقة</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <!-- Google Fonts (Arabic friendly) -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+
+    <!-- Tailwind -->
+    <script type="module" src="/src/main.ts"></script>
+  </head>
+
+  <body class="bg-brand-50/60 text-brand-900 font-sans">
+    <!-- Page wrapper -->
+    <div class="min-h-screen flex flex-col">
+      <!-- HEADER -->
+      <header
+        class="sticky top-0 z-50 border-b border-gray-200 bg-white-100/90 backdrop-blur"
+      >
+        <div class="container mx-auto px-4 py-2 sm:py-3 relative">
+          <!-- Top bar -->
+          <div
+            class="hidden sm:flex items-center justify-between py-2 text-xs text-gray-500"
+          >
+            <span>شحن داخل صنعاء مجاناً للطلبات فوق 50,000 ريال يمني</span>
+            <a href="/src/pages/login.html" class="hover:text-gray-800">
+              تسجيل الدخول / إنشاء حساب
+            </a>
+          </div>
+
+          <!-- Main header -->
+          <div class="flex items-center justify-between py-3 gap-4">
+            <!-- Mobile menu button -->
+            <button
+              id="mobile-menu-toggle"
+              type="button"
+              class="md:hidden inline-flex items-center justify-center rounded-xl border border-gray-200 p-2"
+              aria-label="فتح قائمة التنقل"
+              aria-expanded="false"
+              aria-controls="mobile-nav-panel"
+            >
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                fill="none"
+                viewBox="0 0 24 24"
+                stroke-width="1.5"
+                stroke="currentColor"
+                class="size-6"
+              >
+                <path
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  d="M3.75 6.75h16.5M3.75 12h16.5m-16.5 5.25h16.5"
+                />
+              </svg>
+            </button>
+
+            <!-- Logo -->
+            <a
+              href="/index.html"
+              class="text-xl sm:text-2xl font-bold tracking-wide text-gray-900"
+            >
+              متجر الأناقة
+            </a>
+
+            <!-- Search (desktop) -->
+            <form class="hidden md:flex flex-1 max-w-xl mx-4">
+              <div
+                class="flex flex-1 items-center rounded-full bg-gray-100 px-4 py-2 gap-2"
+              >
+                <input
+                  type="text"
+                  class="flex-1 bg-transparent text-sm focus:outline-none text-right"
+                  placeholder="ابحث عن منتج، فئة، أو علامة تجارية..."
+                />
+                <span class="text-xs text-gray-400">بحث</span>
+              </div>
+            </form>
+
+            <!-- Icons -->
+            <div class="flex items-center gap-3 sm:gap-4 text-gray-700">
+              <!-- Search icon for mobile -->
+              <button
+                id="mobile-search-toggle"
+                type="button"
+                class="md:hidden text-xl"
+                aria-label="فتح البحث"
+                aria-controls="mobile-search"
+                aria-expanded="false"
+              >
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  fill="none"
+                  viewBox="0 0 24 24"
+                  stroke-width="1.5"
+                  stroke="currentColor"
+                  class="size-6"
+                >
+                  <path
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    d="m21 21-5.197-5.197m0 0A7.5 7.5 0 1 0 5.196 5.196a7.5 7.5 0 0 0 10.607 10.607Z"
+                  />
+                </svg>
+              </button>
+
+              <a
+                href="src/pages/account.html"
+                class="hidden md:inline text-xl"
+                title="الحساب"
+              >
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  class="h-6 w-6"
+                  fill="none"
+                  viewBox="0 0 24 24"
+                  stroke="currentColor"
+                >
+                  <path
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    stroke-width="2"
+                    d="M12 12c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 
+           1.79-4 4 1.79 4 4 4zm0 2c-3.33 0-6 2-6 
+           4v1h12v-1c0-2-2.67-4-6-4z"
+                  />
+                </svg>
+              </a>
+
+              <button
+                type="button"
+                class="text-xl"
+                title="المفضلة"
+                onclick="window.location='wishlist.html'"
+              >
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  class="h-6 w-6"
+                  fill="none"
+                  viewBox="0 0 24 24"
+                  stroke="currentColor"
+                >
+                  <path
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    stroke-width="2"
+                    d="M4.318 6.318a4.5 4.5 0 016.364 
+       0L12 7.636l1.318-1.318a4.5 
+       4.5 0 116.364 6.364L12 21l-7.682-8.318a4.5 
+       4.5 0 010-6.364z"
+                  />
+                </svg>
+              </button>
+
+              <a
+                href="/src/pages/cart.html"
+                class="relative text-xl"
+                title="السلة"
+              >
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  fill="none"
+                  viewBox="0 0 24 24"
+                  stroke-width="1.5"
+                  stroke="currentColor"
+                  class="size-6"
+                >
+                  <path
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    d="M2.25 3h1.386c.51 0 .955.343 1.087.835l.383 1.437M7.5 14.25a3 3 0 0 0-3 3h15.75m-12.75-3h11.218c1.121-2.3 2.1-4.684 2.924-7.138a60.114 60.114 0 0 0-16.536-1.84M7.5 14.25 5.106 5.272M6 20.25a.75.75 0 1 1-1.5 0 .75.75 0 0 1 1.5 0Zm12.75 0a.75.75 0 1 1-1.5 0 .75.75 0 0 1 1.5 0Z"
+                  />
+                </svg>
+
+                <span
+                  id="cart-count-badge"
+                  class="absolute -top-2 -left-2 rounded-full bg-brand-500 text-white-100 text-xs w-5 h-5 flex items-center justify-center"
+                >
+                  0
+                </span>
+              </a>
+            </div>
+          </div>
+
+          <!-- Mobile search -->
+          <div id="mobile-search" class="md:hidden hidden pb-3">
+            <form>
+              <div
+                class="flex items-center rounded-full bg-gray-100 px-4 py-2 gap-2"
+              >
+                <input
+                  type="text"
+                  class="flex-1 bg-transparent text-sm focus:outline-none text-right"
+                  placeholder="ابحث عن منتج، فئة، أو علامة تجارية..."
+                />
+                <span class="text-xs text-gray-400">بحث</span>
+              </div>
+            </form>
+          </div>
+
+          <!-- Navigation (desktop) -->
+          <nav
+            id="main-nav"
+            class="border-t border-gray-100 pt-3 pb-4 text-sm text-gray-700 hidden md:flex md:border-0 md:py-0"
+            aria-label="التنقل الرئيسي"
+          >
+            <ul class="flex flex-col md:flex-row gap-3 md:gap-8">
+              <li>
+                <a
+                  href="/src/pages/category.html"
+                  class="hover:text-brand-600"
+                  data-category="men"
+                  >رجال</a
+                >
+              </li>
+              <li>
+                <a
+                  href="/src/pages/category.html?type=women"
+                  class="hover:text-brand-600"
+                  data-category="women"
+                  >نساء</a
+                >
+              </li>
+              <li>
+                <a
+                  href="/src/pages/category.html?type=children"
+                  class="hover:text-brand-600"
+                  data-category="children"
+                  >أطفال</a
+                >
+              </li>
+              <li>
+                <a
+                  href="/src/pages/category.html?type=sale"
+                  class="hover:text-brand-600"
+                  data-category="sale"
+                  >عروض</a
+                >
+              </li>
+              <li>
+                <a
+                  href="/src/pages/category.html?type=new"
+                  class="hover:text-brand-600"
+                  data-category="new"
+                  >جديد</a
+                >
+              </li>
+            </ul>
+          </nav>
+
+          <!-- MOBILE NAV -->
+          <div
+            id="mobile-nav-panel"
+            class="md:hidden hidden absolute inset-x-0 top-full bg-white-100/95 backdrop-blur-sm border-t border-gray-100 shadow-lg rounded-b-2xl max-h-[80vh] overflow-y-auto"
+          >
+            <div class="container mx-auto px-3 py-2">
+              <nav class="text-sm text-gray-800">
+                <ul class="flex flex-col divide-y divide-gray-100">
+                  <li>
+                    <a
+                      href="/src/pages/category.html?type=men"
+                      data-category="men"
+                      class="flex items-center justify-between py-3 px-2 text-base hover:text-brand-600 hover:bg-gray-50 transition"
+                    >
+                      <span>رجال</span>
+                      <span class="text-xs opacity-60">تسوق الآن</span>
+                    </a>
+                  </li>
+                  <li>
+                    <a
+                      href="/src/pages/category.html?type=women"
+                      data-category="women"
+                      class="flex items-center justify-between py-3 px-2 text-base hover:text-brand-600 hover:bg-gray-50 transition"
+                    >
+                      <span>نساء</span>
+                      <span class="text-xs opacity-60">تسوق الآن</span>
+                    </a>
+                  </li>
+                  <li>
+                    <a
+                      href="/src/pages/category.html?type=children"
+                      data-category="children"
+                      class="flex items-center justify-between py-3 px-2 text-base hover:text-brand-600 hover:bg-gray-50 transition"
+                    >
+                      <span>أطفال</span>
+                      <span class="text-xs opacity-60">تسوق الآن</span>
+                    </a>
+                  </li>
+                  <li>
+                    <a
+                      href="/src/pages/category.html?type=sale"
+                      data-category="sale"
+                      class="flex items-center justify-between py-3 px-2 text-base hover:text-brand-600 hover:bg-gray-50 transition"
+                    >
+                      <span>عروض</span>
+                      <span class="text-xs opacity-60">خصومات</span>
+                    </a>
+                  </li>
+                  <li>
+                    <a
+                      href="/src/pages/category.html?type=new"
+                      data-category="new"
+                      class="flex items-center justify-between py-3 px-2 text-base hover:text-brand-600 hover:bg-gray-50 transition"
+                    >
+                      <span>جديد</span>
+                      <span class="text-xs opacity-60">وصل حديثًا</span>
+                    </a>
+                  </li>
+                  <li>
+                    <a
+                      href="/src/pages/about.html"
+                      class="flex items-center justify-between py-3 px-2 text-base hover:text-brand-600 hover:bg-gray-50 transition"
+                    >
+                      <span>من نحن</span>
+                    </a>
+                  </li>
+                  <li>
+                    <a
+                      href="/src/pages/contact.html"
+                      class="flex items-center justify-between py-3 px-2 text-base hover:text-brand-600 hover:bg-gray-50 transition"
+                    >
+                      <span>تواصل معنا</span>
+                    </a>
+                  </li>
+                </ul>
+              </nav>
+            </div>
+          </div>
+        </div>
+      </header>
+
+      <!-- Toast / notification container -->
+      <div
+        id="toast-container"
+        class="fixed top-40 left-4 z-40 flex flex-col gap-2 max-w-xs"
+      ></div>
+
+      <!-- Main content -->
+      <main class="flex-1">
+        <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-6 sm:py-10">
+          <!-- Breadcrumb -->
+          <nav
+            class="text-xs sm:text-sm text-gray-500 mb-6 sm:mb-8"
+            aria-label="مسار الصفحة"
+          >
+            <ol class="flex flex-wrap items-center gap-1">
+              <li>
+                <a href="index.html" class="hover:text-brand-900">الرئيسية</a>
+              </li>
+              <li class="text-gray-400">/</li>
+              <li>
+                <a href="cart.html" class="hover:text-brand-900">سلة التسوق</a>
+              </li>
+              <li class="text-gray-400">/</li>
+              <li class="text-brand-900 font-medium">إتمام الشراء</li>
+            </ol>
+          </nav>
+
+          <!-- Page title & steps -->
+          <div
+            class="flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between mb-6 sm:mb-10"
+          >
+            <div>
+              <h1 class="text-2xl sm:text-3xl font-semibold mb-1">
+                إتمام الشراء
+              </h1>
+              <p class="text-sm sm:text-base text-gray-500">
+                يرجى تعبئة بياناتك بدقة لإتمام طلبك داخل اليمن.
+              </p>
+            </div>
+
+            <!-- Steps indicator -->
+            <div class="flex items-center gap-3 text-xs sm:text-sm">
+              <div class="flex items-center gap-2">
+                <span
+                  class="flex h-7 w-7 items-center justify-center rounded-full bg-gray-100 text-gray-500"
+                >
+                  ١
+                </span>
+                <span class="hidden sm:inline text-gray-500">سلة التسوق</span>
+              </div>
+              <span class="text-gray-300">—</span>
+              <div class="flex items-center gap-2">
+                <span
+                  class="flex h-7 w-7 items-center justify-center rounded-full bg-brand-900 text-white-100"
+                >
+                  ٢
+                </span>
+                <span class="hidden sm:inline font-medium text-brand-900"
+                  >إتمام الشراء</span
+                >
+              </div>
+              <span class="text-gray-300">—</span>
+              <div class="flex items-center gap-2">
+                <span
+                  class="flex h-7 w-7 items-center justify-center rounded-full bg-gray-100 text-gray-400"
+                >
+                  ٣
+                </span>
+                <span class="hidden sm:inline text-gray-400">تأكيد الطلب</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- Main grid: form + summary -->
+          <div class="grid grid-cols-1 lg:grid-cols-3 gap-6 lg:gap-8">
+            <!-- Checkout form -->
+            <section class="lg:col-span-2 space-y-6">
+              <form
+                id="checkout-form"
+                class="space-y-6"
+                novalidate
+                onsubmit="handleCheckoutSubmit(event)"
+              >
+                <!-- Customer info -->
+                <div class="bg-white-100 rounded-2xl shadow-soft p-5 sm:p-6">
+                  <h2 class="text-lg sm:text-xl font-semibold mb-1">
+                    معلومات العميل
+                  </h2>
+                  <p class="text-sm text-gray-500 mb-4">
+                    سنستخدم هذه المعلومات للتواصل معك حول طلبك وتنسيق التوصيل
+                    داخل اليمن.
+                  </p>
+
+                  <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                    <!-- Full name -->
+                    <div class="sm:col-span-2">
+                      <label
+                        for="full-name"
+                        class="block text-sm font-medium mb-1.5"
+                      >
+                        الاسم الكامل<span class="text-red-500 mr-1">*</span>
+                      </label>
+                      <input
+                        type="text"
+                        id="full-name"
+                        name="fullName"
+                        required
+                        class="w-full rounded-2xl border border-gray-200 bg-gray-50 py-2.5 px-4 text-sm outline-none focus:bg-white-100 focus:ring-2 focus:ring-brand-900/80 focus:border-brand-900/80"
+                        placeholder="اكتب اسمك الثلاثي كما سيظهر على الفاتورة"
+                      />
+                    </div>
+
+                    <!-- Phone -->
+                    <div>
+                      <label
+                        for="phone"
+                        class="block text-sm font-medium mb-1.5"
+                      >
+                        رقم الجوال اليمني<span class="text-red-500 mr-1"
+                          >*</span
+                        >
+                      </label>
+                      <input
+                        type="tel"
+                        id="phone"
+                        name="phone"
+                        required
+                        pattern="^0?7[0-9]{8}$"
+                        class="w-full rounded-2xl border text-right border-gray-200 bg-gray-50 py-2.5 px-4 text-sm outline-none focus:bg-white-100 focus:ring-2 focus:ring-brand-900/80 focus:border-brand-900/80 placeholder:text-right"
+                        placeholder="مثال: 770807260"
+                      />
+                      <p class="text-[0.7rem] text-gray-400 mt-1">
+                        أدخل رقم يمني مكوّن من 9 أرقام يبدأ بـ 07 (مثل 71 / 73 /
+                        77 / 78 / 70).
+                      </p>
+                    </div>
+
+                    <!-- Email -->
+                    <div>
+                      <label
+                        for="email"
+                        class="block text-sm font-medium mb-1.5"
+                      >
+                        البريد الإلكتروني (اختياري)
+                      </label>
+                      <input
+                        type="email"
+                        id="email"
+                        name="email"
+                        class="w-full rounded-2xl border border-gray-200 bg-gray-50 py-2.5 px-4 text-sm outline-none focus:bg-white-100 focus:ring-2 focus:ring-brand-900/80 focus:border-brand-900/80"
+                        placeholder="example@email.com"
+                      />
+                    </div>
+                  </div>
+                </div>
+
+                <!-- Shipping address -->
+                <div class="bg-white-100 rounded-2xl shadow-soft p-5 sm:p-6">
+                  <h2 class="text-lg sm:text-xl font-semibold mb-1">
+                    عنوان الشحن داخل اليمن
+                  </h2>
+                  <p class="text-sm text-gray-500 mb-4">
+                    سيتم شحن طلبك إلى العنوان التالي عبر شركات التوصيل المحلية.
+                  </p>
+
+                  <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                    <!-- Country -->
+                    <div>
+                      <label
+                        for="country"
+                        class="block text-sm font-medium mb-1.5"
+                      >
+                        الدولة<span class="text-red-500 mr-1">*</span>
+                      </label>
+                      <select
+                        id="country"
+                        name="country"
+                        required
+                        class="w-full rounded-2xl border border-gray-200 bg-gray-50 py-2.5 px-4 text-sm outline-none focus:bg-white-100 focus:ring-2 focus:ring-brand-900/80 focus:border-brand-900/80"
+                      >
+                        <option value="">اختر الدولة</option>
+                        <option value="ye" selected>اليمن</option>
+                      </select>
+                    </div>
+
+                    <!-- City -->
+                    <div>
+                      <label
+                        for="city"
+                        class="block text-sm font-medium mb-1.5"
+                      >
+                        المدينة / المحافظة<span class="text-red-500 mr-1"
+                          >*</span
+                        >
+                      </label>
+                      <input
+                        type="text"
+                        id="city"
+                        name="city"
+                        required
+                        class="w-full rounded-2xl border border-gray-200 bg-gray-50 py-2.5 px-4 text-sm outline-none focus:bg-white-100 focus:ring-2 focus:ring-brand-900/80 focus:border-brand-900/80"
+                        placeholder="مثال: صنعاء، تعز، عدن..."
+                      />
+                    </div>
+
+                    <!-- District / Area -->
+                    <div>
+                      <label
+                        for="district"
+                        class="block text-sm font-medium mb-1.5"
+                      >
+                        الحي / المنطقة
+                      </label>
+                      <input
+                        type="text"
+                        id="district"
+                        name="district"
+                        class="w-full rounded-2xl border border-gray-200 bg-gray-50 py-2.5 px-4 text-sm outline-none focus:bg-white-100 focus:ring-2 focus:ring-brand-900/80 focus:border-brand-900/80"
+                        placeholder="مثال: حدة، بيت بوس، التحرير..."
+                      />
+                    </div>
+
+                    <!-- Street -->
+                    <div>
+                      <label
+                        for="street"
+                        class="block text-sm font-medium mb-1.5"
+                      >
+                        اسم الشارع<span class="text-red-500 mr-1">*</span>
+                      </label>
+                      <input
+                        type="text"
+                        id="street"
+                        name="street"
+                        required
+                        class="w-full rounded-2xl border border-gray-200 bg-gray-50 py-2.5 px-4 text-sm outline-none focus:bg-white-100 focus:ring-2 focus:ring-brand-900/80 focus:border-brand-900/80"
+                        placeholder="اسم الشارع أو أقرب معلم"
+                      />
+                    </div>
+
+                    <!-- Save address -->
+                    <div class="sm:col-span-2 flex items-center gap-2 mt-1">
+                      <input
+                        id="save-address"
+                        type="checkbox"
+                        name="saveAddress"
+                        class="h-4 w-4 rounded border-gray-300 text-brand-900 focus:ring-brand-900"
+                      />
+                      <label
+                        for="save-address"
+                        class="text-xs sm:text-sm text-gray-600"
+                      >
+                        حفظ هذا العنوان للاستخدام لاحقاً
+                      </label>
+                    </div>
+                  </div>
+                </div>
+
+                <!-- Shipping methods -->
+                <div class="bg-white-100 rounded-2xl shadow-soft p-5 sm:p-6">
+                  <h2 class="text-lg sm:text-xl font-semibold mb-1">
+                    خيارات الشحن داخل اليمن
+                  </h2>
+                  <p class="text-sm text-gray-500 mb-4">
+                    اختر طريقة الشحن المناسبة لموقعك.
+                  </p>
+
+                  <div id="shipping-methods" class="space-y-3">
+                    <!-- Sana'a -->
+                    <label
+                      class="flex items-start gap-3 rounded-2xl border border-gray-200 p-3.5 cursor-pointer hover:border-brand-600/70 transition"
+                    >
+                      <input
+                        type="radio"
+                        name="shippingMethod"
+                        value="sanaa"
+                        class="mt-1 h-4 w-4 text-brand-600 focus:ring-brand-600"
+                        checked
+                      />
+                      <div class="flex-1">
+                        <div class="flex items-center justify-between gap-2">
+                          <span class="text-sm font-medium">
+                            توصيل داخل صنعاء
+                          </span>
+                          <span class="text-sm font-semibold">
+                            1,000 ريال يمني
+                          </span>
+                        </div>
+                        <p class="text-xs text-gray-500 mt-1">
+                          التوصيل خلال ٢٤ - ٤٨ ساعة داخل أمانة العاصمة.
+                        </p>
+                      </div>
+                    </label>
+
+                    <!-- Other governorates -->
+                    <label
+                      class="flex items-start gap-3 rounded-2xl border border-gray-200 p-3.5 cursor-pointer hover:border-brand-600/70 transition"
+                    >
+                      <input
+                        type="radio"
+                        name="shippingMethod"
+                        value="governorates"
+                        class="mt-1 h-4 w-4 text-brand-600 focus:ring-brand-600"
+                      />
+                      <div class="flex-1">
+                        <div class="flex items-center justify-between gap-2">
+                          <span class="text-sm font-medium">
+                            توصيل إلى باقي المحافظات
+                          </span>
+                          <span class="text-sm font-semibold">
+                            2,500 ريال يمني
+                          </span>
+                        </div>
+                        <p class="text-xs text-gray-500 mt-1">
+                          التوصيل عبر شركات النقل خلال ٢ - ٥ أيام عمل حسب
+                          المدينة.
+                        </p>
+                      </div>
+                    </label>
+
+                    <!-- Pickup -->
+                    <label
+                      class="flex items-start gap-3 rounded-2xl border border-dashed border-gray-200 p-3.5 cursor-pointer hover:border-brand-600/70 transition"
+                    >
+                      <input
+                        type="radio"
+                        name="shippingMethod"
+                        value="pickup"
+                        class="mt-1 h-4 w-4 text-brand-600 focus:ring-brand-600"
+                      />
+                      <div class="flex-1">
+                        <div class="flex items-center justify-between gap-2">
+                          <span class="text-sm font-medium">
+                            استلام من المعرض
+                          </span>
+                          <span class="text-sm font-semibold text-emerald-600">
+                            مجاني
+                          </span>
+                        </div>
+                        <p class="text-xs text-gray-500 mt-1">
+                          استلم طلبك من الفرع خلال ٢٤ ساعة (سيتم التواصل معك
+                          لتحديد الموقع).
+                        </p>
+                      </div>
+                    </label>
+                  </div>
+                </div>
+
+                <!-- Payment methods & notes -->
+                <div
+                  class="bg-white-100 rounded-2xl shadow-soft p-5 sm:p-6 space-y-5"
+                >
+                  <!-- Payment methods -->
+                  <div>
+                    <h2 class="text-lg sm:text-xl font-semibold mb-1">
+                      طرق الدفع
+                    </h2>
+                    <p class="text-sm text-gray-500 mb-4">
+                      اختر طريقة الدفع المفضّلة لديك. سيتم عرض بيانات التحويل
+                      لكل محفظة.
+                    </p>
+
+                    <div
+                      id="payment-methods"
+                      class="grid grid-cols-1 sm:grid-cols-2 gap-3"
+                    >
+                      <!-- كريمي -->
+                      <label
+                        class="flex items-center gap-3 rounded-2xl border border-gray-200 p-3 cursor-pointer hover:border-brand-600/70 transition"
+                      >
+                        <input
+                          type="radio"
+                          name="paymentMethod"
+                          value="kuraimi"
+                          class="h-4 w-4 text-brand-600 focus:ring-brand-600"
+                          checked
+                        />
+                        <img
+                          src="/src/assets/images/buys/kurime.png"
+                          class="w-10 h-10 rounded-full"
+                          alt=""
+                        />
+                        <div>
+                          <p class="text-sm font-medium">كريمي جوال</p>
+                          <p class="text-xs text-gray-500">
+                            تحويل عبر محفظة كريمي جوال إلى رقم المحفظة الخاص
+                            بالمتجر.
+                          </p>
+                        </div>
+                      </label>
+
+                      <!-- جيب -->
+                      <label
+                        class="flex items-center gap-3 rounded-2xl border border-gray-200 p-3 cursor-pointer hover:border-brand-600/70 transition"
+                      >
+                        <input
+                          type="radio"
+                          name="paymentMethod"
+                          value="jeb"
+                          class="h-4 w-4 text-brand-600 focus:ring-brand-600"
+                        />
+                        <img
+                          src="/src/assets/images/buys/jaiep.png"
+                          class="w-10 h-10 rounded-full"
+                          alt=""
+                        />
+                        <div>
+                          <p class="text-sm font-medium">جيب</p>
+                          <p class="text-xs text-gray-500">
+                            الدفع باستخدام محفظة جيب الإلكترونية.
+                          </p>
+                        </div>
+                      </label>
+
+                      <!-- ون كاش -->
+                      <label
+                        class="flex items-center gap-3 rounded-2xl border border-gray-200 p-3 cursor-pointer hover:border-brand-600/70 transition"
+                      >
+                        <input
+                          type="radio"
+                          name="paymentMethod"
+                          value="onecash"
+                          class="h-4 w-4 text-brand-600 focus:ring-brand-600"
+                        />
+                        <img
+                          src="/src/assets/images/buys/oneCach.jpg"
+                          class="w-10 h-10 rounded-full"
+                          alt=""
+                        />
+                        <div>
+                          <p class="text-sm font-medium">ون كاش</p>
+                          <p class="text-xs text-gray-500">
+                            تحويل المبلغ عبر ون كاش إلى بيانات المتجر.
+                          </p>
+                        </div>
+                      </label>
+
+                      <!-- فلوسك -->
+                      <label
+                        class="flex items-center gap-3 rounded-2xl border border-gray-200 p-3 cursor-pointer hover:border-brand-600/70 transition"
+                      >
+                        <input
+                          type="radio"
+                          name="paymentMethod"
+                          value="falousak"
+                          class="h-4 w-4 text-brand-600 focus:ring-brand-600"
+                        />
+                        <img
+                          src="/src/assets/images/buys/floasak.webp"
+                          class="w-10 h-10 rounded-full"
+                          alt=""
+                        />
+                        <div>
+                          <p class="text-sm font-medium">فلوسك</p>
+                          <p class="text-xs text-gray-500">
+                            الدفع عبر محفظة فلوسك الإلكترونية.
+                          </p>
+                        </div>
+                      </label>
+
+                      <!-- جوالي -->
+                      <label
+                        class="flex items-center gap-3 rounded-2xl border border-gray-200 p-3 cursor-pointer hover:border-brand-600/70 transition"
+                      >
+                        <input
+                          type="radio"
+                          name="paymentMethod"
+                          value="jawali"
+                          class="h-4 w-4 text-brand-600 focus:ring-brand-600"
+                        />
+                        <img
+                          src="/src/assets/images/buys/jawali.png"
+                          class="w-10 h-10 rounded-full"
+                          alt=""
+                        />
+                        <div>
+                          <p class="text-sm font-medium">جوالي</p>
+                          <p class="text-xs text-gray-500">
+                            تحويل من محفظة جوالي إلى رقم المتجر.
+                          </p>
+                        </div>
+                      </label>
+
+                      <!-- COD -->
+                      <label
+                        class="flex items-center gap-3 rounded-2xl border border-gray-200 p-3 cursor-pointer hover:border-brand-600/70 transition"
+                      >
+                        <input
+                          type="radio"
+                          name="paymentMethod"
+                          value="cod"
+                          class="h-4 w-4 text-brand-600 focus:ring-brand-600"
+                        />
+                        <div>
+                          <p class="text-sm font-medium">الدفع عند الاستلام</p>
+                          <p class="text-xs text-gray-500">
+                            متاح داخل صنعاء وبعض المناطق، وقد تُضاف رسوم خدمة
+                            بسيطة.
+                          </p>
+                        </div>
+                      </label>
+                    </div>
+                  </div>
+
+                  <!-- Wallet details (dynamic) -->
+                  <div
+                    id="wallet-details-section"
+                    class="grid grid-cols-1 sm:grid-cols-2 gap-4 border-t border-gray-100 pt-4"
+                  >
+                    <div class="sm:col-span-2">
+                      <p
+                        class="text-sm font-medium mb-1"
+                        id="wallet-details-title"
+                      >
+                        تفاصيل الدفع عبر كريمي جوال
+                      </p>
+                      <p
+                        class="text-xs text-gray-600"
+                        id="wallet-details-description"
+                      >
+                        قم بتحويل إجمالي قيمة الطلب إلى محفظة كريمي جوال على
+                        الرقم
+                        <span class="font-semibold" id="wallet-wallet-number"
+                          >777000000</span
+                        >
+                        ثم أدخل بيانات التحويل في الحقول أدناه.
+                      </p>
+                    </div>
+
+                    <div>
+                      <label
+                        for="wallet-from-phone"
+                        class="block text-sm font-medium mb-1.5"
+                      >
+                        رقم الجوال الذي تم التحويل منه
+                      </label>
+                      <input
+                        type="tel"
+                        id="wallet-from-phone"
+                        name="walletFromPhone"
+                        class="w-full rounded-2xl border border-gray-200 bg-gray-50 py-2.5 px-4 text-sm outline-none focus:bg-white-100 focus:ring-2 focus:ring-brand-600/80 focus:border-brand-600/80 text-right placeholder:text-right"
+                        placeholder="مثال: 0771234567"
+                      />
+                    </div>
+
+                    <div>
+                      <label
+                        for="wallet-tx-id"
+                        class="block text-sm font-medium mb-1.5"
+                      >
+                        رقم عملية التحويل (إن وجد)
+                      </label>
+                      <input
+                        type="text"
+                        id="wallet-tx-id"
+                        name="walletTxId"
+                        class="w-full rounded-2xl border border-gray-200 bg-gray-50 py-2.5 px-4 text-sm outline-none focus:bg-white-100 focus:ring-2 focus:ring-brand-600/80 focus:border-brand-600/80"
+                        placeholder="اكتب رقم العملية أو اتركه فارغاً"
+                      />
+                    </div>
+
+                    <div class="sm:col-span-2">
+                      <p class="text-[0.7rem] text-gray-400">
+                        بعد إتمام الطلب سيقوم فريق خدمة العملاء بالتواصل معك
+                        لتأكيد الدفع والتفاصيل النهائية.
+                      </p>
+                    </div>
+                  </div>
+
+                  <!-- Extra notes -->
+                  <div class="border-t border-gray-100 pt-4">
+                    <label
+                      for="order-notes"
+                      class="block text-sm font-medium mb-1.5"
+                    >
+                      ملاحظات إضافية (اختياري)
+                    </label>
+                    <textarea
+                      id="order-notes"
+                      name="orderNotes"
+                      rows="3"
+                      class="w-full rounded-2xl border border-gray-200 bg-gray-50 py-2.5 px-4 text-sm outline-none focus:bg-white-100 focus:ring-2 focus:ring-brand-900/80 focus:border-brand-900/80"
+                      placeholder="اكتب أي ملاحظات خاصة بالتوصيل (وقت مناسب، أقرب معلم، تفاصيل إضافية...)"
+                    ></textarea>
+                  </div>
+
+                  <!-- Terms -->
+                  <div class="border-t border-gray-100 pt-4">
+                    <label
+                      class="flex items-start gap-2 text-xs sm:text-sm text-gray-600"
+                    >
+                      <input
+                        id="agree-terms"
+                        type="checkbox"
+                        name="agreeTerms"
+                        required
+                        class="mt-1 h-4 w-4 rounded border-gray-300 text-brand-600 focus:ring-brand-600"
+                      />
+                      <span>
+                        أوافق على
+                        <a
+                          href="return-policy.html"
+                          class="underline underline-offset-2 hover:text-brand-700"
+                        >
+                          سياسة الاستبدال والاسترجاع
+                        </a>
+                        و
+                        <a
+                          href="shipping-policy.html"
+                          class="underline underline-offset-2 hover:text-brand-700"
+                        >
+                          سياسة الشحن
+                        </a>
+                        الخاصة بمتجر الأناقة.
+                      </span>
+                    </label>
+                  </div>
+                </div>
+
+                <!-- Bottom actions (mobile) -->
+                <div class="lg:hidden flex flex-col gap-3">
+                  <button
+                    type="submit"
+                    class="w-full inline-flex items-center justify-center rounded-2xl bg-brand-700 px-4 py-3 text-sm sm:text-base font-semibold text-white-100 shadow-soft hover:bg-brand-800 transition"
+                  >
+                    تأكيد الطلب
+                  </button>
+                  <a
+                    href="cart.html"
+                    class="w-full inline-flex items-center justify-center rounded-2xl border border-gray-300 bg-white-100 px-4 py-3 text-sm font-medium text-gray-700 hover:border-brand-600/60 hover:text-brand-700 transition"
+                  >
+                    العودة إلى السلة
+                  </a>
+                </div>
+              </form>
+            </section>
+
+            <!-- Order summary (aside) -->
+            <aside class="lg:col-span-1 space-y-4 lg:space-y-5">
+              <div class="bg-white-100 rounded-2xl shadow-soft p-5 sm:p-6">
+                <h2 class="text-lg font-semibold mb-4">ملخص الطلب</h2>
+
+                <!-- Products list (filled from cart.js) -->
+                <div id="order-summary-items" class="space-y-3 mb-4">
+                  <p class="text-xs text-gray-500">
+                    يتم تحميل المنتجات من السلة...
+                  </p>
+                </div>
+
+                <!-- Coupon -->
+                <div
+                  class="border border-dashed border-gray-200 rounded-2xl p-3.5 mb-4"
+                >
+                  <p class="text-xs text-gray-600 mb-2">
+                    لديك كوبون خصم؟ (مثال تجريبي: YEMEN10)
+                  </p>
+                  <div class="flex gap-2">
+                    <input
+                      type="text"
+                      id="checkout-coupon"
+                      class="flex-1 rounded-2xl border border-gray-200 bg-gray-50 py-2 px-3 text-xs outline-none focus:bg-white-100 focus:ring-2 focus:ring-brand-600/80 focus:border-brand-600/80"
+                      placeholder="أدخل كوبون الخصم"
+                    />
+                    <button
+                      type="button"
+                      id="apply-coupon-button"
+                      class="whitespace-nowrap rounded-2xl border border-gray-300 bg-white-100 px-3 py-2 text-xs font-medium hover:border-brand-600/70 hover:text-brand-700 transition"
+                    >
+                      تطبيق
+                    </button>
+                  </div>
+                  <p
+                    id="checkout-coupon-message"
+                    class="mt-1 text-[0.7rem] text-gray-500"
+                  ></p>
+                </div>
+
+                <!-- Totals -->
+                <dl class="space-y-2 text-sm mb-4">
+                  <div class="flex items-center justify-between">
+                    <dt class="text-gray-600">المجموع الفرعي</dt>
+                    <dd id="order-summary-subtotal" class="font-medium">
+                      0 ريال يمني
+                    </dd>
+                  </div>
+                  <div class="flex items-center justify-between">
+                    <dt class="text-gray-600">الشحن</dt>
+                    <dd id="order-summary-shipping" class="font-medium">
+                      0 ريال يمني
+                    </dd>
+                  </div>
+                  <div class="flex items-center justify-between">
+                    <dt class="text-gray-600">الخصم</dt>
+                    <dd
+                      id="order-summary-discount"
+                      class="font-medium text-emerald-600"
+                    >
+                      0 ريال يمني
+                    </dd>
+                  </div>
+                  <div
+                    class="border-t border-gray-100 pt-2 mt-1 flex items-center justify-between"
+                  >
+                    <dt class="text-base font-semibold">الإجمالي</dt>
+                    <dd
+                      id="order-summary-total"
+                      class="text-base font-semibold"
+                    >
+                      0 ريال يمني
+                    </dd>
+                  </div>
+                </dl>
+
+                <!-- Info line -->
+                <p class="text-[0.7rem] text-gray-500 mb-4">
+                  الأسعار بالريال اليمني. قد تختلف تكلفة الشحن قليلاً حسب شركة
+                  التوصيل والمدينة.
+                </p>
+
+                <!-- Desktop actions -->
+                <div class="hidden lg:flex flex-col gap-3">
+                  <button
+                    type="submit"
+                    form="checkout-form"
+                    class="w-full inline-flex items-center justify-center rounded-2xl bg-brand-700 px-4 py-3 text-sm sm:text-base font-semibold text-white-100 shadow-soft hover:bg-brand-800 transition"
+                 
+                    >
+                    تأكيد الطلب
+                  </button>
+                  <a
+                    href="cart.html"
+                    class="w-full inline-flex items-center justify-center rounded-2xl border border-gray-300 bg-white-100 px-4 py-3 text-sm font-medium text-gray-700 hover:border-brand-600/60 hover:text-brand-700 transition"
+                  >
+                    العودة إلى السلة
+                  </a>
+                </div>
+              </div>
+
+              <!-- Security badges -->
+              <div
+                class="bg-white-100 rounded-2xl shadow-soft p-4 text-xs text-gray-600 space-y-3"
+              >
+                <div class="flex items-center gap-2">
+                  <div
+                    class="w-8 h-8 rounded-full bg-brand-50 flex items-center justify-center"
+                  >
+                    <svg
+                      class="w-4 h-4 text-brand-700"
+                      fill="none"
+                      stroke="currentColor"
+                      viewBox="0 0 24 24"
+                    >
+                      <path
+                        stroke-linecap="round"
+                        stroke-linejoin="round"
+                        stroke-width="1.7"
+                        d="M16 11V7a4 4 0 1 0-8 0v4m-1 0h10a2 2 0 0 1 2 2v6a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2v-6a2 2 0 0 1 2-2Z"
+                      />
+                    </svg>
+                  </div>
+                  <div>
+                    <p class="font-medium text-[0.75rem]">
+                      دفع آمن عبر المحافظ الإلكترونية
+                    </p>
+                    <p class="text-[0.7rem] text-gray-500">
+                      لن نطلب منك كلمة السر أو كود الـ OTP، فقط بيانات التحويل.
+                    </p>
+                  </div>
+                </div>
+
+                <div class="flex items-center gap-2">
+                  <div
+                    class="w-8 h-8 rounded-full bg-brand-50 flex items-center justify-center"
+                  >
+                    <svg
+                      class="w-4 h-4 text-brand-700"
+                      fill="none"
+                      stroke="currentColor"
+                      viewBox="0 0 24 24"
+                    >
+                      <path
+                        stroke-linecap="round"
+                        stroke-linejoin="round"
+                        stroke-width="1.7"
+                        d="M4 4v5h.582M20 20v-5h-.581M5.582 9A7.5 7.5 0 0 1 18.5 6.75L20 9M18.418 15A7.5 7.5 0 0 1 5.5 17.25L4 15"
+                      />
+                    </svg>
+                  </div>
+                  <div>
+                    <p class="font-medium text-[0.75rem]">
+                      استبدال واسترجاع سهل
+                    </p>
+                    <p class="text-[0.7rem] text-gray-500">
+                      يمكنك طلب الاستبدال أو الاسترجاع وفق سياسة المتجر المحلية.
+                    </p>
+                  </div>
+                </div>
+              </div>
+            </aside>
+          </div>
+        </div>
+      </main>
+
+      <!-- FOOTER -->
+      <footer class="border-t border-gray-200 bg-white-100 mt-10">
+        <div class="container mx-auto px-4 py-10">
+          <div class="grid md:grid-cols-4 gap-8 text-sm">
+            <div>
+              <h4 class="font-semibold mb-3">متجر الأناقة</h4>
+              <p class="text-xs text-gray-600 mb-3">
+                متجر إلكتروني للملابس يقدم أحدث صيحات الموضة بجودة عالية وخدمة
+                مميزة لعملائنا في العالم العربي.
+              </p>
+              <p class="text-xs text-gray-500">
+                ساعات العمل: من الأحد إلى الخميس، 9 صباحاً - 6 مساءً.
+              </p>
+            </div>
+            <div>
+              <h4 class="font-semibold mb-3">روابط مهمة</h4>
+              <ul class="space-y-2 text-xs text-gray-600">
+                <li>
+                  <a href="/src/pages/about.html" class="hover:text-brand-600"
+                    >من نحن</a
+                  >
+                </li>
+                <li>
+                  <a
+                    href="/src/pages/shipping-policy.html"
+                    class="hover:text-brand-600"
+                    >سياسة الشحن</a
+                  >
+                </li>
+                <li>
+                  <a
+                    href="/src/pages/return-policy.html"
+                    class="hover:text-brand-600"
+                    >سياسة الاستبدال والاسترجاع</a
+                  >
+                </li>
+                <li>
+                  <a href="/src/pages/faq.html" class="hover:text-brand-600"
+                    >الأسئلة الشائعة</a
+                  >
+                </li>
+                <li>
+                  <a href="/src/pages/contact.html" class="hover:text-brand-600"
+                    >تواصل معنا</a
+                  >
+                </li>
+              </ul>
+            </div>
+            <div>
+              <h4 class="font-semibold mb-3">حسابي</h4>
+              <ul class="space-y-2 text-xs text-gray-600">
+                <li>
+                  <a href="/src/pages/account.html" class="hover:text-brand-600"
+                    >لوحة التحكم</a
+                  >
+                </li>
+                <li>
+                  <a href="/src/pages/cart.html" class="hover:text-brand-600"
+                    >سلة التسوق</a
+                  >
+                </li>
+                <li>
+                  <a
+                    href="/src/pages/checkout.html"
+                    class="hover:text-brand-600"
+                    >إتمام الشراء</a
+                  >
+                </li>
+              </ul>
+            </div>
+            <div>
+              <h4 class="font-semibold mb-3">تابعنا</h4>
+              <div class="flex gap-4 text-lg mb-3">
+                <!-- Instagram -->
+                <a href="#" class="hover:text-brand-600" aria-label="Instagram">
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    class="w-6 h-6"
+                    fill="currentColor"
+                    viewBox="0 0 24 24"
+                  >
+                    <path
+                      d="M7.75 2h8.5A5.75 5.75 0 0 1 22 7.75v8.5A5.75 5.75 0 0 1 16.25 22h-8.5A5.75 5.75 0 0 1 2 16.25v-8.5A5.75 5.75 0 0 1 7.75 2zm0 1.5A4.25 4.25 0 0 0 3.5 7.75v8.5A4.25 4.25 0 0 0 7.75 20.5h8.5A4.25 4.25 0 0 0 20.5 16.25v-8.5A4.25 4.25 0 0 0 16.25 3.5h-8.5zM12 7a5 5 0 1 1 0 10 5 5 0 0 1 0-10zm0 1.5a3.5 3.5 0 1 0 0 7 3.5 3.5 0 0 0 0-7zm5-1.75a1.25 1.25 0 1 1 0 2.5 1.25 1.25 0 0 1 0-2.5z"
+                    />
+                  </svg>
+                </a>
+
+                <!-- Twitter (X) -->
+                <a
+                  href="#"
+                  class="hover:text-brand-600"
+                  aria-label="Twitter / X"
+                >
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    class="w-6 h-6"
+                    fill="currentColor"
+                    viewBox="0 0 24 24"
+                  >
+                    <path
+                      d="M18.146 2h3.123l-6.817 7.79L22 22h-6.343l-4.96-6.507L4.8 22H1.674l7.31-8.35L2 2h6.47l4.474 5.932L18.146 2zm-2.217 17.597h1.727L8.173 4.295H6.314l9.615 15.302z"
+                    />
+                  </svg>
+                </a>
+
+                <!-- TikTok -->
+                <a href="#" class="hover:text-brand-600" aria-label="TikTok">
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    class="w-6 h-6"
+                    fill="currentColor"
+                    viewBox="0 0 24 24"
+                  >
+                    <path
+                      d="M12.95 2h3.03c.15 1.33.76 2.54 1.72 3.44A6.3 6.3 0 0 0 19.7 7v3.03a9.3 9.3 0 0 1-3.47-.7 9.55 9.55 0 0 1-1.32-.67v6.55a6.82 6.82 0 0 1-1.25 3.97A6.36 6.36 0 0 1 9.4 22a6.4 6.4 0 0 1-1.9-.29 6.45 6.45 0 0 1-1.62-.83 6.37 6.37 0 0 1-2.31-3.05A6.5 6.5 0 0 1 3.4 15c0-1.3.37-2.56 1.06-3.64A6.37 6.37 0 0 1 7.74 8.4a6.28 6.28 0 0 1 3.48.07v3.29a3.1 3.1 0 0 0-1.47-.38 3.16 3.16 0 0 0-2.19.9A3.3 3.3 0 0 0 6.7 15c0 .86.33 1.66.93 2.26.6.6 1.4.94 2.24.94a3.16 3.16 0 0 0 2.23-.92 3.1 3.1 0 0 0 .93-2.25V2z"
+                    />
+                  </svg>
+                </a>
+              </div>
+
+              <p class="text-xs text-gray-600 mb-2">
+                اشترك في النشرة البريدية للحصول على أحدث العروض.
+              </p>
+              <form class="flex gap-2">
+                <input
+                  type="email"
+                  class="flex-1 rounded-full border border-gray-200 px-3 py-1.5 text-xs focus:outline-none focus:border-brand-500"
+                  placeholder="أدخل بريدك الإلكتروني"
+                />
+                <button
+                  type="submit"
+                  class="rounded-full bg-gray-900 text-white-100 text-xs px-4 py-1.5 hover:bg-gray-800"
+                >
+                  اشتراك
+                </button>
+              </form>
+            </div>
+          </div>
+          <div
+            class="mt-8 border-t border-gray-100 pt-4 flex flex-col md:flex-row items-center justify-between text-[11px] text-gray-500 gap-2"
+          >
+            <p>© <span id="year"></span> متجر الأناقة. جميع الحقوق محفوظة.</p>
+            <p>تم تطوير الموقع من قبل م/ايمن عجلان.</p>
+          </div>
+        </div>
+      </footer>
+    </div>
+
+    <!-- JS files -->
+    <script src="/src/assets/js/main.js"></script>
+    <script src="/src/assets/js/cart.js"></script>
+    <script src="/src/assets/js/checkout.js"></script>
+
+    <!-- Page-specific JS -->
+  </body>
+</html>

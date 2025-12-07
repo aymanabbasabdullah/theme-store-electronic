@@ -1,0 +1,833 @@
+{
+  "1": {
+    "id": "1",
+    "slug": "xiaomi-5g-6-7",
+    "name": "هاتف شاومي 5G بشاشة 6.7\"",
+    "category": "mobiles",
+    "categoryLabel": "جوالات",
+    "isNewArrival": true,
+    "isBestSeller": false,
+    "brand": "Xiaomi",
+
+    "shortDescription": "هاتف ذكي يدعم شبكات 5G مع شاشة كبيرة 6.7\" بدقة عالية، ومعالج قوي وبطارية تدوم طوال اليوم.",
+    "longDescription": "هاتف ذكي بتصميم عصري وحواف نحيفة، يوفر تجربة مشاهدة مريحة مع أداء سلس بفضل المعالج ثماني النواة وذاكرة RAM قابلة للاختيار. مناسب لتصفح الإنترنت، شبكات التواصل، الألعاب الخفيفة، والتصوير اليومي.",
+
+    "basePrice": 20,
+    "oldPrice": 235000,
+    "currency": "ريال",
+    "stockStatus": "limited",
+    "stockMessage": "متوفر - قطع محدودة",
+    "rating": 4.5,
+    "ratingCount": 24,
+
+    "offer": {
+      "hasOffer": true,
+      "discountPercent": 10,
+      "endsAt": "2025-12-31T23:59:59Z"
+    },
+
+    "images": {
+      "main": "/src/assets/images/girl-img.avif",
+      "gallery": [
+        {
+          "src": "https://via.placeholder.com/600x800?text=Front+View",
+          "thumb": "/src/assets/images/girl-img.avif",
+          "alt": "صورة أمامية",
+          "isDefault": true
+        },
+        {
+          "src": "https://via.placeholder.com/600x800?text=Back+View",
+          "thumb": "https://via.placeholder.com/300x300?text=Back",
+          "alt": "صورة خلفية"
+        },
+        {
+          "src": "https://via.placeholder.com/600x800?text=Side+View",
+          "thumb": "https://via.placeholder.com/300x300?text=Side",
+          "alt": "صورة جانبية"
+        },
+        {
+          "src": "https://via.placeholder.com/600x800?text=Box",
+          "thumb": "https://via.placeholder.com/300x300?text=Box",
+          "alt": "علبة المنتج"
+        }
+      ]
+    },
+
+    "options": [
+      {
+        "key": "color",
+        "label": "اللون",
+        "type": "color",
+        "helper": null,
+        "values": [
+          {
+            "value": "black",
+            "label": "أسود",
+            "colorHex": "#0f172a",
+            "isDefault": true
+          },
+          { "value": "silver", "label": "فضي", "colorHex": "#e5e7eb" },
+          { "value": "blue", "label": "أزرق", "colorHex": "#0ea5e9" }
+        ]
+      },
+      {
+        "key": "storage",
+        "label": "سعة التخزين",
+        "type": "pill",
+        "helper": "يفضّل اختيار سعة أكبر إذا كنت تستخدم الكثير من التطبيقات والوسائط.",
+        "values": [
+          { "value": "128GB", "label": "128GB", "isDefault": true },
+          { "value": "256GB", "label": "256GB" },
+          { "value": "512GB", "label": "512GB" }
+        ]
+      },
+      {
+        "key": "ram",
+        "label": "الذاكرة العشوائية (RAM)",
+        "type": "pill",
+        "helper": "كلما زادت الذاكرة، كان أداء تعدد المهام والألعاب أفضل.",
+        "values": [
+          { "value": "6GB", "label": "6GB", "isDefault": true },
+          { "value": "8GB", "label": "8GB" }
+        ]
+      }
+    ],
+
+    "variants": [
+      {
+        "id": "phone-128-6-black",
+        "sku": "P1286BLK",
+        "price": 20,
+        "oldPrice": 235000,
+        "stockStatus": "limited",
+        "attrs": {
+          "storage": "128GB",
+          "ram": "6GB",
+          "color": "black"
+        }
+      },
+      {
+        "id": "phone-256-8-black",
+        "sku": "P2568BLK",
+        "price": 240000,
+        "oldPrice": 265000,
+        "stockStatus": "in_stock",
+        "attrs": {
+          "storage": "256GB",
+          "ram": "8GB",
+          "color": "black"
+        }
+      }
+    ],
+
+    "specs": [
+      { "label": "الشاشة", "value": "6.7\" بدقة +FHD" },
+      { "label": "المعالج", "value": "ثماني النواة" },
+      {
+        "label": "الذاكرة العشوائية",
+        "value": "6GB أو 8GB (حسب الاختيار)"
+      },
+      { "label": "سعة التخزين", "value": "128GB / 256GB / 512GB" },
+      { "label": "البطارية", "value": "5000mAh مع شحن سريع USB-C" },
+      { "label": "الشبكات", "value": "4G / 5G / Wi-Fi / Bluetooth" },
+      { "label": "النظام", "value": "أندرويد بواجهة سهلة" }
+    ],
+
+    "accessories": [
+      {
+        "id": "case-01",
+        "name": "كفر حماية شفاف",
+        "price": 4500,
+        "image": "https://via.placeholder.com/400x500?text=Phone+Case"
+      },
+      {
+        "id": "charger-01",
+        "name": "شاحن سريع 33W",
+        "price": 9900,
+        "image": "https://via.placeholder.com/400x500?text=Fast+Charger"
+      }
+    ],
+
+    "relatedProducts": [
+      {
+        "id": "phone-002",
+        "name": "هاتف 5G بلون أزرق",
+        "price": 195000,
+        "image": "https://via.placeholder.com/400x500?text=Phone+5G+Blue"
+      }
+    ]
+  },
+
+  "2": {
+    "id": "2",
+    "slug": "xiaomi-5g-6-7",
+    "name": "    5G بشاشة  ",
+    "category": "mobiles",
+    "categoryLabel": "جوالات",
+    "isNewArrival": true,
+    "isBestSeller": true,
+    "brand": "Xiaomi",
+
+    "shortDescription": "هاتف ذكي يدعم شبكات 5G مع شاشة كبيرة 6.7\" بدقة عالية، ومعالج قوي وبطارية تدوم طوال اليوم.",
+    "longDescription": "هاتف ذكي بتصميم عصري وحواف نحيفة، يوفر تجربة مشاهدة مريحة مع أداء سلس بفضل المعالج ثماني النواة وذاكرة RAM قابلة للاختيار. مناسب لتصفح الإنترنت، شبكات التواصل، الألعاب الخفيفة، والتصوير اليومي.",
+
+    "basePrice": 210000,
+    "oldPrice": 235000,
+    "currency": "ريال",
+    "stockStatus": "limited",
+    "stockMessage": "متوفر - قطع محدودة",
+    "rating": 4.5,
+    "ratingCount": 24,
+
+    "offer": {
+      "hasOffer": true,
+      "discountPercent": 10,
+      "endsAt": "2025-12-31T23:59:59Z"
+    },
+
+    "images": {
+      "main": "https://via.placeholder.com/600x800?text=5G+Smartphone",
+      "gallery": [
+        {
+          "src": "https://via.placeholder.com/600x800?text=Front+View",
+          "thumb": "https://via.placeholder.com/300x300?text=Front",
+          "alt": "صورة أمامية",
+          "isDefault": true
+        },
+        {
+          "src": "https://via.placeholder.com/600x800?text=Back+View",
+          "thumb": "https://via.placeholder.com/300x300?text=Back",
+          "alt": "صورة خلفية"
+        },
+        {
+          "src": "https://via.placeholder.com/600x800?text=Side+View",
+          "thumb": "https://via.placeholder.com/300x300?text=Side",
+          "alt": "صورة جانبية"
+        },
+        {
+          "src": "https://via.placeholder.com/600x800?text=Box",
+          "thumb": "https://via.placeholder.com/300x300?text=Box",
+          "alt": "علبة المنتج"
+        }
+      ]
+    },
+
+    "options": [
+      {
+        "key": "color",
+        "label": "اللون",
+        "type": "color",
+        "helper": null,
+        "values": [
+          {
+            "value": "black",
+            "label": "أسود",
+            "colorHex": "#0f172a",
+            "isDefault": true
+          },
+          { "value": "silver", "label": "فضي", "colorHex": "#e5e7eb" },
+          { "value": "blue", "label": "أزرق", "colorHex": "#0ea5e9" }
+        ]
+      },
+      {
+        "key": "storage",
+        "label": "سعة التخزين",
+        "type": "pill",
+        "helper": "يفضّل اختيار سعة أكبر إذا كنت تستخدم الكثير من التطبيقات والوسائط.",
+        "values": [
+          { "value": "128GB", "label": "128GB", "isDefault": true },
+          { "value": "256GB", "label": "256GB" },
+          { "value": "512GB", "label": "512GB" }
+        ]
+      },
+      {
+        "key": "ram",
+        "label": "الذاكرة العشوائية (RAM)",
+        "type": "pill",
+        "helper": "كلما زادت الذاكرة، كان أداء تعدد المهام والألعاب أفضل.",
+        "values": [
+          { "value": "6GB", "label": "6GB", "isDefault": true },
+          { "value": "8GB", "label": "8GB" }
+        ]
+      }
+    ],
+
+    "variants": [
+      {
+        "id": "phone-128-6-black",
+        "sku": "P1286BLK",
+        "price": 210000,
+        "oldPrice": 235000,
+        "stockStatus": "limited",
+        "attrs": {
+          "storage": "128GB",
+          "ram": "6GB",
+          "color": "black"
+        }
+      },
+      {
+        "id": "phone-256-8-black",
+        "sku": "P2568BLK",
+        "price": 240000,
+        "oldPrice": 265000,
+        "stockStatus": "in_stock",
+        "attrs": {
+          "storage": "256GB",
+          "ram": "8GB",
+          "color": "black"
+        }
+      }
+    ],
+
+    "specs": [
+      { "label": "الشاشة", "value": "6.7\" بدقة +FHD" },
+      { "label": "المعالج", "value": "ثماني النواة" },
+      {
+        "label": "الذاكرة العشوائية",
+        "value": "6GB أو 8GB (حسب الاختيار)"
+      },
+      { "label": "سعة التخزين", "value": "128GB / 256GB / 512GB" },
+      { "label": "البطارية", "value": "5000mAh مع شحن سريع USB-C" },
+      { "label": "الشبكات", "value": "4G / 5G / Wi-Fi / Bluetooth" },
+      { "label": "النظام", "value": "أندرويد بواجهة سهلة" }
+    ],
+
+    "accessories": [
+      {
+        "id": "case-01",
+        "name": "كفر حماية شفاف",
+        "price": 4500,
+        "image": "https://via.placeholder.com/400x500?text=Phone+Case"
+      },
+      {
+        "id": "charger-01",
+        "name": "شاحن سريع 33W",
+        "price": 9900,
+        "image": "https://via.placeholder.com/400x500?text=Fast+Charger"
+      }
+    ],
+
+    "relatedProducts": [
+      {
+        "id": "phone-002",
+        "name": "هاتف 5G بلون أزرق",
+        "price": 195000,
+        "image": "https://via.placeholder.com/400x500?text=Phone+5G+Blue"
+      }
+    ]
+  },
+  "3": {
+    "id": "3",
+    "slug": "xiaomi-5g-6-7",
+    "name": " سامسونج s22 ultra",
+    "category": "mobiles",
+    "categoryLabel": "جوالات",
+    "brand": "Xiaomi",
+
+    "shortDescription": "هاتف ذكي يدعم شبكات 5G مع شاشة كبيرة 6.7\" بدقة عالية، ومعالج قوي وبطارية تدوم طوال اليوم.",
+    "longDescription": "هاتف ذكي بتصميم عصري وحواف نحيفة، يوفر تجربة مشاهدة مريحة مع أداء سلس بفضل المعالج ثماني النواة وذاكرة RAM قابلة للاختيار. مناسب لتصفح الإنترنت، شبكات التواصل، الألعاب الخفيفة، والتصوير اليومي.",
+
+    "basePrice": 210000,
+    "oldPrice": 235000,
+    "currency": "ريال",
+    "stockStatus": "limited",
+    "stockMessage": "متوفر - قطع محدودة",
+    "rating": 4.5,
+    "ratingCount": 24,
+
+    "offer": {
+      "hasOffer": true,
+      "discountPercent": 10,
+      "endsAt": "2025-12-31T23:59:59Z"
+    },
+
+    "images": {
+      "main": "https://via.placeholder.com/600x800?text=5G+Smartphone",
+      "gallery": [
+        {
+          "src": "https://via.placeholder.com/600x800?text=Front+View",
+          "thumb": "https://via.placeholder.com/300x300?text=Front",
+          "alt": "صورة أمامية",
+          "isDefault": true
+        },
+        {
+          "src": "https://via.placeholder.com/600x800?text=Back+View",
+          "thumb": "https://via.placeholder.com/300x300?text=Back",
+          "alt": "صورة خلفية"
+        },
+        {
+          "src": "https://via.placeholder.com/600x800?text=Side+View",
+          "thumb": "https://via.placeholder.com/300x300?text=Side",
+          "alt": "صورة جانبية"
+        },
+        {
+          "src": "https://via.placeholder.com/600x800?text=Box",
+          "thumb": "https://via.placeholder.com/300x300?text=Box",
+          "alt": "علبة المنتج"
+        }
+      ]
+    },
+
+    "options": [
+      {
+        "key": "color",
+        "label": "اللون",
+        "type": "color",
+        "helper": null,
+        "values": [
+          {
+            "value": "black",
+            "label": "أسود",
+            "colorHex": "#0f172a",
+            "isDefault": true
+          },
+          { "value": "silver", "label": "فضي", "colorHex": "#e5e7eb" },
+          { "value": "blue", "label": "أزرق", "colorHex": "#0ea5e9" }
+        ]
+      },
+      {
+        "key": "storage",
+        "label": "سعة التخزين",
+        "type": "pill",
+        "helper": "يفضّل اختيار سعة أكبر إذا كنت تستخدم الكثير من التطبيقات والوسائط.",
+        "values": [
+          { "value": "128GB", "label": "128GB", "isDefault": true },
+          { "value": "256GB", "label": "256GB" },
+          { "value": "512GB", "label": "512GB" }
+        ]
+      },
+      {
+        "key": "ram",
+        "label": "الذاكرة العشوائية (RAM)",
+        "type": "pill",
+        "helper": "كلما زادت الذاكرة، كان أداء تعدد المهام والألعاب أفضل.",
+        "values": [
+          { "value": "6GB", "label": "6GB", "isDefault": true },
+          { "value": "8GB", "label": "8GB" }
+        ]
+      }
+    ],
+
+    "variants": [
+      {
+        "id": "phone-128-6-black",
+        "sku": "P1286BLK",
+        "price": 210000,
+        "oldPrice": 235000,
+        "stockStatus": "limited",
+        "attrs": {
+          "storage": "128GB",
+          "ram": "6GB",
+          "color": "black"
+        }
+      },
+      {
+        "id": "phone-256-8-black",
+        "sku": "P2568BLK",
+        "price": 240000,
+        "oldPrice": 265000,
+        "stockStatus": "in_stock",
+        "attrs": {
+          "storage": "256GB",
+          "ram": "8GB",
+          "color": "black"
+        }
+      }
+    ],
+
+    "specs": [
+      { "label": "الشاشة", "value": "6.7\" بدقة +FHD" },
+      { "label": "المعالج", "value": "ثماني النواة" },
+      {
+        "label": "الذاكرة العشوائية",
+        "value": "6GB أو 8GB (حسب الاختيار)"
+      },
+      { "label": "سعة التخزين", "value": "128GB / 256GB / 512GB" },
+      { "label": "البطارية", "value": "5000mAh مع شحن سريع USB-C" },
+      { "label": "الشبكات", "value": "4G / 5G / Wi-Fi / Bluetooth" },
+      { "label": "النظام", "value": "أندرويد بواجهة سهلة" }
+    ],
+
+    "accessories": [
+      {
+        "id": "case-01",
+        "name": "كفر حماية شفاف",
+        "price": 4500,
+        "image": "https://via.placeholder.com/400x500?text=Phone+Case"
+      },
+      {
+        "id": "charger-01",
+        "name": "شاحن سريع 33W",
+        "price": 9900,
+        "image": "https://via.placeholder.com/400x500?text=Fast+Charger"
+      }
+    ],
+
+    "relatedProducts": [
+      {
+        "id": "phone-002",
+        "name": "هاتف 5G بلون أزرق",
+        "price": 195000,
+        "image": "https://via.placeholder.com/400x500?text=Phone+5G+Blue"
+      }
+    ]
+  },
+  "4": {
+    "id": "4",
+    "slug": "msi-gaming-laptop-i7-rtx3060",
+    "name": "لابتوب MSI جيمينج بمعالج i7 وكرت RTX 3060",
+    "category": "laptops",
+    "categoryLabel": "لابتوبات",
+    "isNewArrival": true,
+    "isBestSeller": true,
+    "brand": "MSI",
+
+    "shortDescription": "لابتوب جيمينج قوي من MSI بمعالج Intel Core i7، وكرت شاشة RTX 3060، مناسب للألعاب والبرامج الثقيلة.",
+    "longDescription": "لابتوب مخصص للجيمينج والعمل الاحترافي، يأتي بشاشة 15.6\" بتردد عالٍ، ومعالج Intel Core i7 من الجيل الحديث، وكرت شاشة NVIDIA GeForce RTX 3060 مع ذاكرة رسومية مخصصة. مزود بذاكرة RAM كبيرة وقرص SSD سريع لتشغيل النظام والألعاب بدون تأخير، بالإضافة إلى لوحة مفاتيح مضيئة، ونظام تبريد محسّن للاستخدام الطويل.",
+
+    "basePrice": 480000,
+    "oldPrice": 235000,
+
+    "currency": "ريال",
+    "stockStatus": "limited",
+    "stockMessage": "متوفر - قطع محدودة",
+    "rating": 4.7,
+    "ratingCount": 38,
+
+    "offer": {
+      "hasOffer": true,
+      "discountPercent": 20,
+      "endsAt": "2025-12-31T23:59:59Z"
+    },
+
+    "images": {
+      "main": "/src/assets/images/products/front.jpeg",
+      "gallery": [
+        {
+          "src": "/src/assets/images/products/front.jpeg",
+          "thumb": "/src/assets/images/products/front.jpeg",
+          "alt": "صورة أمامية لابتوب",
+          "isDefault": true
+        },
+        {
+          "src": "/src/assets/images/products/kepoar.jpeg",
+          "thumb": "/src/assets/images/products/kepoar.jpeg",
+          "alt": "لوحة مفاتيح مضيئة"
+        },
+        {
+          "src": "/src/assets/images/products/side.jpeg",
+          "thumb": "/src/assets/images/products/side.jpeg",
+          "alt": "صورة جانبية لابتوب"
+        },
+        {
+          "src": "/src/assets/images/products/back.jpeg",
+          "thumb": "/src/assets/images/products/back.jpeg",
+          "alt": "غطاء اللابتوب"
+        }
+      ]
+    },
+
+    "options": [
+      {
+        "key": "color",
+        "label": "اللون",
+        "type": "color",
+        "helper": null,
+        "values": [
+          {
+            "value": "black",
+            "label": "أسود",
+            "colorHex": "#0f172a",
+            "isDefault": true
+          },
+          {
+            "value": "gray",
+            "label": "رمادي",
+            "colorHex": "#9ca3af"
+          },
+          {
+            "value": "red",
+            "label": "أسود بإضاءات حمراء",
+            "colorHex": "#b91c1c"
+          }
+        ]
+      },
+      {
+        "key": "storage",
+        "label": "سعة التخزين (SSD)",
+        "type": "pill",
+        "helper": "اختر سعة أكبر إذا كنت تثبت الكثير من الألعاب والبرامج.",
+        "values": [
+          { "value": "512GB", "label": "512GB SSD", "isDefault": true },
+          { "value": "1TB", "label": "1TB SSD" }
+        ]
+      },
+      {
+        "key": "ram",
+        "label": "الذاكرة العشوائية (RAM)",
+        "type": "pill",
+        "helper": "كلما زادت الذاكرة، كان أداء الجيمينج والبرامج الثقيلة أفضل.",
+        "values": [
+          { "value": "16GB", "label": "16GB", "isDefault": true },
+          { "value": "32GB", "label": "32GB" }
+        ]
+      }
+    ],
+    "variants": [
+      {
+        "id": "msi-16-512-black",
+        "sku": "MSI-16-512-BLK",
+        "price": 480000,
+        "oldPrice": 65400000000,
+
+        "stockStatus": "limited",
+        "attrs": {
+          "storage": "512GB",
+          "ram": "16GB",
+          "color": "black"
+        }
+      },
+      {
+        "id": "msi-16-1tb-black",
+        "sku": "MSI-16-1TB-BLK",
+        "price": 504200,
+        "oldPrice": 560000,
+        "stockStatus": "limited",
+        "attrs": {
+          "storage": "1TB",
+          "ram": "16GB",
+          "color": "black"
+        }
+      },
+      {
+        "id": "msi-32-512-black",
+        "sku": "MSI-32-512-BLK",
+        "price": 500000,
+        "oldPrice": 600000,
+        "stockStatus": "in_stock",
+        "attrs": {
+          "storage": "512GB",
+          "ram": "32GB",
+          "color": "black"
+        }
+      },
+      {
+        "id": "msi-32-1tb-black",
+        "sku": "MSI-32-1TB-BLK",
+        "price": 550000,
+        "oldPrice": 600000,
+        "stockStatus": "in_stock",
+        "attrs": {
+          "storage": "1TB",
+          "ram": "32GB",
+          "color": "black"
+        }
+      }
+    ],
+    "specs": [
+      { "label": "الشاشة", "value": "15.6\" بدقة Full HD وتردد 144Hz" },
+      { "label": "المعالج", "value": "Intel Core i7 (جيل حديث)" },
+      { "label": "كرت الشاشة", "value": "NVIDIA GeForce RTX 3060 6GB" },
+      {
+        "label": "الذاكرة العشوائية",
+        "value": "16GB أو 32GB DDR4 (حسب الاختيار)"
+      },
+      { "label": "سعة التخزين", "value": "512GB أو 1TB SSD NVMe" },
+      { "label": "النظام", "value": "Windows 11" },
+      { "label": "الاتصال", "value": "Wi-Fi، Bluetooth، منافذ USB-C و HDMI" },
+      { "label": "الوزن", "value": "حوالي 2.2 كجم" }
+    ],
+
+    "accessories": [
+      {
+        "id": "gaming-mouse-01",
+        "name": "ماوس جيمينج RGB",
+        "price": 15000,
+        "image": "https://via.placeholder.com/400x500?text=Gaming+Mouse"
+      },
+      {
+        "id": "laptop-cooler-01",
+        "name": "قاعدة تبريد لابتوب",
+        "price": 12000,
+        "image": "https://via.placeholder.com/400x500?text=Laptop+Cooler"
+      }
+    ],
+
+    "relatedProducts": [
+      {
+        "id": "2",
+        "name": "لابتوب جيمينج بمعالج i7 و RTX",
+        "price": 480000,
+        "image": "https://via.placeholder.com/400x500?text=Gaming+Laptop"
+      }
+    ]
+  },
+  "5": {
+    "id": "5",
+    "slug": "msi-gaming-laptop-i7-rtx3060",
+    "name": "لابتوب MS  RTX 3060",
+    "category": "laptops",
+    "categoryLabel": "لابتوبات",
+    "isNewArrival": true,
+    "isBestSeller": true,
+    "brand": "MSI",
+
+    "shortDescription": "لابتوب جيمينج قوي من MSI بمعالج Intel Core i7، وكرت شاشة RTX 3060، مناسب للألعاب والبرامج الثقيلة.",
+    "longDescription": "لابتوب مخصص للجيمينج والعمل الاحترافي، يأتي بشاشة 15.6\" بتردد عالٍ، ومعالج Intel Core i7 من الجيل الحديث، وكرت شاشة NVIDIA GeForce RTX 3060 مع ذاكرة رسومية مخصصة. مزود بذاكرة RAM كبيرة وقرص SSD سريع لتشغيل النظام والألعاب بدون تأخير، بالإضافة إلى لوحة مفاتيح مضيئة، ونظام تبريد محسّن للاستخدام الطويل.",
+
+    "basePrice": 480000,
+    "oldPrice": 200000000000,
+
+    "currency": "ريال",
+    "stockStatus": "limited",
+    "stockMessage": "متوفر - قطع محدودة",
+    "rating": 4.7,
+    "ratingCount": 38,
+
+    "offer": {
+      "hasOffer": true,
+      "discountPercent": 10,
+      "endsAt": "2025-12-31T23:59:59Z"
+    },
+
+    "images": {
+      "main": "/src/assets/images/girl-img.avif",
+      "gallery": [
+        {
+          "src": "https://via.placeholder.com/600x800?text=Laptop+Front",
+          "thumb": "https://via.placeholder.com/300x300?text=Front",
+          "alt": "صورة أمامية لابتوب",
+          "isDefault": true
+        },
+        {
+          "src": "https://via.placeholder.com/600x800?text=Laptop+Keyboard",
+          "thumb": "https://via.placeholder.com/300x300?text=Keyboard",
+          "alt": "لوحة مفاتيح مضيئة"
+        },
+        {
+          "src": "https://via.placeholder.com/600x800?text=Laptop+Side",
+          "thumb": "https://via.placeholder.com/300x300?text=Side",
+          "alt": "صورة جانبية لابتوب"
+        },
+        {
+          "src": "https://via.placeholder.com/600x800?text=Laptop+Back",
+          "thumb": "https://via.placeholder.com/300x300?text=Back",
+          "alt": "غطاء اللابتوب"
+        }
+      ]
+    },
+
+    "options": [
+      {
+        "key": "color",
+        "label": "اللون",
+        "type": "color",
+        "helper": null,
+        "values": [
+          {
+            "value": "black",
+            "label": "أسود",
+            "colorHex": "#0f172a",
+            "isDefault": true
+          },
+          {
+            "value": "gray",
+            "label": "رمادي",
+            "colorHex": "#9ca3af"
+          },
+          {
+            "value": "red",
+            "label": "أسود بإضاءات حمراء",
+            "colorHex": "#b91c1c"
+          }
+        ]
+      },
+      {
+        "key": "storage",
+        "label": "سعة التخزين (SSD)",
+        "type": "pill",
+        "helper": "اختر سعة أكبر إذا كنت تثبت الكثير من الألعاب والبرامج.",
+        "values": [
+          { "value": "512GB", "label": "512GB SSD", "isDefault": true },
+          { "value": "1TB", "label": "1TB SSD" }
+        ]
+      },
+      {
+        "key": "ram",
+        "label": "الذاكرة العشوائية (RAM)",
+        "type": "pill",
+        "helper": "كلما زادت الذاكرة، كان أداء الجيمينج والبرامج الثقيلة أفضل.",
+        "values": [
+          { "value": "16GB", "label": "16GB", "isDefault": true },
+          { "value": "32GB", "label": "32GB" }
+        ]
+      }
+    ],
+
+    "variants": [
+      {
+        "id": "msi-16-512-black",
+        "sku": "MSI-16-512-BLK",
+        "price": 480000,
+        "oldPrice": 65400000000,
+
+        "stockStatus": "limited",
+        "attrs": {
+          "storage": "512GB",
+          "ram": "16GB",
+          "color": "black"
+        }
+      },
+      {
+        "id": "msi-32-1tb-black",
+        "sku": "MSI-32-1TB-BLK",
+        "price": 550000,
+        "oldPrice": 600000,
+        "stockStatus": "in_stock",
+        "attrs": {
+          "storage": "1TB",
+          "ram": "32GB",
+          "color": "black"
+        }
+      }
+    ],
+
+    "specs": [
+      { "label": "الشاشة", "value": "15.6\" بدقة Full HD وتردد 144Hz" },
+      { "label": "المعالج", "value": "Intel Core i7 (جيل حديث)" },
+      { "label": "كرت الشاشة", "value": "NVIDIA GeForce RTX 3060 6GB" },
+      {
+        "label": "الذاكرة العشوائية",
+        "value": "16GB أو 32GB DDR4 (حسب الاختيار)"
+      },
+      { "label": "سعة التخزين", "value": "512GB أو 1TB SSD NVMe" },
+      { "label": "النظام", "value": "Windows 11" },
+      { "label": "الاتصال", "value": "Wi-Fi، Bluetooth، منافذ USB-C و HDMI" },
+      { "label": "الوزن", "value": "حوالي 2.2 كجم" }
+    ],
+
+    "accessories": [
+      {
+        "id": "gaming-mouse-01",
+        "name": "ماوس جيمينج RGB",
+        "price": 15000,
+        "image": "https://via.placeholder.com/400x500?text=Gaming+Mouse"
+      },
+      {
+        "id": "laptop-cooler-01",
+        "name": "قاعدة تبريد لابتوب",
+        "price": 12000,
+        "image": "https://via.placeholder.com/400x500?text=Laptop+Cooler"
+      }
+    ],
+
+    "relatedProducts": [
+      {
+        "id": "2",
+        "name": "لابتوب جيمينج بمعالج i7 و RTX",
+        "price": 480000,
+        "image": "https://via.placeholder.com/400x500?text=Gaming+Laptop"
+      }
+    ]
+  }
+}

@@ -1,0 +1,1224 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+  <head>
+    <meta charset="UTF-8" />
+    <title>متجر التقنية - المنتجات الإلكترونية</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;600;700&display=swap"
+      rel="stylesheet"
+    />
+
+    <!-- Tailwind / Main bundle -->
+    <script type="module" src="/src/main.ts"></script>
+  </head>
+  <body class="font-sans bg-brand-50 text-slate-900 text-right">
+    <!-- Toast -->
+    <div
+      id="toast"
+      class="fixed top-4 right-4 z-50 hidden rounded-xl bg-slate-900 text-white px-4 py-3 text-sm shadow-lg animate-fadeIn"
+    >
+      <span id="toast-message">تمت الإضافة إلى السلة</span>
+    </div>
+
+    <div class="min-h-screen flex flex-col">
+      <!-- HEADER -->
+      <header
+        class="sticky top-0 z-50 border-b border-slate-200 bg-white/90 backdrop-blur"
+      >
+        <div class="container mx-auto px-4 py-2 sm:py-3 relative">
+          <!-- Top bar -->
+          <div
+            class="hidden sm:flex items-center justify-between py-2 text-xs text-slate-500"
+          >
+            <span>
+              شحن سريع داخل صنعاء وباقي المحافظات للطلبات فوق
+              <span class="font-semibold text-brand-600">50,000 ريال يمني</span>
+            </span>
+            <a
+              href="/src/pages/login.html"
+              class="hover:text-brand-700 transition"
+            >
+              تسجيل الدخول / إنشاء حساب
+            </a>
+          </div>
+
+          <!-- Main header -->
+          <div class="flex items-center justify-between py-3 gap-4">
+            <!-- Mobile menu button -->
+            <button
+              id="mobile-menu-toggle"
+              type="button"
+              class="md:hidden inline-flex items-center justify-center rounded-xl border border-slate-200 p-2 bg-white"
+              aria-label="فتح قائمة التنقل"
+              aria-expanded="false"
+              aria-controls="mobile-nav-panel"
+            >
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                fill="none"
+                viewBox="0 0 24 24"
+                stroke-width="1.5"
+                stroke="currentColor"
+                class="size-6 text-slate-800"
+              >
+                <path
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  d="M3.75 6.75h16.5M3.75 12h16.5m-16.5 5.25h16.5"
+                />
+              </svg>
+            </button>
+
+            <!-- Logo -->
+            <a
+              href="/index.html"
+              class="flex items-center gap-2 text-xl sm:text-2xl font-bold tracking-wide text-slate-900"
+            >
+              <span
+                class="flex items-center justify-center w-9 h-9 rounded-2xl bg-brand-500 text-white text-lg shadow-md"
+                >⚡</span
+              >
+              <span>متجر التقنية</span>
+            </a>
+
+            <!-- Search (desktop) -->
+            <form class="hidden md:flex flex-1 max-w-xl mx-4">
+              <div
+                class="flex flex-1 items-center rounded-full bg-slate-100 px-4 py-2 gap-2 border border-slate-200"
+              >
+                <input
+                  type="text"
+                  class="flex-1 bg-transparent text-sm focus:outline-none text-right placeholder:text-slate-400"
+                  placeholder="ابحث عن جوال، لابتوب، أو منتج إلكتروني..."
+                />
+                <span
+                  class="text-xs text-slate-500 flex items-center gap-1 cursor-pointer"
+                >
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    fill="none"
+                    viewBox="0 0 24 24"
+                    stroke-width="1.5"
+                    stroke="currentColor"
+                    class="size-4"
+                  >
+                    <path
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                      d="m21 21-5.197-5.197m0 0A7.5 7.5 0 1 0 5.196 5.196a7.5 7.5 0 0 0 10.607 10.607Z"
+                    />
+                  </svg>
+                  بحث
+                </span>
+              </div>
+            </form>
+
+            <!-- Icons -->
+            <div class="flex items-center gap-3 sm:gap-4 text-slate-700">
+              <!-- Search icon for mobile -->
+              <button
+                id="mobile-search-toggle"
+                type="button"
+                class="md:hidden text-xl"
+                aria-label="فتح البحث"
+                aria-controls="mobile-search"
+                aria-expanded="false"
+              >
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  fill="none"
+                  viewBox="0 0 24 24"
+                  stroke-width="1.5"
+                  stroke="currentColor"
+                  class="size-6"
+                >
+                  <path
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    d="m21 21-5.197-5.197m0 0A7.5 7.5 0 1 0 5.196 5.196a7.5 7.5 0 0 0 10.607 10.607Z"
+                  />
+                </svg>
+              </button>
+
+              <!-- Account -->
+              <a
+                href="/src/pages/account.html"
+                class="md:inline text-xl hover:text-brand-600 transition hidden"
+                title="الحساب"
+              >
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  class="h-6 w-6"
+                  fill="none"
+                  viewBox="0 0 24 24"
+                  stroke="currentColor"
+                >
+                  <path
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    stroke-width="2"
+                    d="M12 12c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 
+             1.79-4 4 1.79 4 4 4zm0 2c-3.33 0-6 2-6 
+             4v1h12v-1c0-2-2.67-4-6-4z"
+                  />
+                </svg>
+              </a>
+
+              <!-- Wishlist -->
+              <button
+                type="button"
+                class="text-xl hover:text-brand-600 transition"
+                title="المفضلة"
+                onclick="window.location='/src/pages/wishlist.html'"
+              >
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  class="h-6 w-6"
+                  fill="none"
+                  viewBox="0 0 24 24"
+                  stroke="currentColor"
+                >
+                  <path
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    stroke-width="2"
+                    d="M4.318 6.318a4.5 4.5 0 016.364 
+           0L12 7.636l1.318-1.318a4.5 
+           4.5 0 116.364 6.364L12 21l-7.682-8.318a4.5 
+           4.5 0 010-6.364z"
+                  />
+                </svg>
+              </button>
+
+              <!-- Cart -->
+              <a
+                href="/src/pages/cart.html"
+                class="relative text-xl hover:text-brand-600 transition"
+                title="السلة"
+              >
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  fill="none"
+                  viewBox="0 0 24 24"
+                  stroke-width="1.5"
+                  stroke="currentColor"
+                  class="size-6"
+                >
+                  <path
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    d="M2.25 3h1.386c.51 0 .955.343 1.087.835l.383 1.437M7.5 14.25a3 3 0 0 0-3 3h15.75m-12.75-3h11.218c1.121-2.3 2.1-4.684 2.924-7.138a60.114 60.114 0 0 0-16.536-1.84M7.5 14.25 5.106 5.272M6 20.25a.75.75 0 1 1-1.5 0 .75.75 0 0 1 1.5 0Zm12.75 0a.75.75 0 1 1-1.5 0 .75.75 0 0 1 1.5 0Z"
+                  />
+                </svg>
+
+                <span
+                  id="cart-count-badge"
+                  class="absolute -top-2 -left-2 rounded-full bg-brand-500 text-white text-xs w-5 h-5 flex items-center justify-center"
+                >
+                  0
+                </span>
+              </a>
+            </div>
+          </div>
+
+          <!-- Mobile search -->
+          <div id="mobile-search" class="md:hidden hidden pb-3">
+            <form>
+              <div
+                class="flex items-center rounded-full bg-slate-100 px-4 py-2 gap-2 border border-slate-200"
+              >
+                <input
+                  type="text"
+                  class="flex-1 bg-transparent text-sm focus:outline-none text-right placeholder:text-slate-400"
+                  placeholder="ابحث عن جوال، لابتوب، أو منتج إلكتروني..."
+                />
+                <span class="text-xs text-slate-500">بحث</span>
+              </div>
+            </form>
+          </div>
+
+          <!-- Navigation + Mega Menu (desktop) -->
+          <nav
+            id="main-nav"
+            class="border-t border-slate-100 pt-3 pb-4 text-sm text-slate-700 hidden md:flex md:border-0 md:py-0"
+            aria-label="التنقل الرئيسي"
+          >
+            <ul class="flex flex-row gap-6 lg:gap-8">
+              <li>
+                <a href="/index.html" class="hover:text-brand-600 font-medium">
+                  الرئيسية
+                </a>
+              </li>
+
+              <!-- Mobiles - Mega Menu -->
+              <li class="relative group">
+                <button
+                  type="button"
+                  class="inline-flex items-center gap-1 hover:text-brand-600 font-medium"
+                >
+                  جوالات
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    class="w-4 h-4"
+                    fill="none"
+                    viewBox="0 0 24 24"
+                    stroke="currentColor"
+                  >
+                    <path
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                      stroke-width="1.5"
+                      d="M19 9l-7 7-7-7"
+                    />
+                  </svg>
+                </button>
+
+                <!-- Mega Panel -->
+                <div
+                  class="invisible opacity-0 group-hover:visible group-hover:opacity-100 transition-all duration-200 absolute right-0 mt-3 w-[min(100vw,900px)]"
+                >
+                  <div
+                    class="rounded-3xl bg-white shadow-2xl border border-slate-100 p-5 grid grid-cols-2 lg:grid-cols-4 gap-4"
+                  >
+                    <!-- Column 1 -->
+                    <div>
+                      <h4 class="text-xs font-semibold text-slate-500 mb-2">
+                        حسب النظام
+                      </h4>
+                      <ul class="space-y-1 text-xs text-slate-700">
+                        <li>
+                          <a
+                            href="/src/pages/category.html?category=mobiles&os=android"
+                            class="hover:text-brand-600"
+                            >أندرويد</a
+                          >
+                        </li>
+                        <li>
+                          <a
+                            href="/src/pages/category.html?category=mobiles&os=ios"
+                            class="hover:text-brand-600"
+                            >iOS (آيفون)</a
+                          >
+                        </li>
+                        <li>
+                          <a
+                            href="/src/pages/category.html?category=mobiles&os=feature"
+                            class="hover:text-brand-600"
+                            >أجهزة بسيطة (Feature Phones)</a
+                          >
+                        </li>
+                      </ul>
+                    </div>
+
+                    <!-- Column 2 -->
+                    <div>
+                      <h4 class="text-xs font-semibold text-slate-500 mb-2">
+                        حسب الفئة السعرية
+                      </h4>
+                      <ul class="space-y-1 text-xs text-slate-700">
+                        <li>
+                          <a
+                            href="/src/pages/category.html?category=mobiles&price=budget"
+                            class="hover:text-brand-600"
+                            >جوالات اقتصادية</a
+                          >
+                        </li>
+                        <li>
+                          <a
+                            href="/src/pages/category.html?category=mobiles&price=mid"
+                            class="hover:text-brand-600"
+                            >فئة متوسطة</a
+                          >
+                        </li>
+                        <li>
+                          <a
+                            href="/src/pages/category.html?category=mobiles&price=flagship"
+                            class="hover:text-brand-600"
+                            >أعلى الفئة (Flagship)</a
+                          >
+                        </li>
+                      </ul>
+                    </div>
+
+                    <!-- Column 3 -->
+                    <div>
+                      <h4 class="text-xs font-semibold text-slate-500 mb-2">
+                        الماركات المميزة
+                      </h4>
+                      <ul class="space-y-1 text-xs text-slate-700">
+                        <li>
+                          <a
+                            href="/src/pages/search.html?brand=Apple&category=mobiles"
+                            class="hover:text-brand-600"
+                            >Apple (آيفون)</a
+                          >
+                        </li>
+                        <li>
+                          <a
+                            href="/src/pages/search.html?brand=Samsung&category=mobiles"
+                            class="hover:text-brand-600"
+                            >Samsung</a
+                          >
+                        </li>
+                        <li>
+                          <a
+                            href="/src/pages/search.html?brand=Xiaomi&category=mobiles"
+                            class="hover:text-brand-600"
+                            >Xiaomi</a
+                          >
+                        </li>
+                        <li>
+                          <a
+                            href="/src/pages/search.html?brand=Huawei&category=mobiles"
+                            class="hover:text-brand-600"
+                            >Huawei</a
+                          >
+                        </li>
+                      </ul>
+                    </div>
+
+                    <!-- Column 4 - Banner -->
+                    <div
+                      class="rounded-2xl bg-gradient-to-l from-brand-500 to-brand-400 text-white p-4 flex flex-col justify-between"
+                    >
+                      <div class="text-xs mb-2 opacity-90">عرض اليوم</div>
+                      <p class="text-sm font-semibold mb-1">
+                        خصم حتى 20٪ على جوالات 5G المختارة
+                      </p>
+                      <p class="text-[11px] opacity-90 mb-3">
+                        استبدل جوالك القديم بجوال جديد مع ضمان سنتين.
+                      </p>
+                      <a
+                        href="/src/pages/category.html?category=mobiles&tag=deal"
+                        class="inline-flex items-center justify-center rounded-full bg-white/95 text-brand-700 px-4 py-1.5 text-[11px] hover:bg-slate-50"
+                      >
+                        تسوق العروض الآن
+                      </a>
+                    </div>
+                  </div>
+                </div>
+              </li>
+
+              <!-- Laptops - Mega Menu -->
+              <li class="relative group">
+                <button
+                  type="button"
+                  class="inline-flex items-center gap-1 hover:text-brand-600 font-medium"
+                >
+                  لابتوبات
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    class="w-4 h-4"
+                    fill="none"
+                    viewBox="0 0 24 24"
+                    stroke="currentColor"
+                  >
+                    <path
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                      stroke-width="1.5"
+                      d="M19 9l-7 7-7-7"
+                    />
+                  </svg>
+                </button>
+
+                <div
+                  class="invisible opacity-0 group-hover:visible group-hover:opacity-100 transition-all duration-200 absolute right-0 mt-3 w-[min(100vw,900px)]"
+                >
+                  <div
+                    class="rounded-3xl bg-white shadow-2xl border border-slate-100 p-5 grid grid-cols-2 lg:grid-cols-4 gap-4"
+                  >
+                    <div>
+                      <h4 class="text-xs font-semibold text-slate-500 mb-2">
+                        حسب الاستخدام
+                      </h4>
+                      <ul class="space-y-1 text-xs text-slate-700">
+                        <li>
+                          <a
+                            href="/src/pages/category.html?category=laptops&type=work"
+                            class="hover:text-brand-600"
+                            >لابتوبات عمل</a
+                          >
+                        </li>
+                        <li>
+                          <a
+                            href="/src/pages/category.html?category=laptops&type=study"
+                            class="hover:text-brand-600"
+                            >لابتوبات دراسة</a
+                          >
+                        </li>
+                        <li>
+                          <a
+                            href="/src/pages/category.html?category=laptops&type=gaming"
+                            class="hover:text-brand-600"
+                            >لابتوبات جيمينج</a
+                          >
+                        </li>
+                      </ul>
+                    </div>
+                    <div>
+                      <h4 class="text-xs font-semibold text-slate-500 mb-2">
+                        المواصفات الشائعة
+                      </h4>
+                      <ul class="space-y-1 text-xs text-slate-700">
+                        <li>RAM 8GB / 16GB / 32GB</li>
+                        <li>SSD 256GB / 512GB / 1TB</li>
+                        <li>شاشات 14" / 15.6" / 17"</li>
+                      </ul>
+                    </div>
+                    <div>
+                      <h4 class="text-xs font-semibold text-slate-500 mb-2">
+                        معالجات
+                      </h4>
+                      <ul class="space-y-1 text-xs text-slate-700">
+                        <li>Intel Core i5 / i7 / i9</li>
+                        <li>AMD Ryzen 5 / 7</li>
+                      </ul>
+                    </div>
+                    <div
+                      class="rounded-2xl bg-slate-900 text-white p-4 flex flex-col justify-between"
+                    >
+                      <div class="text-xs mb-2 opacity-80">
+                        باقة عمل + جيمينج
+                      </div>
+                      <p class="text-sm font-semibold mb-1">
+                        وفر حتى 15٪ على حزم اللابتوبات مع الشاشات والإكسسوارات
+                      </p>
+                      <a
+                        href="/src/pages/category.html?category=laptops&tag=bundle"
+                        class="inline-flex items-center justify-center rounded-full bg-white text-slate-900 px-4 py-1.5 text-[11px] hover:bg-slate-100"
+                      >
+                        اكتشف الباقات
+                      </a>
+                    </div>
+                  </div>
+                </div>
+              </li>
+
+              <!-- Simple Links -->
+              <li>
+                <a
+                  href="/src/pages/category.html?category=desktops"
+                  class="hover:text-brand-600 font-medium"
+                  >أجهزة مكتبية</a
+                >
+              </li>
+              <li>
+                <a
+                  href="/src/pages/category.html?category=tvs"
+                  class="hover:text-brand-600 font-medium"
+                  >شاشات وتلفزيونات</a
+                >
+              </li>
+              <li>
+                <a
+                  href="/src/pages/category.html?category=audio"
+                  class="hover:text-brand-600 font-medium"
+                  >سماعات وصوتيات</a
+                >
+              </li>
+              <li>
+                <a
+                  href="/src/pages/category.html?category=gaming"
+                  class="hover:text-brand-600 font-medium"
+                  >أجهزة ألعاب</a
+                >
+              </li>
+              <li>
+                <a
+                  href="/src/pages/category.html?category=accessories"
+                  class="hover:text-brand-600 font-medium"
+                  >إكسسوارات</a
+                >
+              </li>
+              <li>
+                <a
+                  href="/src/pages/category.html?category=smarthome"
+                  class="hover:text-brand-600 font-medium"
+                  >أجهزة منزلية ذكية</a
+                >
+              </li>
+            </ul>
+          </nav>
+
+          <!-- MOBILE NAV (panel) -->
+          <div
+            id="mobile-nav-panel"
+            class="md:hidden hidden absolute inset-x-0 top-full bg-white/95 backdrop-blur-sm border-t border-slate-100 shadow-lg rounded-b-2xl max-h-[80vh] overflow-y-auto"
+          >
+            <div class="container mx-auto px-3 py-2">
+              <nav class="text-sm text-slate-800">
+                <ul class="flex flex-col divide-y divide-slate-100">
+                  <li>
+                    <a
+                      href="/index.html"
+                      class="flex items-center justify-between py-3 px-2 text-base hover:text-brand-600 hover:bg-slate-50 transition"
+                    >
+                      <span>الرئيسية</span>
+                      <span class="text-xs opacity-60">متجر التقنية</span>
+                    </a>
+                  </li>
+                  <li>
+                    <a
+                      href="/src/pages/category.html?category=mobiles"
+                      class="flex items-center justify-between py-3 px-2 text-base hover:text-brand-600 hover:bg-slate-50 transition"
+                    >
+                      <span>جوالات</span>
+                      <span class="text-xs opacity-60">هواتف ذكية</span>
+                    </a>
+                  </li>
+                  <li>
+                    <a
+                      href="/src/pages/category.html?category=laptops"
+                      class="flex items-center justify-between py-3 px-2 text-base hover:text-brand-600 hover:bg-slate-50 transition"
+                    >
+                      <span>لابتوبات</span>
+                      <span class="text-xs opacity-60">عمل وجيمينج</span>
+                    </a>
+                  </li>
+                  <li>
+                    <a
+                      href="/src/pages/category.html?category=tvs"
+                      class="flex items-center justify-between py-3 px-2 text-base hover:text-brand-600 hover:bg-slate-50 transition"
+                    >
+                      <span>شاشات وتلفزيونات</span>
+                    </a>
+                  </li>
+                  <li>
+                    <a
+                      href="/src/pages/category.html?category=gaming"
+                      class="flex items-center justify-between py-3 px-2 text-base hover:text-brand-600 hover:bg-slate-50 transition"
+                    >
+                      <span>أجهزة ألعاب</span>
+                      <span class="text-xs opacity-60">كونسول وإكسسوارات</span>
+                    </a>
+                  </li>
+                  <li>
+                    <a
+                      href="/src/pages/category.html?category=accessories"
+                      class="flex items-center justify-between py-3 px-2 text-base hover:text-brand-600 hover:bg-slate-50 transition"
+                    >
+                      <span>إكسسوارات</span>
+                      <span class="text-xs opacity-60">كفرات، شواحن...</span>
+                    </a>
+                  </li>
+                  <li>
+                    <a
+                      href="/src/pages/category.html?category=smarthome"
+                      class="flex items-center justify-between py-3 px-2 text-base hover:text-brand-600 hover:bg-slate-50 transition"
+                    >
+                      <span>أجهزة منزلية ذكية</span>
+                    </a>
+                  </li>
+                  <li>
+                    <a
+                      href="/src/pages/about.html"
+                      class="flex items-center justify-between py-3 px-2 text-base hover:text-brand-600 hover:bg-slate-50 transition"
+                    >
+                      <span>من نحن</span>
+                    </a>
+                  </li>
+                  <li>
+                    <a
+                      href="/src/pages/contact.html"
+                      class="flex items-center justify-between py-3 px-2 text-base hover:text-brand-600 hover:bg-slate-50 transition"
+                    >
+                      <span>تواصل معنا</span>
+                    </a>
+                  </li>
+                </ul>
+              </nav>
+            </div>
+          </div>
+        </div>
+      </header>
+
+      <!-- MAIN -->
+      <main class="flex-1">
+        <div class="container mx-auto px-4 py-6">
+          <!-- Breadcrumb -->
+          <nav class="text-[11px] text-slate-500 mb-3">
+            <ol class="flex flex-wrap gap-1 items-center">
+              <li>
+                <a href="/index.html" class="hover:text-brand-600">الرئيسية</a>
+              </li>
+              <li>/</li>
+              <li>
+                <span class="text-slate-700" id="breadcrumb-current"
+                  >المنتجات الإلكترونية</span
+                >
+              </li>
+            </ol>
+          </nav>
+
+          <!-- Heading / mini intro -->
+          <div
+            class="flex flex-col md:flex-row md:items-end md:justify-between gap-3 mb-5"
+          >
+            <div>
+              <h1 class="text-2xl font-semibold mb-1" id="page-heading">
+                المنتجات الإلكترونية
+              </h1>
+              <p class="text-xs text-slate-600" id="page-description">
+                اختر من مجموعة الجوالات، اللابتوبات، الشاشات، وأجهزة الألعاب
+                والإكسسوارات الذكية.
+              </p>
+            </div>
+            <div class="flex items-center gap-3 text-xs">
+              <!-- Sort dropdown -->
+              <div class="flex items-center gap-2">
+                <label for="sort-select" class="text-slate-600"
+                  >ترتيب حسب:</label
+                >
+                <select
+                  id="sort-select"
+                  class="rounded-full border border-slate-300 text-xs px-3 py-1 bg-white focus:outline-none"
+                  data-sort-select
+                >
+                  <option value="newest">الأحدث</option>
+                  <option value="bestseller">الأكثر مبيعاً</option>
+                  <option value="price-asc">السعر: من الأقل إلى الأعلى</option>
+                  <option value="price-desc">السعر: من الأعلى إلى الأقل</option>
+                </select>
+              </div>
+              <!-- Filter toggle mobile -->
+              <button
+                id="filter-toggle"
+                class="md:hidden rounded-full border border-slate-300 px-3 py-1 text-slate-700"
+              >
+                الفلاتر
+              </button>
+            </div>
+          </div>
+
+          <div class="grid grid-cols-1 md:grid-cols-4 gap-6">
+            <!-- Filters sidebar -->
+            <aside
+              id="filters-sidebar"
+              class="md:col-span-1 bg-white rounded-3xl border border-slate-100 p-4 text-xs space-y-4 md:block hidden md:sticky md:top-20 h-max"
+              data-filters-sidebar
+            >
+              <div class="flex items-center justify-between mb-2">
+                <h2 class="text-sm font-semibold">فلتر النتائج</h2>
+                <button
+                  class="text-[11px] text-slate-500 hover:text-brand-600"
+                  data-clear-filters
+                >
+                  مسح الكل
+                </button>
+              </div>
+
+              <!-- Product Type Filter -->
+              <div class="border-t border-slate-100 pt-3">
+                <h3 class="font-semibold mb-2 text-xs">نوع المنتج</h3>
+                <div class="flex flex-wrap gap-2">
+                  <button
+                    class="px-3 py-1 rounded-full border text-[11px] hover:border-brand-500"
+                    data-filter="category"
+                    data-value="mobiles"
+                  >
+                    جوالات
+                  </button>
+                  <button
+                    class="px-3 py-1 rounded-full border text-[11px] hover:border-brand-500"
+                    data-filter="category"
+                    data-value="laptops"
+                  >
+                    لابتوبات
+                  </button>
+                  <button
+                    class="px-3 py-1 rounded-full border text-[11px] hover:border-brand-500"
+                    data-filter="category"
+                    data-value="tvs"
+                  >
+                    شاشات / تلفزيونات
+                  </button>
+                  <button
+                    class="px-3 py-1 rounded-full border text-[11px] hover:border-brand-500"
+                    data-filter="category"
+                    data-value="gaming"
+                  >
+                    أجهزة ألعاب
+                  </button>
+                  <button
+                    class="px-3 py-1 rounded-full border text-[11px] hover:border-brand-500"
+                    data-filter="category"
+                    data-value="audio"
+                  >
+                    سماعات وصوتيات
+                  </button>
+                  <button
+                    class="px-3 py-1 rounded-full border text-[11px] hover:border-brand-500"
+                    data-filter="category"
+                    data-value="accessories"
+                  >
+                    إكسسوارات
+                  </button>
+                  <button
+                    class="px-3 py-1 rounded-full border text-[11px] hover:border-brand-500"
+                    data-filter="category"
+                    data-value="smarthome"
+                  >
+                    منزل ذكي
+                  </button>
+                </div>
+              </div>
+
+              <!-- Brand Filter -->
+              <div class="border-t border-slate-100 pt-3">
+                <h3 class="font-semibold mb-2 text-xs">الماركة</h3>
+                <div class="space-y-1 text-[11px]">
+                  <label class="flex items-center gap-2">
+                    <input
+                      type="checkbox"
+                      class="rounded"
+                      data-filter="brand"
+                      value="Apple"
+                    />
+                    <span>Apple (آبل)</span>
+                  </label>
+                  <label class="flex items-center gap-2">
+                    <input
+                      type="checkbox"
+                      class="rounded"
+                      data-filter="brand"
+                      value="Samsung"
+                    />
+                    <span>Samsung</span>
+                  </label>
+                  <label class="flex items-center gap-2">
+                    <input
+                      type="checkbox"
+                      class="rounded"
+                      data-filter="brand"
+                      value="Xiaomi"
+                    />
+                    <span>Xiaomi</span>
+                  </label>
+                  <label class="flex items-center gap-2">
+                    <input
+                      type="checkbox"
+                      class="rounded"
+                      data-filter="brand"
+                      value="Huawei"
+                    />
+                    <span>Huawei</span>
+                  </label>
+                  <label class="flex items-center gap-2">
+                    <input
+                      type="checkbox"
+                      class="rounded"
+                      data-filter="brand"
+                      value="Lenovo"
+                    />
+                    <span>Lenovo</span>
+                  </label>
+                </div>
+              </div>
+
+              <!-- Price Filter -->
+              <div class="border-t border-slate-100 pt-3">
+                <h3 class="font-semibold mb-2 text-xs">
+                  نطاق السعر (ريال يمني)
+                </h3>
+                <div class="space-y-2">
+                  <button
+                    class="block w-full text-right text-[11px] hover:text-brand-600"
+                    data-filter="price"
+                    data-value="0-150000"
+                  >
+                    حتى 150,000 ريال
+                  </button>
+                  <button
+                    class="block w-full text-right text-[11px] hover:text-brand-600"
+                    data-filter="price"
+                    data-value="150000-350000"
+                  >
+                    من 150,000 إلى 350,000 ريال
+                  </button>
+                  <button
+                    class="block w-full text-right text-[11px] hover:text-brand-600"
+                    data-filter="price"
+                    data-value="350000-9999999"
+                  >
+                    أكثر من 350,000 ريال
+                  </button>
+                </div>
+              </div>
+
+              <!-- Features Filter -->
+              <div class="border-t border-slate-100 pt-3">
+                <h3 class="font-semibold mb-2 text-xs">المميزات</h3>
+                <div class="space-y-1 text-[11px]">
+                  <label class="flex items-center gap-2">
+                    <input
+                      type="checkbox"
+                      class="rounded"
+                      data-filter="feature"
+                      value="5g"
+                    />
+                    <span>دعم 5G</span>
+                  </label>
+                  <label class="flex items-center gap-2">
+                    <input
+                      type="checkbox"
+                      class="rounded"
+                      data-filter="feature"
+                      value="gaming"
+                    />
+                    <span>مناسب للجيمينج</span>
+                  </label>
+                  <label class="flex items-center gap-2">
+                    <input
+                      type="checkbox"
+                      class="rounded"
+                      data-filter="feature"
+                      value="fast-charge"
+                    />
+                    <span>شحن سريع</span>
+                  </label>
+                  <label class="flex items-center gap-2">
+                    <input
+                      type="checkbox"
+                      class="rounded"
+                      data-filter="feature"
+                      value="smarthome"
+                    />
+                    <span>تكامل مع المنزل الذكي</span>
+                  </label>
+                </div>
+              </div>
+
+              <!-- On Sale -->
+              <div class="border-t border-slate-100 pt-3">
+                <h3 class="font-semibold mb-2 text-xs">العروض</h3>
+                <label class="flex items-center gap-2 text-[11px]">
+                  <input
+                    type="checkbox"
+                    class="rounded"
+                    data-filter="sale"
+                    value="on-sale"
+                  />
+                  <span>منتجات عليها خصم</span>
+                </label>
+              </div>
+            </aside>
+
+            <!-- Products grid -->
+            <section class="md:col-span-3">
+              <div
+                class="grid grid-cols-2 md:grid-cols-3 xl:grid-cols-4 gap-4 md:gap-5"
+                id="products-grid"
+              >
+                <!-- يمكن إضافة المزيد بنفس النمط -->
+              </div>
+
+              <!-- Pagination -->
+              <div class="flex items-center justify-center mt-6">
+                <nav class="inline-flex items-center gap-2 text-xs">
+                  <button
+                    class="px-3 py-1 rounded-full border border-slate-300 text-slate-500 hover:border-brand-500"
+                  >
+                    السابق
+                  </button>
+                  <button
+                    class="px-3 py-1 rounded-full bg-slate-900 text-white"
+                  >
+                    1
+                  </button>
+                  <button
+                    class="px-3 py-1 rounded-full border border-slate-300 text-slate-700 hover:border-brand-500"
+                  >
+                    2
+                  </button>
+                  <button
+                    class="px-3 py-1 rounded-full border border-slate-300 text-slate-700 hover:border-brand-500"
+                  >
+                    3
+                  </button>
+                  <button
+                    class="px-3 py-1 rounded-full border border-slate-300 text-slate-500 hover:border-brand-500"
+                  >
+                    التالي
+                  </button>
+                </nav>
+              </div>
+            </section>
+          </div>
+        </div>
+      </main>
+
+      <!-- FOOTER -->
+      <footer class="border-t border-slate-200 bg-white mt-10">
+        <div class="container mx-auto px-4 py-10">
+          <div class="grid md:grid-cols-4 gap-8 text-sm">
+            <div>
+              <h4 class="font-semibold mb-3">متجر التقنية</h4>
+              <p class="text-xs text-slate-600 mb-3">
+                متجر إلكتروني متخصص في بيع الأجهزة الإلكترونية، الجوالات،
+                اللابتوبات، الشاشات، وأجهزة الألعاب مع ضمان معتمد وخدمة ما بعد
+                البيع في العالم العربي.
+              </p>
+              <p class="text-xs text-slate-500">
+                ساعات العمل: من الأحد إلى الخميس، 9 صباحاً - 6 مساءً.
+              </p>
+            </div>
+            <div>
+              <h4 class="font-semibold mb-3">روابط مهمة</h4>
+              <ul class="space-y-2 text-xs text-slate-600">
+                <li>
+                  <a href="/src/pages/about.html" class="hover:text-brand-600"
+                    >من نحن</a
+                  >
+                </li>
+                <li>
+                  <a
+                    href="/src/pages/shipping-policy.html"
+                    class="hover:text-brand-600"
+                    >سياسة الشحن</a
+                  >
+                </li>
+                <li>
+                  <a
+                    href="/src/pages/return-policy.html"
+                    class="hover:text-brand-600"
+                    >سياسة الاستبدال والاسترجاع</a
+                  >
+                </li>
+                <li>
+                  <a href="/src/pages/faq.html" class="hover:text-brand-600"
+                    >الأسئلة الشائعة</a
+                  >
+                </li>
+                <li>
+                  <a href="/src/pages/contact.html" class="hover:text-brand-600"
+                    >تواصل معنا</a
+                  >
+                </li>
+              </ul>
+            </div>
+            <div>
+              <h4 class="font-semibold mb-3">حسابي</h4>
+              <ul class="space-y-2 text-xs text-slate-600">
+                <li>
+                  <a href="/src/pages/account.html" class="hover:text-brand-600"
+                    >لوحة التحكم</a
+                  >
+                </li>
+                <li>
+                  <a href="/src/pages/cart.html" class="hover:text-brand-600"
+                    >سلة التسوق</a
+                  >
+                </li>
+                <li>
+                  <a
+                    href="/src/pages/checkout.html"
+                    class="hover:text-brand-600"
+                    >إتمام الشراء</a
+                  >
+                </li>
+              </ul>
+            </div>
+            <div>
+              <h4 class="font-semibold mb-3">تابعنا وطرق الدفع</h4>
+              <div class="flex gap-4 text-lg mb-3">
+                <!-- Instagram -->
+                <a href="#" class="hover:text-brand-600" aria-label="Instagram">
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    class="w-6 h-6"
+                    fill="currentColor"
+                    viewBox="0 0 24 24"
+                  >
+                    <path
+                      d="M7.75 2h8.5A5.75 5.75 0 0 1 22 7.75v8.5A5.75 5.75 0 0 1 16.25 22h-8.5A5.75 5.75 0 0 1 2 16.25v-8.5A5.75 5.75 0 0 1 7.75 2zm0 1.5A4.25 4.25 0 0 0 3.5 7.75v8.5A4.25 4.25 0 0 0 7.75 20.5h8.5A4.25 4.25 0 0 0 20.5 16.25v-8.5A4.25 4.25 0 0 0 16.25 3.5h-8.5zM12 7a5 5 0 1 1 0 10 5 5 0 0 1 0-10zm0 1.5a3.5 3.5 0 1 0 0 7 3.5 3.5 0 0 0 0-7zm5-1.75a1.25 1.25 0 1 1 0 2.5 1.25 1.25 0 0 1 0-2.5z"
+                    />
+                  </svg>
+                </a>
+
+                <!-- Twitter (X) -->
+                <a
+                  href="#"
+                  class="hover:text-brand-600"
+                  aria-label="Twitter / X"
+                >
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    class="w-6 h-6"
+                    fill="currentColor"
+                    viewBox="0 0 24 24"
+                  >
+                    <path
+                      d="M18.146 2h3.123l-6.817 7.79L22 22h-6.343l-4.96-6.507L4.8 22H1.674l7.31-8.35L2 2h6.47l4.474 5.932L18.146 2zm-2.217 17.597h1.727L8.173 4.295H6.314l9.615 15.302z"
+                    />
+                  </svg>
+                </a>
+
+                <!-- TikTok -->
+                <a href="#" class="hover:text-brand-600" aria-label="TikTok">
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    class="w-6 h-6"
+                    fill="currentColor"
+                    viewBox="0 0 24 24"
+                  >
+                    <path
+                      d="M12.95 2h3.03c.15 1.33.76 2.54 1.72 3.44A6.3 6.3 0 0 0 19.7 7v3.03a9.3 9.3 0 0 1-3.47-.7 9.55 9.55 0 0 1-1.32-.67v6.55a6.82 6.82 0 0 1-1.25 3.97A6.36 6.36 0 0 1 9.4 22a6.4 6.4 0 0 1-1.9-.29 6.45 6.45 0 0 1-1.62-.83 6.37 6.37 0 0 1-2.31-3.05A6.5 6.5 0 0 1 3.4 15c0-1.3.37-2.56 1.06-3.64A6.37 6.37 0 0 1 7.74 8.4a6.28 6.28 0 0 1 3.48.07v3.29a3.1 3.1 0 0 0-1.47-.38 3.16 3.16 0 0 0-2.19.9A3.3 3.3 0 0 0 6.7 15c0 .86.33 1.66.93 2.26.6.6 1.4.94 2.24.94a3.16 3.16 0 0 0 2.23-.92 3.1 3.1 0 0 0 .93-2.25V2z"
+                    />
+                  </svg>
+                </a>
+              </div>
+
+              <p class="text-xs text-slate-600 mb-2">
+                اشترك في النشرة البريدية للحصول على أحدث العروض والتخفيضات على
+                الإلكترونيات.
+              </p>
+              <form class="flex gap-2">
+                <input
+                  type="email"
+                  class="flex-1 rounded-full border border-slate-200 px-3 py-1.5 text-xs focus:outline-none focus:border-brand-500"
+                  placeholder="أدخل بريدك الإلكتروني"
+                />
+                <button
+                  type="submit"
+                  class="rounded-full bg-slate-900 text-white text-xs px-4 py-1.5 hover:bg-slate-800"
+                >
+                  اشتراك
+                </button>
+              </form>
+            </div>
+          </div>
+          <div
+            class="mt-8 border-t border-slate-100 pt-4 flex flex-col md:flex-row items-center justify-between text-[11px] text-slate-500 gap-2"
+          >
+            <p>© <span id="year"></span> متجر التقنية. جميع الحقوق محفوظة.</p>
+            <p>تم تطوير الموقع من قبل م/ايمن عجلان.</p>
+          </div>
+        </div>
+      </footer>
+    </div>
+
+    <!-- JS -->
+    <script src="/src/assets/js/main.js"></script>
+    <script src="/src/assets/js/cart.js"></script>
+    <script src="/src/assets/js/wishlist.js"></script>
+    <script src="/src/assets/js/filters.js"></script>
+    <script src="/src/assets/js/category-data.js"></script>
+
+    <!-- سكربت ديناميكية العناوين حسب ?category -->
+    <script>
+      document.addEventListener("DOMContentLoaded", function () {
+        const params = new URLSearchParams(window.location.search);
+        const category = params.get("category") || "all";
+
+        const config = {
+          mobiles: {
+            pageTitle: "متجر التقنية - الجوالات",
+            heading: "جوالات",
+            breadcrumb: "جوالات",
+            description:
+              "أحدث الجوالات الذكية بدعم 4G و 5G، مع خيارات متعددة من آبل، سامسونج، شاومي وغيرها.",
+          },
+          laptops: {
+            pageTitle: "متجر التقنية - لابتوبات",
+            heading: "لابتوبات",
+            breadcrumb: "لابتوبات",
+            description:
+              "لابتوبات عمل، دراسة، وجيمينج بمعالجات حديثة وذاكرة SSD سريعة.",
+          },
+          tvs: {
+            pageTitle: "متجر التقنية - شاشات وتلفزيونات",
+            heading: "شاشات وتلفزيونات",
+            breadcrumb: "شاشات وتلفزيونات",
+            description:
+              "شاشات وتلفزيونات 4K و 2K بمقاسات مختلفة وتجربة مشاهدة سينمائية.",
+          },
+          gaming: {
+            pageTitle: "متجر التقنية - أجهزة ألعاب",
+            heading: "أجهزة ألعاب",
+            breadcrumb: "أجهزة ألعاب",
+            description:
+              "كونسول ألعاب، يد تحكم، كراسي جيمينج، وإكسسوارات لعشاق الألعاب.",
+          },
+          audio: {
+            pageTitle: "متجر التقنية - سماعات وصوتيات",
+            heading: "سماعات وصوتيات",
+            breadcrumb: "سماعات وصوتيات",
+            description:
+              "سماعات رأس، سماعات بلوتوث، وسبيكرات منزلية بصوت نقي وقوي.",
+          },
+          accessories: {
+            pageTitle: "متجر التقنية - إكسسوارات",
+            heading: "إكسسوارات",
+            breadcrumb: "إكسسوارات",
+            description:
+              "كفرات، شواحن، كابلات، حمايات شاشة، وحلول عملية لأجهزتك.",
+          },
+          smarthome: {
+            pageTitle: "متجر التقنية - أجهزة منزلية ذكية",
+            heading: "أجهزة منزلية ذكية",
+            breadcrumb: "أجهزة منزلية ذكية",
+            description:
+              "كاميرات مراقبة، حساسات، مقابس ذكية، وأجهزة تجعل منزلك أكثر ذكاء.",
+          },
+          hotdeals: {
+            pageTitle: "متجر التقنية - عروض خاصة",
+            heading: "عروض خاصة",
+            breadcrumb: "عروض خاصة",
+            description:
+              "باقة من أفضل العروض على الإلكترونيات مع خصومات لفترة محدودة.",
+          },
+          all: {
+            pageTitle: "متجر التقنية - المنتجات الإلكترونية",
+            heading: "المنتجات الإلكترونية",
+            breadcrumb: "المنتجات الإلكترونية",
+            description:
+              "اختر من مجموعة الجوالات، اللابتوبات، الشاشات، وأجهزة الألعاب والإكسسوارات الذكية.",
+          },
+        };
+
+        const current = config[category] || config.all;
+
+        // تحديث عنوان الصفحة
+        document.title = current.pageTitle;
+
+        // تحديث الهيدر والبريدكرمب
+        const headingEl = document.getElementById("page-heading");
+        const descEl = document.getElementById("page-description");
+        const breadcrumbEl = document.getElementById("breadcrumb-current");
+
+        if (headingEl) headingEl.textContent = current.heading;
+        if (descEl) descEl.textContent = current.description;
+        if (breadcrumbEl) breadcrumbEl.textContent = current.breadcrumb;
+
+        // تلوين اللينك النشط في النافبار (ديسكتوب + موبايل)
+        const navLinks = document.querySelectorAll("[data-nav-category]");
+        navLinks.forEach((link) => {
+          if (link.getAttribute("data-nav-category") === category) {
+            link.classList.add("text-brand-600", "font-semibold");
+          }
+        });
+
+        // تفعيل زر الفلتر الخاص بنوع المنتج لو كان category معروف
+        const filterButtons = document.querySelectorAll(
+          'button[data-filter="category"]'
+        );
+        filterButtons.forEach((btn) => {
+          const value = btn.getAttribute("data-value");
+          btn.classList.remove(
+            "bg-slate-900",
+            "text-white",
+            "border-slate-900"
+          );
+          if (value === category) {
+            btn.classList.add("bg-slate-900", "text-white", "border-slate-900");
+          }
+        });
+      });
+    </script>
+  </body>
+</html>

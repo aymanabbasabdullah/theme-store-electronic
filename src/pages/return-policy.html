@@ -1,0 +1,614 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+  <head>
+    <meta charset="UTF-8" />
+    <title>سياسة الاستبدال والاسترجاع | متجر الأناقة</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+
+    <!-- Tailwind -->
+    <script type="module" src="/src/main.ts"></script>
+  </head>
+  <body class="bg-brand-50/60 text-brand-800 font-sans">
+    <div class="min-h-screen flex flex-col">
+      <!-- HEADER -->
+      <header
+        class="sticky top-0 z-50 border-b border-gray-200 bg-white/90 backdrop-blur"
+      >
+        <div class="container mx-auto px-4 py-2 sm:py-3 relative">
+          <!-- Top bar (مخفي في أصغر شاشات عشان ما يصير الهيدر طويل مررة) -->
+          <div
+            class="hidden sm:flex items-center justify-between py-2 text-xs text-gray-500"
+          >
+            <span>شحن داخل صنعاء مجاناً للطلبات فوق 50,000 ريال يمني</span>
+            <a href="/src/pages/login.html" class="hover:text-gray-800">
+              تسجيل الدخول / إنشاء حساب
+            </a>
+          </div>
+
+          <!-- Main header -->
+          <div class="flex items-center justify-between py-3 gap-4">
+            <!-- Mobile menu button -->
+            <button
+              id="mobile-menu-toggle"
+              type="button"
+              class="md:hidden inline-flex items-center justify-center rounded-xl border border-gray-200 p-2"
+              aria-label="فتح قائمة التنقل"
+              aria-expanded="false"
+              aria-controls="mobile-nav-panel"
+            >
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                fill="none"
+                viewBox="0 0 24 24"
+                stroke-width="1.5"
+                stroke="currentColor"
+                class="size-6"
+              >
+                <path
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  d="M3.75 6.75h16.5M3.75 12h16.5m-16.5 5.25h16.5"
+                />
+              </svg>
+            </button>
+
+            <!-- Logo -->
+            <a
+              href="index.html"
+              class="text-xl sm:text-2xl font-bold tracking-wide text-gray-900"
+            >
+              متجر الأناقة
+            </a>
+
+            <!-- Search (desktop) -->
+            <form class="hidden md:flex flex-1 max-w-xl mx-4">
+              <div
+                class="flex flex-1 items-center rounded-full bg-gray-100 px-4 py-2 gap-2"
+              >
+                <input
+                  type="text"
+                  class="flex-1 bg-transparent text-sm focus:outline-none text-right"
+                  placeholder="ابحث عن منتج، فئة، أو علامة تجارية..."
+                />
+                <span class="text-xs text-gray-400">بحث</span>
+              </div>
+            </form>
+
+            <!-- Icons -->
+            <div class="flex items-center gap-3 sm:gap-4 text-gray-700">
+              <!-- Search icon for mobile -->
+              <button
+                id="mobile-search-toggle"
+                type="button"
+                class="md:hidden text-xl"
+                aria-label="فتح البحث"
+                aria-controls="mobile-search"
+                aria-expanded="false"
+              >
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  fill="none"
+                  viewBox="0 0 24 24"
+                  stroke-width="1.5"
+                  stroke="currentColor"
+                  class="size-6"
+                >
+                  <path
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    d="m21 21-5.197-5.197m0 0A7.5 7.5 0 1 0 5.196 5.196a7.5 7.5 0 0 0 10.607 10.607Z"
+                  />
+                </svg>
+              </button>
+
+              <a
+                href="/src/pages/account.html"
+                class="md:inline text-xl"
+                title="الحساب"
+              >
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  class="h-6 w-6"
+                  fill="none"
+                  viewBox="0 0 24 24"
+                  stroke="currentColor"
+                >
+                  <path
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    stroke-width="2"
+                    d="M12 12c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 
+             1.79-4 4 1.79 4 4 4zm0 2c-3.33 0-6 2-6 
+             4v1h12v-1c0-2-2.67-4-6-4z"
+                  />
+                </svg>
+              </a>
+
+              <button
+                type="button"
+                class="text-xl"
+                title="المفضلة"
+                onclick="window.location='/src/pages/wishlist.html'"
+              >
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  class="h-6 w-6"
+                  fill="none"
+                  viewBox="0 0 24 24"
+                  stroke="currentColor"
+                >
+                  <path
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    stroke-width="2"
+                    d="M4.318 6.318a4.5 4.5 0 016.364 
+           0L12 7.636l1.318-1.318a4.5 
+           4.5 0 116.364 6.364L12 21l-7.682-8.318a4.5 
+           4.5 0 010-6.364z"
+                  />
+                </svg>
+              </button>
+
+              <a
+                href="/src/pages/cart.html"
+                class="relative text-xl"
+                title="السلة"
+              >
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  fill="none"
+                  viewBox="0 0 24 24"
+                  stroke-width="1.5"
+                  stroke="currentColor"
+                  class="size-6"
+                >
+                  <path
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    d="M2.25 3h1.386c.51 0 .955.343 1.087.835l.383 1.437M7.5 14.25a3 3 0 0 0-3 3h15.75m-12.75-3h11.218c1.121-2.3 2.1-4.684 2.924-7.138a60.114 60.114 0 0 0-16.536-1.84M7.5 14.25 5.106 5.272M6 20.25a.75.75 0 1 1-1.5 0 .75.75 0 0 1 1.5 0Zm12.75 0a.75.75 0 1 1-1.5 0 .75.75 0 0 1 1.5 0Z"
+                  />
+                </svg>
+
+                <span
+                  id="cart-count-badge"
+                  class="absolute -top-2 -left-2 rounded-full bg-brand-500 text-white text-xs w-5 h-5 flex items-center justify-center"
+                >
+                  0
+                </span>
+              </a>
+            </div>
+          </div>
+
+          <!-- Mobile search -->
+          <div id="mobile-search" class="md:hidden hidden pb-3">
+            <form>
+              <div
+                class="flex items-center rounded-full bg-gray-100 px-4 py-2 gap-2"
+              >
+                <input
+                  type="text"
+                  class="flex-1 bg-transparent text-sm focus:outline-none text-right"
+                  placeholder="ابحث عن منتج، فئة، أو علامة تجارية..."
+                />
+                <span class="text-xs text-gray-400">بحث</span>
+              </div>
+            </form>
+          </div>
+
+          <!-- Navigation (desktop) -->
+          <nav
+            id="main-nav"
+            class="border-t border-gray-100 pt-3 pb-4 text-sm text-gray-700 hidden md:flex md:border-0 md:py-0"
+            aria-label="التنقل الرئيسي"
+          >
+            <ul class="flex flex-col md:flex-row gap-3 md:gap-8">
+              <li>
+                <a
+                  href="/src/pages/category.html"
+                  class="hover:text-brand-600"
+                  data-category="men"
+                  >رجال</a
+                >
+              </li>
+              <li>
+                <a
+                  href="/src/pages/category.html?type=women"
+                  class="hover:text-brand-600"
+                  data-category="women"
+                  >نساء</a
+                >
+              </li>
+              <li>
+                <a
+                  href="/src/pages/category.html?type=children"
+                  class="hover:text-brand-600"
+                  data-category="children"
+                  >أطفال</a
+                >
+              </li>
+              <li>
+                <a
+                  href="/src/pages/category.html?type=sale"
+                  class="hover:text-brand-600"
+                  data-category="sale"
+                  >عروض</a
+                >
+              </li>
+              <li>
+                <a
+                  href="/src/pages/category.html?type=new"
+                  class="hover:text-brand-600"
+                  data-category="new"
+                  >جديد</a
+                >
+              </li>
+            </ul>
+          </nav>
+
+          <!-- MOBILE NAV (toggle) -->
+          <!-- MOBILE NAV (toggle) -->
+          <div
+            id="mobile-nav-panel"
+            class="md:hidden hidden absolute inset-x-0 top-full bg-white/95 backdrop-blur-sm border-t border-gray-100 shadow-lg rounded-b-2xl max-h-[80vh] overflow-y-auto"
+          >
+            <div class="container mx-auto px-3 py-2">
+              <nav class="text-sm text-gray-800">
+                <ul class="flex flex-col divide-y divide-gray-100">
+                  <li>
+                    <a
+                      href="/src/pages/category.html?type=men"
+                      data-category="men"
+                      class="flex items-center justify-between py-3 px-2 text-base hover:text-brand-600 hover:bg-gray-50 transition"
+                    >
+                      <span>رجال</span>
+                      <span class="text-xs opacity-60">تسوق الآن</span>
+                    </a>
+                  </li>
+                  <li>
+                    <a
+                      href="/src/pages/category.html?type=women"
+                      data-category="women"
+                      class="flex items-center justify-between py-3 px-2 text-base hover:text-brand-600 hover:bg-gray-50 transition"
+                    >
+                      <span>نساء</span>
+                      <span class="text-xs opacity-60">تسوق الآن</span>
+                    </a>
+                  </li>
+                  <li>
+                    <a
+                      href="/src/pages/category.html?type=children"
+                      data-category="children"
+                      class="flex items-center justify-between py-3 px-2 text-base hover:text-brand-600 hover:bg-gray-50 transition"
+                    >
+                      <span>أطفال</span>
+                      <span class="text-xs opacity-60">تسوق الآن</span>
+                    </a>
+                  </li>
+                  <li>
+                    <a
+                      href="/src/pages/category.html?type=sale"
+                      data-category="sale"
+                      class="flex items-center justify-between py-3 px-2 text-base hover:text-brand-600 hover:bg-gray-50 transition"
+                    >
+                      <span>عروض</span>
+                      <span class="text-xs opacity-60">خصومات</span>
+                    </a>
+                  </li>
+                  <li>
+                    <a
+                      href="/src/pages/category.html?type=new"
+                      data-category="new"
+                      class="flex items-center justify-between py-3 px-2 text-base hover:text-brand-600 hover:bg-gray-50 transition"
+                    >
+                      <span>جديد</span>
+                      <span class="text-xs opacity-60">وصل حديثًا</span>
+                    </a>
+                  </li>
+                  <li>
+                    <a
+                      href="/src/pages/about.html"
+                      class="flex items-center justify-between py-3 px-2 text-base hover:text-brand-600 hover:bg-gray-50 transition"
+                    >
+                      <span>من نحن</span>
+                    </a>
+                  </li>
+                  <li>
+                    <a
+                      href="/src/pages/contact.html"
+                      class="flex items-center justify-between py-3 px-2 text-base hover:text-brand-600 hover:bg-gray-50 transition"
+                    >
+                      <span>تواصل معنا</span>
+                    </a>
+                  </li>
+                </ul>
+              </nav>
+            </div>
+          </div>
+        </div>
+      </header>
+
+      <!-- END HEADER -->
+
+      <div
+        id="toast-container"
+        class="fixed top-4 left-4 z-40 flex flex-col gap-2 max-w-xs"
+      ></div>
+
+      <main class="flex-1">
+        <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-8 sm:py-12">
+          <nav
+            class="text-xs sm:text-sm text-gray-500 mb-6"
+            aria-label="مسار الصفحة"
+          >
+            <ol class="flex flex-wrap items-center gap-1">
+              <li>
+                <a href="index.html" class="hover:text-brand-800">الرئيسية</a>
+              </li>
+              <li class="text-gray-400">/</li>
+              <li class="text-brand-800 font-medium">
+                سياسة الاستبدال والاسترجاع
+              </li>
+            </ol>
+          </nav>
+
+          <header class="mb-6 sm:mb-8">
+            <h1 class="text-2xl sm:text-3xl font-semibold mb-2">
+              سياسة الاستبدال والاسترجاع
+            </h1>
+            <p class="text-sm sm:text-base text-gray-500">
+              نهدف في متجر الأناقة إلى رضاك التام عن تجربتك، لذلك نوفر لك سياسة
+              استبدال واسترجاع واضحة ومرنة.
+            </p>
+          </header>
+
+          <section
+            class="bg-white rounded-2xl shadow-soft p-5 sm:p-6 space-y-5 text-sm sm:text-base leading-relaxed"
+          >
+            <div>
+              <h2 class="text-lg font-semibold mb-2">
+                أولاً: فترة الاستبدال والاسترجاع
+              </h2>
+              <ul class="list-disc pr-5 space-y-1 text-gray-700">
+                <li>
+                  يمكنك طلب الاستبدال أو الاسترجاع خلال ٧ أيام من تاريخ استلام
+                  الطلب.
+                </li>
+                <li>
+                  يجب أن يكون المنتج في حالته الأصلية وغير مستخدم ومع جميع
+                  الملصقات والتغليف.
+                </li>
+                <li>
+                  لا يمكن استرجاع أو استبدال المنتجات الداخلية (مثل الملابس
+                  الداخلية) حفاظاً على الصحة والسلامة.
+                </li>
+              </ul>
+            </div>
+
+            <div>
+              <h2 class="text-lg font-semibold mb-2">
+                ثانياً: الحالات التي يحق فيها الاسترجاع
+              </h2>
+              <ul class="list-disc pr-5 space-y-1 text-gray-700">
+                <li>استلام منتج مختلف عن الطلب.</li>
+                <li>وجود عيب مصنعي واضح في المنتج.</li>
+                <li>تضرر المنتج أثناء الشحن.</li>
+              </ul>
+              <p class="text-gray-700 mt-2">
+                في هذه الحالات، يتحمل المتجر تكلفة الشحن كاملة لإعادة المنتج
+                وإرساله من جديد أو استرجاع المبلغ.
+              </p>
+            </div>
+
+            <div>
+              <h2 class="text-lg font-semibold mb-2">
+                ثالثاً: الحالات التي لا يحق فيها الاسترجاع
+              </h2>
+              <ul class="list-disc pr-5 space-y-1 text-gray-700">
+                <li>استخدام المنتج أو غسله أو إزالة الملصقات الأصلية.</li>
+                <li>تلف المنتج بسبب سوء الاستخدام.</li>
+                <li>انتهاء فترة الاسترجاع المحددة.</li>
+              </ul>
+            </div>
+
+            <div>
+              <h2 class="text-lg font-semibold mb-2">
+                رابعاً: المبالغ المستردة
+              </h2>
+              <ul class="list-disc pr-5 space-y-1 text-gray-700">
+                <li>
+                  يتم استرجاع المبلغ إلى نفس وسيلة الدفع المستخدمة في الطلب.
+                </li>
+                <li>
+                  قد يستغرق ظهور المبلغ في حسابك البنكي من ٧ إلى ١٤ يوم عمل حسب
+                  البنك.
+                </li>
+                <li>
+                  رسوم الشحن الأصلية لا تُسترد إلا في حال كان الخطأ من المتجر.
+                </li>
+              </ul>
+            </div>
+
+            <div>
+              <h2 class="text-lg font-semibold mb-2">
+                خامساً: طريقة طلب الاستبدال أو الاسترجاع
+              </h2>
+              <p class="text-gray-700 mb-2">
+                يمكنك تقديم طلب الاستبدال أو الاسترجاع عبر صفحة
+                <a
+                  href="contact.html"
+                  class="text-brand-800 underline underline-offset-2"
+                >
+                  تواصل معنا
+                </a>
+                مع ذكر رقم الطلب وسبب الاستبدال أو الاسترجاع، وسيتواصل معك فريق
+                خدمة العملاء لتأكيد الطلب.
+              </p>
+            </div>
+
+            <p class="text-xs text-gray-500">
+              آخر تحديث لسياسة الاستبدال والاسترجاع: ١ ديسمبر ٢٠٢٥م. تحتفظ إدارة
+              متجر الأناقة بحق تعديل هذه السياسة في أي وقت، وسيتم توضيح ذلك في
+              هذه الصفحة.
+            </p>
+          </section>
+        </div>
+      </main>
+
+      <!-- FOOTER -->
+      <footer class="border-t border-gray-200 bg-white mt-10">
+        <div class="container mx-auto px-4 py-10">
+          <div class="grid md:grid-cols-4 gap-8 text-sm">
+            <div>
+              <h4 class="font-semibold mb-3">متجر الأناقة</h4>
+              <p class="text-xs text-gray-600 mb-3">
+                متجر إلكتروني للملابس يقدم أحدث صيحات الموضة بجودة عالية وخدمة
+                مميزة لعملائنا في العالم العربي.
+              </p>
+              <p class="text-xs text-gray-500">
+                ساعات العمل: من الأحد إلى الخميس، 9 صباحاً - 6 مساءً.
+              </p>
+            </div>
+            <div>
+              <h4 class="font-semibold mb-3">روابط مهمة</h4>
+              <ul class="space-y-2 text-xs text-gray-600">
+                <li>
+                  <a href="/src/pages/about.html" class="hover:text-brand-600"
+                    >من نحن</a
+                  >
+                </li>
+                <li>
+                  <a
+                    href="/src/pages/shipping-policy.html"
+                    class="hover:text-brand-600"
+                    >سياسة الشحن</a
+                  >
+                </li>
+                <li>
+                  <a
+                    href="/src/pages/return-policy.html"
+                    class="hover:text-brand-600"
+                    >سياسة الاستبدال والاسترجاع</a
+                  >
+                </li>
+                <li>
+                  <a href="/src/pages/faq.html" class="hover:text-brand-600"
+                    >الأسئلة الشائعة</a
+                  >
+                </li>
+                <li>
+                  <a href="/src/pages/contact.html" class="hover:text-brand-600"
+                    >تواصل معنا</a
+                  >
+                </li>
+              </ul>
+            </div>
+            <div>
+              <h4 class="font-semibold mb-3">حسابي</h4>
+              <ul class="space-y-2 text-xs text-gray-600">
+                <li>
+                  <a href="/src/pages/account.html" class="hover:text-brand-600"
+                    >لوحة التحكم</a
+                  >
+                </li>
+                <li>
+                  <a href="/src/pages/cart.html" class="hover:text-brand-600"
+                    >سلة التسوق</a
+                  >
+                </li>
+                <li>
+                  <a
+                    href="/src/pages/checkout.html"
+                    class="hover:text-brand-600"
+                    >إتمام الشراء</a
+                  >
+                </li>
+              </ul>
+            </div>
+            <div>
+              <h4 class="font-semibold mb-3">تابعنا</h4>
+              <div class="flex gap-4 text-lg mb-3">
+                <!-- Instagram -->
+                <a href="#" class="hover:text-brand-600" aria-label="Instagram">
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    class="w-6 h-6"
+                    fill="currentColor"
+                    viewBox="0 0 24 24"
+                  >
+                    <path
+                      d="M7.75 2h8.5A5.75 5.75 0 0 1 22 7.75v8.5A5.75 5.75 0 0 1 16.25 22h-8.5A5.75 5.75 0 0 1 2 16.25v-8.5A5.75 5.75 0 0 1 7.75 2zm0 1.5A4.25 4.25 0 0 0 3.5 7.75v8.5A4.25 4.25 0 0 0 7.75 20.5h8.5A4.25 4.25 0 0 0 20.5 16.25v-8.5A4.25 4.25 0 0 0 16.25 3.5h-8.5zM12 7a5 5 0 1 1 0 10 5 5 0 0 1 0-10zm0 1.5a3.5 3.5 0 1 0 0 7 3.5 3.5 0 0 0 0-7zm5-1.75a1.25 1.25 0 1 1 0 2.5 1.25 1.25 0 0 1 0-2.5z"
+                    />
+                  </svg>
+                </a>
+
+                <!-- Twitter (X) -->
+                <a
+                  href="#"
+                  class="hover:text-brand-600"
+                  aria-label="Twitter / X"
+                >
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    class="w-6 h-6"
+                    fill="currentColor"
+                    viewBox="0 0 24 24"
+                  >
+                    <path
+                      d="M18.146 2h3.123l-6.817 7.79L22 22h-6.343l-4.96-6.507L4.8 22H1.674l7.31-8.35L2 2h6.47l4.474 5.932L18.146 2zm-2.217 17.597h1.727L8.173 4.295H6.314l9.615 15.302z"
+                    />
+                  </svg>
+                </a>
+
+                <!-- TikTok -->
+                <a href="#" class="hover:text-brand-600" aria-label="TikTok">
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    class="w-6 h-6"
+                    fill="currentColor"
+                    viewBox="0 0 24 24"
+                  >
+                    <path
+                      d="M12.95 2h3.03c.15 1.33.76 2.54 1.72 3.44A6.3 6.3 0 0 0 19.7 7v3.03a9.3 9.3 0 0 1-3.47-.7 9.55 9.55 0 0 1-1.32-.67v6.55a6.82 6.82 0 0 1-1.25 3.97A6.36 6.36 0 0 1 9.4 22a6.4 6.4 0 0 1-1.9-.29 6.45 6.45 0 0 1-1.62-.83 6.37 6.37 0 0 1-2.31-3.05A6.5 6.5 0 0 1 3.4 15c0-1.3.37-2.56 1.06-3.64A6.37 6.37 0 0 1 7.74 8.4a6.28 6.28 0 0 1 3.48.07v3.29a3.1 3.1 0 0 0-1.47-.38 3.16 3.16 0 0 0-2.19.9A3.3 3.3 0 0 0 6.7 15c0 .86.33 1.66.93 2.26.6.6 1.4.94 2.24.94a3.16 3.16 0 0 0 2.23-.92 3.1 3.1 0 0 0 .93-2.25V2z"
+                    />
+                  </svg>
+                </a>
+              </div>
+
+              <p class="text-xs text-gray-600 mb-2">
+                اشترك في النشرة البريدية للحصول على أحدث العروض.
+              </p>
+              <form class="flex gap-2">
+                <input
+                  type="email"
+                  class="flex-1 rounded-full border border-gray-200 px-3 py-1.5 text-xs focus:outline-none focus:border-brand-500"
+                  placeholder="أدخل بريدك الإلكتروني"
+                />
+                <button
+                  type="submit"
+                  class="rounded-full bg-gray-900 text-white text-xs px-4 py-1.5 hover:bg-gray-800"
+                >
+                  اشتراك
+                </button>
+              </form>
+            </div>
+          </div>
+          <div
+            class="mt-8 border-t border-gray-100 pt-4 flex flex-col md:flex-row items-center justify-between text-[11px] text-gray-500 gap-2"
+          >
+            <p>© <span id="year"></span> متجر الأناقة. جميع الحقوق محفوظة.</p>
+            <p>تم تطوير الموقع من قبل م/ايمن عجلان.</p>
+          </div>
+        </div>
+      </footer>
+    </div>
+
+    <script src="/src/assets/js/main.js"></script>
+    <script src="/src/assets/js/cart.js"></script>
+  </body>
+</html>

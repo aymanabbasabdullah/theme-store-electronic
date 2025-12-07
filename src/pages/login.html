@@ -1,0 +1,620 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+  <head>
+    <meta charset="UTF-8" />
+    <title>تسجيل الدخول | متجر الأناقة</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;600;700&display=swap"
+      rel="stylesheet"
+    />
+    <!-- Tailwind (مشروعك) -->
+    <script type="module" src="/src/main.ts"></script>
+  </head>
+  <body
+    class="font-sans bg-linear-to-b from-brand-50 to-brand-100/70 text-gray-900 text-right"
+  >
+    <!-- Toast -->
+    <div
+      id="toast"
+      class="fixed top-4 right-4 z-50 hidden rounded-xl bg-gray-900 text-white px-4 py-3 text-sm shadow-lg"
+    >
+      <span id="toast-message">تم تسجيل الدخول (نموذج تجريبي)</span>
+    </div>
+
+    <div class="min-h-screen flex flex-col">
+      <!-- HEADER بسيط -->
+      <header
+        class="border-b border-gray-100 bg-white/90 backdrop-blur sticky top-0 z-30"
+      >
+        <div
+          class="container mx-auto px-4 py-3 flex items-center justify-between"
+        >
+          <a
+            href="index.html"
+            class="text-2xl font-bold tracking-wide text-gray-900"
+          >
+            متجر الأناقة
+          </a>
+          <a href="cart.html" class="relative text-xl" title="السلة">
+            🛒
+            <span
+              id="cart-count-badge"
+              class="absolute -top-2 -left-2 rounded-full bg-brand-500 text-white text-xs w-5 h-5 flex items-center justify-center"
+            >
+              0
+            </span>
+          </a>
+        </div>
+      </header>
+
+      <!-- MAIN -->
+<main class="flex-1 flex items-center justify-center px-4 py-10 sm:py-14">
+  <div class="w-full max-w-5xl">
+    <!-- Breadcrumb -->
+    <nav class="text-[11px] text-gray-500 mb-4">
+      <ol class="flex flex-wrap gap-1 items-center">
+        <li>
+          <a href="index.html" class="hover:text-brand-700">الرئيسية</a>
+        </li>
+        <li class="text-gray-300">/</li>
+        <li><span class="text-gray-700">تسجيل الدخول</span></li>
+      </ol>
+    </nav>
+
+    <!-- Card split -->
+    <div
+      class="bg-white/95 rounded-3xl shadow-soft border border-brand-100 overflow-hidden"
+    >
+      <div class="grid grid-cols-1 lg:grid-cols-2">
+        <!-- صورة / جانب تسويقي -->
+        <aside
+          class="hidden lg:flex relative bg-gradient-to-br from-brand-700 to-brand-500 text-white"
+        >
+          <!-- صورة خلفية (تقدر تغيّر المسار) -->
+          <div class="absolute inset-0">
+            <img
+              src="/src/assets/images/girl-img.avif"
+              alt="أزياء متجر الأناقة"
+              class="w-full h-full object-cover opacity-80"
+            />
+          </div>
+
+          <!-- طبقة تعتيم بسيطة -->
+          <div class="absolute inset-0 bg-black/25"></div>
+
+          <!-- المحتوى -->
+          <div class="relative z-10 flex flex-col justify-between p-8 gap-6">
+            <div>
+              <span
+                class="inline-flex items-center gap-1 rounded-full bg-white/10 px-3 py-1 text-[11px] tracking-wide"
+              >
+                ✨ موضة | جودة | أناقة
+              </span>
+              <h2 class="mt-4 text-2xl font-semibold leading-relaxed">
+                تسوّق بأناقة<br />
+                واستمتع بتجربة مريحة وسهلة.
+              </h2>
+              <p class="mt-3 text-[12px] text-brand-50/90 max-w-xs">
+                من هنا تقدر تتابع طلباتك، تحفظ عناوينك، وتشوف المفضلة الخاصة بك
+                في أي وقت.
+              </p>
+            </div>
+
+            <ul class="space-y-2 text-[12px] text-brand-50/95">
+              <li class="flex items-center gap-2">
+                <span
+                  class="inline-flex h-5 w-5 items-center justify-center rounded-full bg-white/15 text-[10px]"
+                  >✓</span
+                >
+                تتبّع طلباتك بسهولة داخل اليمن.
+              </li>
+              <li class="flex items-center gap-2">
+                <span
+                  class="inline-flex h-5 w-5 items-center justify-center rounded-full bg-white/15 text-[10px]"
+                  >✓</span
+                >
+                عروض خاصة وحصرية لأصحاب الحسابات.
+              </li>
+              <li class="flex items-center gap-2">
+                <span
+                  class="inline-flex h-5 w-5 items-center justify-center rounded-full bg-white/15 text-[10px]"
+                  >✓</span
+                >
+                حفظ عناوين الشحن لتجربة أسرع في كل طلب.
+              </li>
+            </ul>
+
+            <p class="text-[11px] text-brand-100/90">
+              لا تملك حساباً بعد؟
+              <a href="register.html" class="underline underline-offset-2"
+                >أنشئ حسابك الآن</a
+              >
+              خلال أقل من دقيقة.
+            </p>
+          </div>
+        </aside>
+
+        <!-- فورم تسجيل الدخول -->
+        <section class="p-6 sm:p-8">
+          <div class="mb-6 text-center space-y-2">
+            <span
+              class="inline-flex items-center gap-1 rounded-full bg-brand-50 text-brand-700 text-[11px] px-3 py-1"
+            >
+              👋 أهلاً بعودتك
+            </span>
+            <h1 class="text-2xl sm:text-2.5xl font-semibold">
+              تسجيل الدخول
+            </h1>
+            <p class="text-xs sm:text-[13px] text-gray-600">
+              سجّل دخولك لمتابعة التسوق ومراجعة طلباتك في
+              <span class="font-semibold">متجر الأناقة</span>.
+            </p>
+          </div>
+
+          <form id="login-form" class="space-y-4" novalidate>
+            <!-- Email / Phone -->
+            <div>
+              <label
+                for="login-identifier"
+                class="block text-xs font-semibold mb-1.5"
+              >
+                البريد الإلكتروني أو رقم الجوال
+              </label>
+              <div class="relative">
+                <span
+                  class="pointer-events-none absolute inset-y-0 left-3 flex items-center text-gray-400"
+                >
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    class="w-4 h-4"
+                    fill="none"
+                    viewBox="0 0 24 24"
+                    stroke="currentColor"
+                  >
+                    <path
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                      stroke-width="1.6"
+                      d="M16 12a4 4 0 10-8 0 4 4 0 008 0z"
+                    />
+                    <path
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                      stroke-width="1.6"
+                      d="M12 14c-4 0-7 2-7 4v1h14v-1c0-2-3-4-7-4z"
+                    />
+                  </svg>
+                </span>
+                <input
+                  type="text"
+                  id="login-identifier"
+                  name="identifier"
+                  required
+                  class="w-full rounded-2xl border border-gray-200 bg-gray-50 py-2.5 pr-4 pl-9 text-xs outline-none focus:bg-white focus:ring-2 focus:ring-brand-500/70 focus:border-brand-500 transition"
+                  placeholder="example@email.com أو 770807260"
+                />
+              </div>
+              <p
+                class="text-red-500 text-[11px] mt-1 hidden"
+                id="error-login-identifier"
+              ></p>
+            </div>
+
+            <!-- Password -->
+            <div>
+              <div class="flex items-center justify-between mb-1.5">
+                <label
+                  for="login-password"
+                  class="block text-xs font-semibold"
+                >
+                  كلمة المرور
+                </label>
+                <button
+                  type="button"
+                  id="toggle-password"
+                  class="text-[11px] text-gray-500 hover:text-gray-800"
+                >
+                  إظهار
+                </button>
+              </div>
+              <div class="relative">
+                <span
+                  class="pointer-events-none absolute inset-y-0 left-3 flex items-center text-gray-400"
+                >
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    class="w-4 h-4"
+                    fill="none"
+                    viewBox="0 0 24 24"
+                    stroke="currentColor"
+                  >
+                    <path
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                      stroke-width="1.6"
+                      d="M12 11c1.657 0 3-1.343 3-3V6a3 3 0 10-6 0v2c0 1.657 1.343 3 3 3z"
+                    />
+                    <path
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                      stroke-width="1.6"
+                      d="M6 11h12a2 2 0 012 2v5a2 2 0 01-2 2H6a2 2 0 01-2-2v-5a2 2 0 012-2z"
+                    />
+                  </svg>
+                </span>
+                <input
+                  type="password"
+                  id="login-password"
+                  name="password"
+                  required
+                  class="w-full rounded-2xl border border-gray-200 bg-gray-50 py-2.5 pr-4 pl-9 text-xs outline-none focus:bg-white focus:ring-2 focus:ring-brand-500/70 focus:border-brand-500 transition"
+                  placeholder="أدخل كلمة المرور"
+                />
+              </div>
+              <p
+                class="text-red-500 text-[11px] mt-1 hidden"
+                id="error-login-password"
+              ></p>
+            </div>
+
+            <!-- Remember + forgot -->
+            <div
+              class="flex items-center justify-between text-[11px] text-gray-600 mt-1"
+            >
+              <label class="flex items-center gap-2">
+                <input
+                  type="checkbox"
+                  class="rounded border-gray-300 text-brand-600 focus:ring-brand-500"
+                />
+                <span>تذكرني</span>
+              </label>
+              <a
+                href="forgot-password.html"
+                class="text-brand-700 hover:underline"
+              >
+                نسيت كلمة المرور؟
+              </a>
+            </div>
+
+            <!-- Submit -->
+            <button
+              type="submit"
+              class="w-full mt-2 inline-flex items-center justify-center rounded-2xl bg-black text-white py-2.5 text-sm font-semibold shadow-soft hover:bg-brand-800 focus:outline-none focus:ring-2 focus:ring-brand-500/70 focus:ring-offset-2 focus:ring-offset-white transition"
+            >
+              تسجيل الدخول
+            </button>
+
+            <!-- Divider -->
+            <div class="flex items-center gap-3 my-3">
+              <span class="flex-1 h-px bg-gray-200"></span>
+              <span class="text-[11px] text-gray-400">أو تابع عن طريق</span>
+              <span class="flex-1 h-px bg-gray-200"></span>
+            </div>
+
+            <!-- Social login -->
+            <div class="grid grid-cols-1 sm:grid-cols-2 gap-2 text-[11px]">
+              <button
+                type="button"
+                class="w-full inline-flex items-center justify-center gap-2 rounded-2xl border border-gray-200 bg-white py-2 hover:border-brand-200 hover:bg-brand-50/70 transition"
+              >
+                <span class="text-xs">تسجيل عبر جوجل</span>
+              </button>
+              <button
+                type="button"
+                class="w-full inline-flex items-center justify-center gap-2 rounded-2xl border border-gray-200 bg-white py-2 hover:border-brand-200 hover:bg-brand-50/70 transition"
+              >
+                <span class="text-xs">تسجيل عبر آبل</span>
+              </button>
+            </div>
+
+            <!-- Link to register -->
+            <p class="text-[11px] text-gray-600 text-center mt-3">
+              ليس لديك حساب؟
+              <a
+                href="register.html"
+                class="text-brand-700 hover:underline font-semibold"
+              >
+                إنشاء حساب جديد
+              </a>
+            </p>
+          </form>
+        </section>
+      </div>
+    </div>
+  </div>
+</main>
+
+
+      <!-- FOOTER -->
+      <footer class="border-t border-gray-200 bg-white mt-10">
+        <div class="container mx-auto px-4 py-10">
+          <div class="grid md:grid-cols-4 gap-8 text-sm">
+            <div>
+              <h4 class="font-semibold mb-3">متجر الأناقة</h4>
+              <p class="text-xs text-gray-600 mb-3">
+                متجر إلكتروني للملابس يقدم أحدث صيحات الموضة بجودة عالية وخدمة
+                مميزة لعملائنا في العالم العربي.
+              </p>
+              <p class="text-xs text-gray-500">
+                ساعات العمل: من الأحد إلى الخميس، 9 صباحاً - 6 مساءً.
+              </p>
+            </div>
+            <div>
+              <h4 class="font-semibold mb-3">روابط مهمة</h4>
+              <ul class="space-y-2 text-xs text-gray-600">
+                <li>
+                  <a href="/src/pages/about.html" class="hover:text-brand-600"
+                    >من نحن</a
+                  >
+                </li>
+                <li>
+                  <a
+                    href="/src/pages/shipping-policy.html"
+                    class="hover:text-brand-600"
+                    >سياسة الشحن</a
+                  >
+                </li>
+                <li>
+                  <a
+                    href="/src/pages/return-policy.html"
+                    class="hover:text-brand-600"
+                    >سياسة الاستبدال والاسترجاع</a
+                  >
+                </li>
+                <li>
+                  <a href="/src/pages/faq.html" class="hover:text-brand-600"
+                    >الأسئلة الشائعة</a
+                  >
+                </li>
+                <li>
+                  <a href="/src/pages/contact.html" class="hover:text-brand-600"
+                    >تواصل معنا</a
+                  >
+                </li>
+              </ul>
+            </div>
+            <div>
+              <h4 class="font-semibold mb-3">حسابي</h4>
+              <ul class="space-y-2 text-xs text-gray-600">
+                <li>
+                  <a href="/src/pages/account.html" class="hover:text-brand-600"
+                    >لوحة التحكم</a
+                  >
+                </li>
+                <li>
+                  <a href="/src/pages/cart.html" class="hover:text-brand-600"
+                    >سلة التسوق</a
+                  >
+                </li>
+                <li>
+                  <a
+                    href="/src/pages/checkout.html"
+                    class="hover:text-brand-600"
+                    >إتمام الشراء</a
+                  >
+                </li>
+              </ul>
+            </div>
+            <div>
+              <h4 class="font-semibold mb-3">تابعنا</h4>
+              <div class="flex gap-4 text-lg mb-3">
+                <!-- Instagram -->
+                <a href="#" class="hover:text-brand-600" aria-label="Instagram">
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    class="w-6 h-6"
+                    fill="currentColor"
+                    viewBox="0 0 24 24"
+                  >
+                    <path
+                      d="M7.75 2h8.5A5.75 5.75 0 0 1 22 7.75v8.5A5.75 5.75 0 0 1 16.25 22h-8.5A5.75 5.75 0 0 1 2 16.25v-8.5A5.75 5.75 0 0 1 7.75 2zm0 1.5A4.25 4.25 0 0 0 3.5 7.75v8.5A4.25 4.25 0 0 0 7.75 20.5h8.5A4.25 4.25 0 0 0 20.5 16.25v-8.5A4.25 4.25 0 0 0 16.25 3.5h-8.5zM12 7a5 5 0 1 1 0 10 5 5 0 0 1 0-10zm0 1.5a3.5 3.5 0 1 0 0 7 3.5 3.5 0 0 0 0-7zm5-1.75a1.25 1.25 0 1 1 0 2.5 1.25 1.25 0 0 1 0-2.5z"
+                    />
+                  </svg>
+                </a>
+
+                <!-- Twitter (X) -->
+                <a
+                  href="#"
+                  class="hover:text-brand-600"
+                  aria-label="Twitter / X"
+                >
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    class="w-6 h-6"
+                    fill="currentColor"
+                    viewBox="0 0 24 24"
+                  >
+                    <path
+                      d="M18.146 2h3.123l-6.817 7.79L22 22h-6.343l-4.96-6.507L4.8 22H1.674l7.31-8.35L2 2h6.47l4.474 5.932L18.146 2zm-2.217 17.597h1.727L8.173 4.295H6.314l9.615 15.302z"
+                    />
+                  </svg>
+                </a>
+
+                <!-- TikTok -->
+                <a href="#" class="hover:text-brand-600" aria-label="TikTok">
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    class="w-6 h-6"
+                    fill="currentColor"
+                    viewBox="0 0 24 24"
+                  >
+                    <path
+                      d="M12.95 2h3.03c.15 1.33.76 2.54 1.72 3.44A6.3 6.3 0 0 0 19.7 7v3.03a9.3 9.3 0 0 1-3.47-.7 9.55 9.55 0 0 1-1.32-.67v6.55a6.82 6.82 0 0 1-1.25 3.97A6.36 6.36 0 0 1 9.4 22a6.4 6.4 0 0 1-1.9-.29 6.45 6.45 0 0 1-1.62-.83 6.37 6.37 0 0 1-2.31-3.05A6.5 6.5 0 0 1 3.4 15c0-1.3.37-2.56 1.06-3.64A6.37 6.37 0 0 1 7.74 8.4a6.28 6.28 0 0 1 3.48.07v3.29a3.1 3.1 0 0 0-1.47-.38 3.16 3.16 0 0 0-2.19.9A3.3 3.3 0 0 0 6.7 15c0 .86.33 1.66.93 2.26.6.6 1.4.94 2.24.94a3.16 3.16 0 0 0 2.23-.92 3.1 3.1 0 0 0 .93-2.25V2z"
+                    />
+                  </svg>
+                </a>
+              </div>
+
+              <p class="text-xs text-gray-600 mb-2">
+                اشترك في النشرة البريدية للحصول على أحدث العروض.
+              </p>
+              <form class="flex gap-2">
+                <input
+                  type="email"
+                  class="flex-1 rounded-full border border-gray-200 px-3 py-1.5 text-xs focus:outline-none focus:border-brand-500"
+                  placeholder="أدخل بريدك الإلكتروني"
+                />
+                <button
+                  type="submit"
+                  class="rounded-full bg-gray-900 text-white text-xs px-4 py-1.5 hover:bg-gray-800"
+                >
+                  اشتراك
+                </button>
+              </form>
+            </div>
+          </div>
+          <div
+            class="mt-8 border-t border-gray-100 pt-4 flex flex-col md:flex-row items-center justify-between text-[11px] text-gray-500 gap-2"
+          >
+            <p>© <span id="year"></span> متجر الأناقة. جميع الحقوق محفوظة.</p>
+            <p>تم تطوير الموقع من قبل م/ايمن عجلان.</p>
+          </div>
+        </div>
+      </footer>
+    </div>
+
+    <!-- JS -->
+    <script src="assets/js/main.js"></script>
+    <script src="assets/js/cart.js"></script>
+    <script>
+      // Footer year
+      const yearEl = document.getElementById("year");
+      if (yearEl) {
+        yearEl.textContent = new Date().getFullYear();
+      }
+
+      // Toggle password visibility
+      const passwordInput = document.getElementById("login-password");
+      const togglePasswordBtn = document.getElementById("toggle-password");
+
+      if (togglePasswordBtn && passwordInput) {
+        togglePasswordBtn.addEventListener("click", () => {
+          const isPassword = passwordInput.type === "password";
+          passwordInput.type = isPassword ? "text" : "password";
+          togglePasswordBtn.textContent = isPassword ? "إخفاء" : "إظهار";
+        });
+      }
+
+      // Login validation
+      const loginForm = document.getElementById("login-form");
+      const identifierInput = document.getElementById("login-identifier");
+
+      const errIdentifier = document.getElementById("error-login-identifier");
+      const errPassword = document.getElementById("error-login-password");
+
+      function clearErrors() {
+        [errIdentifier, errPassword].forEach((el) => {
+          if (!el) return;
+          el.textContent = "";
+          el.classList.add("hidden");
+        });
+
+        [identifierInput, passwordInput].forEach((input) => {
+          if (!input) return;
+          input.classList.remove("border-red-400");
+        });
+      }
+
+      function setError(input, errorEl, message) {
+        if (!input || !errorEl) return;
+        errorEl.textContent = message;
+        errorEl.classList.remove("hidden");
+        input.classList.add("border-red-400");
+      }
+
+      loginForm.addEventListener("submit", (e) => {
+        e.preventDefault();
+        clearErrors();
+
+        let hasError = false;
+
+        const identifierVal = (identifierInput.value || "").trim();
+        const passwordVal = (passwordInput.value || "").trim();
+
+        // نمط الإيميل و الجوال
+        const emailPattern = /^\S+@\S+\.\S+$/;
+        const phonePattern = /^0?7[0-9]{8}$/; // رقم يمني (9 أرقام ويبدأ بـ 7)
+
+        // التحقق من الإيميل / الجوال
+        if (!identifierVal) {
+          setError(
+            identifierInput,
+            errIdentifier,
+            "يرجى إدخال البريد الإلكتروني أو رقم الجوال."
+          );
+          hasError = true;
+        } else {
+          if (identifierVal.includes("@")) {
+            if (!emailPattern.test(identifierVal)) {
+              setError(
+                identifierInput,
+                errIdentifier,
+                "صيغة البريد الإلكتروني غير صحيحة."
+              );
+              hasError = true;
+            }
+          } else {
+            if (!phonePattern.test(identifierVal)) {
+              setError(
+                identifierInput,
+                errIdentifier,
+                "يرجى إدخال رقم جوال يمني صحيح (9 أرقام ويبدأ بـ 7)."
+              );
+              hasError = true;
+            }
+          }
+        }
+
+        // التحقق من كلمة المرور
+        if (!passwordVal) {
+          setError(passwordInput, errPassword, "يرجى إدخال كلمة المرور.");
+          hasError = true;
+        } else if (passwordVal.length < 6) {
+          setError(
+            passwordInput,
+            errPassword,
+            "يجب أن تكون كلمة المرور 6 أحرف على الأقل."
+          );
+          hasError = true;
+        }
+
+        if (hasError) {
+          if (window.showToast) {
+            window.showToast(
+              "يرجى تصحيح الأخطاء الظاهرة في النموذج.",
+              "error"
+            );
+          }
+          const firstError = document.querySelector(
+            "p.text-red-500:not(.hidden)"
+          );
+          if (firstError) {
+            firstError.scrollIntoView({ behavior: "smooth", block: "center" });
+          }
+          return;
+        }
+
+        // ✅ لو كل شيء تمام (نموذج تجريبي فقط)
+        if (window.showToast) {
+          window.showToast(
+            "تم تسجيل الدخول بنجاح (نموذج تجريبي فقط).",
+            "success"
+          );
+        } else {
+          alert("تم تسجيل الدخول بنجاح (نموذج تجريبي فقط).");
+        }
+        // window.location.href = 'account.html';
+      });
+
+      // تنظيف الأخطاء عند الكتابة
+      [identifierInput, passwordInput].forEach((input) => {
+        if (!input) return;
+        input.addEventListener("input", clearErrors);
+      });
+    </script>
+  </body>
+</html>

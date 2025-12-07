@@ -1,0 +1,119 @@
+/* assets/css/style.css - ثيم تقني Light */
+@import "tailwindcss";
+
+/* ثيم (ألوان + خط) مناسب لمتجر إلكترونيات Light */
+@theme {
+  /* الخط الافتراضي لكلاس font-sans */
+  --font-sans: "Cairo", system-ui, sans-serif;
+
+  /* ألوان البراند - أزرق تقني (bg-brand-*, text-brand-*) */
+  --color-brand-50: #f4f7ff;
+  --color-brand-100: #e4ecff;
+  --color-brand-200: #d6e2ff;
+  --color-brand-300: #aec4ff;
+  --color-brand-400: #7aa0ff;
+  --color-brand-500: #3b82f6; /* الأزرق الأساسي */
+  --color-brand-600: #2563eb;
+  --color-brand-700: #1d4ed8;
+  --color-brand-800: #1e3a8a;
+  --color-brand-900: #111827;
+
+  /* ألوان محايدة - slate (text-slate-*, bg-slate-*, border-slate-*) */
+  --color-slate-50: #f8fafc;
+  --color-slate-100: #f1f5f9;
+  --color-slate-200: #e2e8f0;
+  --color-slate-300: #cbd5f5;
+  --color-slate-400: #94a3b8;
+  --color-slate-500: #64748b;
+  --color-slate-600: #475569;
+  --color-slate-700: #334155;
+  --color-slate-800: #1e293b;
+  --color-slate-900: #0f172a;
+  --color-slate-950: #020617; /* للهيرو الداكن bg-slate-950 */
+
+  /* سطحيات / خلفيات خفيفة (bg-surface-50, bg-surface-100, ...) */
+  --color-surface-50: #f9fafb;
+  --color-surface-100: #f3f4f6;
+  --color-surface-200: #e5e7eb;
+  --color-surface-800: #111827;
+
+  /* أخضر (accent) - مستخدم في الهيرو: text-emerald-300, bg-emerald-400, ... */
+  --color-emerald-300: #6ee7b7;
+  --color-emerald-400: #34d399;
+  --color-emerald-500: #10b981;
+  --color-emerald-700: #047857;
+
+  /* أصفر/برتقالي (للشيبس والبادج: bg-amber-400, bg-amber-500, text-amber-300...) */
+  --color-amber-300: #fcd34d;
+  --color-amber-400: #fbbf24;
+  --color-amber-500: #f59e0b;
+
+  /* أحمر (خصومات وbadges: bg-red-500, text-red-600) */
+  --color-red-500: #ef4444;
+  --color-red-600: #dc2626;
+
+  /* سماوي (via-sky-500 في الهيرو) */
+  --color-sky-500: #0ea5e9;
+
+  /* فوشيا / وردي (bg-pink-50, bg-fuchsia-400, bg-fuchsia-500) */
+  --color-pink-50: #fdf2f8;
+  --color-fuchsia-400: #e879f9;
+  --color-fuchsia-500: #d946ef;
+
+  /* أبيض */
+  --color-white: #ffffff;
+
+  /* ظل ناعم للكروت والنوافذ (تقدر تستعمله مع [box-shadow:var(--shadow-soft)]) */
+  --shadow-soft: 0 12px 35px rgba(15, 23, 42, 0.08);
+}
+
+/* أي ستايل إضافي عام */
+body {
+  font-family: var(--font-sans);
+  background-color: var(--color-brand-50);
+  color: #0f172a;
+}
+
+/* كلاس chip اللي تستخدمه في الكروت */
+.chip {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.25rem;
+  padding: 0.15rem 0.6rem;
+  border-radius: 9999px;
+  font-size: 0.68rem;
+  background-color: var(--color-surface-50);
+  border: 1px solid var(--color-surface-200);
+  color: var(--color-slate-600);
+}
+
+/* أنيميشن للتوست/النوافذ الصغيرة */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes fadeOut {
+  from {
+    opacity: 1;
+    transform: translateY(0);
+  }
+  to {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+}
+
+.animate-fadeIn {
+  animation: fadeIn 0.3s ease-out forwards;
+}
+
+.animate-fadeOut {
+  animation: fadeOut 0.3s ease-in forwards;
+}
