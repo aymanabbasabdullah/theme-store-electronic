@@ -1,47 +1,8 @@
 // assets/js/product.js
-// صفحة منتج ديناميكية تعتمد على JSON واحد: #product-data
+// صفحة منتج ديناميكية تعتمد على ملف JSON عام: /src/data/products.json
 
 document.addEventListener("DOMContentLoaded", async () => {
-  // ---------- قراءة JSON ----------
-  // let productData = null;
-  // try {
-  //   const script = document.getElementById("product-data");
-  //   if (script) {
-  //     const json = script.textContent || "{}";
-  //     productData = JSON.parse(json);
-  //   }
-  // } catch (e) {
-  //   console.error("خطأ في JSON الخاص بالمنتج:", e);
-  //   return;
-  // }
-  // if (!productData) return;
-  // let productData = null;
-
-  // try {
-  //   // 1) نجيب كل المنتجات من ملف JSON
-  //   const res = await fetch("/src/data/products.json");
-  //   if (!res.ok) {
-  //     throw new Error("فشل تحميل ملف المنتجات");
-  //   }
-
-  //   const allProducts = await res.json();
-
-  //   // 2) نقرأ id من الـ URL
-  //   const params = new URLSearchParams(window.location.search);
-  //   const idFromUrl = params.get("id") || "1"; // غيّر "1" للإفتراضي اللي تريده
-
-  //   // 3) نختار المنتج الموافق
-  //   productData = allProducts[idFromUrl];
-
-  //   if (!productData) {
-  //     console.error("لم يتم العثور على منتج لهذا الـ id:", idFromUrl);
-  //     return;
-  //   }
-  // } catch (e) {
-  //   console.error("خطأ في تحميل JSON الخاص بالمنتجات:", e);
-  //   return;
-  // }
-
+  // ---------- قراءة بيانات المنتج من products.json بناءً على id في الـ URL ----------
   let productData = null;
 
   try {
@@ -61,9 +22,12 @@ document.addEventListener("DOMContentLoaded", async () => {
     console.error("خطأ في JSON الخاص بالمنتج:", e);
     return;
   }
+
   const variants = productData.variants || [];
   let currentVariant = null;
   const selectedAttrs = {}; // تتعبّى بالاختيارات
+
+  const WISHLIST_SELECTOR = "[data-wishlist-button]";
 
   // ---------- Helpers ----------
   function formatPrice(num) {
@@ -120,14 +84,12 @@ document.addEventListener("DOMContentLoaded", async () => {
 
   const ratingTextEl = document.getElementById("rating-text");
   const ratingCountEl = document.getElementById("rating-count");
-
-  const wishlistButtons = document.querySelectorAll("[data-wishlist-button]");
+  const ratingStarsStaticEl = document.getElementById("rating-stars"); // 👈 أضف هذا
 
   // ---------- تطبيق بيانات أساسية ----------
-  document.title = productData.name + " - متجر التقنية";
+  document.title = (productData.name || "منتج") + " - متجر التقنية";
 
   if (titleEl) titleEl.textContent = productData.name || "منتج بدون اسم";
-
   if (shortDescEl) shortDescEl.textContent = productData.shortDescription || "";
   if (longDescEl) longDescEl.textContent = productData.longDescription || "";
 
@@ -241,8 +203,6 @@ document.addEventListener("DOMContentLoaded", async () => {
 
   // ---------- حالة المخزون ----------
   if (stockBadgeEl) {
-    const msg = productData.stockMessage || "متوفر";
-    stockBadgeEl.textContent = msg;
     const status = productData.stockStatus || "in_stock";
     stockBadgeEl.classList.remove(
       "bg-emerald-50",
@@ -250,14 +210,20 @@ document.addEventListener("DOMContentLoaded", async () => {
       "bg-red-50",
       "text-red-700",
       "bg-slate-100",
-      "text-slate-600"
+      "text-slate-600",
+      "bg-amber-50",
+      "text-amber-700"
     );
+
     if (status === "out_of_stock") {
       stockBadgeEl.classList.add("bg-red-50", "text-red-700");
+      stockBadgeEl.textContent = productData.stockMessage || "غير متوفر";
     } else if (status === "limited") {
       stockBadgeEl.classList.add("bg-amber-50", "text-amber-700");
+      stockBadgeEl.textContent = productData.stockMessage || "كمية محدودة";
     } else {
       stockBadgeEl.classList.add("bg-emerald-50", "text-emerald-700");
+      stockBadgeEl.textContent = productData.stockMessage || "متوفر";
     }
   }
 
@@ -340,7 +306,7 @@ document.addEventListener("DOMContentLoaded", async () => {
         if (opt.type === "color") {
           btn = createEl(
             "button",
-            "w-8 h-8 rounded-full border-2 border-transparent",
+            "w-8 h-8 rounded-full border-2 border-transparent ",
             {
               "data-color-select": "true",
               "data-option": optionName,
@@ -356,7 +322,7 @@ document.addEventListener("DOMContentLoaded", async () => {
         } else {
           btn = createEl(
             "button",
-            "px-4 py-2 rounded-full border border-slate-300 text-xs",
+            "px-4 py-2 rounded-full border border-slate-300 text-xs ",
             {
               "data-option": optionName,
               "data-value": optionValue,
@@ -368,10 +334,19 @@ document.addEventListener("DOMContentLoaded", async () => {
         // افتراضي؟
         if (val.isDefault) {
           selectedAttrs[optionName] = optionValue;
+
           if (opt.type === "color") {
+            // اللون الافتراضي (دوائر الألوان)
             btn.classList.add("border-brand-500", "ring-2", "ring-offset-2");
           } else {
-            btn.classList.add("bg-slate-900", "text-white", "border-brand-500");
+            // الأزرار العادية (مقاس / ستايل / ... ) بالبراند جراديانت
+            btn.classList.add(
+              "bg-gradient-to-l",
+              "from-brand-600",
+              "to-brand-500",
+              "text-white",
+              "border-brand-500"
+            );
           }
         }
 
@@ -384,6 +359,7 @@ document.addEventListener("DOMContentLoaded", async () => {
   }
 
   // بعد ما بنينا الأزرار، نربط الأحداث
+  // بعد ما بنينا الأزرار، نربط الأحداث
   const optionButtons = document.querySelectorAll("[data-option]");
   optionButtons.forEach((btn) => {
     const optionName = btn.getAttribute("data-option");
@@ -393,27 +369,45 @@ document.addEventListener("DOMContentLoaded", async () => {
     btn.addEventListener("click", () => {
       selectedAttrs[optionName] = optionValue;
 
+      // أولاً نفك أي اختيار سابق لنفس الخيار (المقاس / اللون / ..)
       document
         .querySelectorAll(`[data-option="${optionName}"]`)
         .forEach((b) => {
           b.classList.remove(
+            // الألوان القديمة الداكنة
             "bg-slate-900",
             "bg-gray-900",
+            // ألوان النص وحدود البراند
             "text-white",
             "border-brand-500",
+            // الحلقات
             "ring-2",
-            "ring-offset-2"
+            "ring-offset-2",
+            // الجراديانت الجديد (لو كان مضاف)
+            "bg-gradient-to-l",
+            "from-brand-600",
+            "to-brand-500"
           );
+
+          // رجّع الأزرار العادية لوضعها الافتراضي
           if (!b.hasAttribute("data-color-select")) {
             b.classList.add("border-slate-300");
           }
         });
 
+      // لو الخيار لون (دوائر الألوان)
       if (btn.hasAttribute("data-color-select")) {
         btn.classList.add("border-brand-500", "ring-2", "ring-offset-2");
       } else {
+        // لو الخيار نصّي (مقاس / ستايل / ...): نطبّق الجراديانت تبع الهوية
         btn.classList.remove("border-slate-300");
-        btn.classList.add("bg-slate-900", "text-white", "border-brand-500");
+        btn.classList.add(
+          "bg-gradient-to-l",
+          "from-brand-600",
+          "to-brand-500",
+          "text-white",
+          "border-brand-500"
+        );
       }
 
       applyVariantAndSync();
@@ -437,10 +431,7 @@ document.addEventListener("DOMContentLoaded", async () => {
     if (v) {
       currentVariant = v;
       updatePriceDisplay(v.price, v.oldPrice);
-      // ممكن نحدّث حالة المخزون لو مختلفة
-      if (stockBadgeEl && v.stockStatus) {
-        // نفس المنطق السابق لكن من v
-      }
+      // ممكن نحدّث حالة المخزون لو مختلفة هنا مستقبلاً
     } else {
       currentVariant = null;
       updatePriceDisplay(basePrice, baseOldPrice);
@@ -507,7 +498,7 @@ document.addEventListener("DOMContentLoaded", async () => {
     }, 2500);
   }
 
-  // ---------- Add to cart ----------
+  // ---------- Add to cart + مزامنة بيانات السلة والمفضلة ----------
   function syncAddToCartDataset() {
     if (!addToCartBtn) return;
 
@@ -543,8 +534,8 @@ document.addEventListener("DOMContentLoaded", async () => {
       addToCartBtn.setAttribute("data-product-sku", currentVariant.sku);
     }
 
-    // حدّث أزرار المفضلة أيضاً
-    wishlistButtons.forEach((btn) => {
+    // حدّث أزرار المفضلة أيضاً (كل زر في الصفحة)
+    document.querySelectorAll(WISHLIST_SELECTOR).forEach((btn) => {
       btn.setAttribute("data-product-id", productId);
       btn.setAttribute("data-product-name", productName);
       btn.setAttribute("data-product-price", String(numericPrice));
@@ -608,6 +599,12 @@ document.addEventListener("DOMContentLoaded", async () => {
       card.className =
         "bg-white rounded-2xl overflow-hidden border border-slate-100 shadow-sm hover:shadow-md hover:-translate-y-0.5 transition";
 
+      card.setAttribute("data-product", "");
+      card.dataset.productId = acc.id;
+      card.dataset.productName = acc.name;
+      card.dataset.productPrice = String(acc.price || 0);
+      card.dataset.productImage = acc.image || "";
+
       const link = createEl("a", "block relative", {
         href: `/src/pages/product.html?id=${encodeURIComponent(acc.id)}`,
       });
@@ -619,13 +616,21 @@ document.addEventListener("DOMContentLoaded", async () => {
       const body = createEl("div", "p-3 space-y-1 text-xs");
       const name = createEl("p", "text-slate-500");
       name.textContent = acc.name;
+
       const bottom = createEl("div", "flex items-center justify-between");
       const priceSpan = createEl("span", "font-bold text-brand-600");
       priceSpan.textContent = formatPrice(acc.price);
+
       const wishBtn = createEl(
         "button",
         "text-xs text-slate-500 hover:text-pink-500",
-        { "data-wishlist-button": "true" }
+        {
+          "data-wishlist-button": "true",
+          "data-product-id": acc.id,
+          "data-product-name": acc.name,
+          "data-product-price": String(acc.price || 0),
+          "data-product-image": acc.image || "",
+        }
       );
       wishBtn.textContent = "♡";
 
@@ -653,6 +658,12 @@ document.addEventListener("DOMContentLoaded", async () => {
       card.className =
         "bg-white rounded-2xl overflow-hidden border border-slate-100 shadow-sm hover:shadow-md hover:-translate-y-0.5 transition";
 
+      card.setAttribute("data-product", "");
+      card.dataset.productId = p.id;
+      card.dataset.productName = p.name;
+      card.dataset.productPrice = String(p.price || 0);
+      card.dataset.productImage = p.image || "";
+
       const link = createEl("a", "block relative", {
         href: `/src/pages/product.html?id=${encodeURIComponent(p.id)}`,
       });
@@ -664,13 +675,21 @@ document.addEventListener("DOMContentLoaded", async () => {
       const body = createEl("div", "p-3 space-y-1 text-xs");
       const name = createEl("p", "text-slate-500");
       name.textContent = p.name;
+
       const bottom = createEl("div", "flex items-center justify-between");
       const priceSpan = createEl("span", "font-bold text-brand-600");
       priceSpan.textContent = formatPrice(p.price);
+
       const wishBtn = createEl(
         "button",
         "text-xs text-slate-500 hover:text-pink-500",
-        { "data-wishlist-button": "true" }
+        {
+          "data-wishlist-button": "true",
+          "data-product-id": p.id,
+          "data-product-name": p.name,
+          "data-product-price": String(p.price || 0),
+          "data-product-image": p.image || "",
+        }
       );
       wishBtn.textContent = "♡";
 
@@ -692,4 +711,270 @@ document.addEventListener("DOMContentLoaded", async () => {
     updatePriceDisplay(basePrice, baseOldPrice);
     syncAddToCartDataset();
   }
+
+  // ---------- UI زر المفضلة في صفحة المنتج ----------
+  const svgOff = `
+<svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4"
+fill="none" viewBox="0 0 24 24" stroke="currentColor">
+  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+    d="M4.318 6.318a4.5 4.5 0 016.364 0L12 7.636l1.318-1.318a4.5 
+    4.5 0 116.364 6.364L12 21l-7.682-8.318a4.5 
+    4.5 0 010-6.364z"/>
+</svg>`;
+
+  const svgOn = `
+<svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4"
+fill="currentColor" viewBox="0 0 24 24" stroke="currentColor">
+  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+    d="M4.318 6.318a4.5 4.5 0 016.364 0L12 7.636l1.318-1.318a4.5 
+    4.5 0 116.364 6.364L12 21l-7.682-8.318a4.5 
+    4.5 0 010-6.364z"/>
+</svg>`;
+  function updateWishlistButtonUI(btn, inWishlist) {
+    if (!btn) return;
+
+    const icon = btn.querySelector(".wishlist-icon");
+    const label = btn.querySelector(".wishlist-label");
+
+    if (inWishlist) {
+      btn.setAttribute("data-wishlist-state", "on");
+      btn.classList.remove("border-slate-300", "text-slate-700", "bg-white");
+      btn.classList.add("border-pink-400", "text-pink-600", "bg-pink-50");
+
+      if (icon) icon.innerHTML = svgOn;
+      if (label) label.textContent = "في المفضلة";
+    } else {
+      btn.setAttribute("data-wishlist-state", "off");
+      btn.classList.remove("border-pink-400", "text-pink-600", "bg-pink-50");
+      btn.classList.add("border-slate-300", "text-slate-700", "bg-white");
+
+      if (icon) icon.innerHTML = svgOff;
+      if (label) label.textContent = "أضف إلى المفضلة";
+    }
+  }
+
+  // حدث على الزر عشان يغيّر شكله مباشرة مع النقر
+  document.addEventListener("click", (e) => {
+    const btn = e.target.closest("[data-wishlist-button]");
+    if (!btn) return;
+
+    // الحالة الحالية من الـ data-attribute
+    const currentState = btn.getAttribute("data-wishlist-state") === "on";
+    const nextState = !currentState;
+
+    // هنا فقط UI، التخزين / الحفظ في localStorage يتكفل به wishlist.js
+    updateWishlistButtonUI(btn, nextState);
+
+    // اختيارية: أظهر Toast صغير يوضح للمستخدم
+    if (typeof window.showToast === "function") {
+      if (nextState) {
+        window.showToast("تمت إضافة المنتج إلى المفضلة ✅", "success");
+      } else {
+        window.showToast("تمت إزالة المنتج من المفضلة", "info");
+      }
+    }
+    
+  });
+  // =================================================================
+  // =================================================================
+  // =================================================================
+  // =================================================================
+  // =================================================================
+
+  // ========= نظام التقييم (Reviews) =========
+
+  const reviewBtn = document.getElementById("add-review-btn");
+  const reviewModal = document.getElementById("review-modal");
+  const closeReviewBtn = document.getElementById("close-review-modal");
+  const submitReviewBtn = document.getElementById("submit-review");
+  const starsEl = document.querySelectorAll("#review-stars span");
+  const reviewTextEl = document.getElementById("review-text");
+  const reviewsListEl = document.getElementById("reviews-list");
+
+  // هذه معرفينها فوق في كودك الأساسي:
+  // const ratingTextEl = document.getElementById("rating-text");
+  // const ratingCountEl = document.getElementById("rating-count");
+
+  let selectedStars = 0;
+
+  // مفتاح التخزين لكل منتج لوحده
+  function reviewsKey() {
+    return `reviews_${productData.id || "no-id"}`;
+  }
+
+  // تلوين النجوم داخل المودال (فاضية -> ممتلئة)
+  function highlightStars(num) {
+    starsEl.forEach((s, i) => {
+      // رجّع الكل رمادي كافتراضي
+      s.classList.remove("text-amber-400");
+      s.classList.add("text-slate-300");
+
+      // لو هذا النجم ضمن العدد المختار: لونه أصفر
+      if (i < num) {
+        s.classList.remove("text-slate-300");
+        s.classList.add("text-amber-400");
+      }
+    });
+  }
+
+  // قراءة كل التقييمات من localStorage
+  function loadReviews() {
+    try {
+      const saved = localStorage.getItem(reviewsKey());
+      if (!saved) return [];
+      return JSON.parse(saved);
+    } catch {
+      return [];
+    }
+  }
+
+  // حفظ تقييم جديد
+  function saveReview(stars, text) {
+    const list = loadReviews();
+    list.push({
+      stars,
+      text,
+      date: new Date().toISOString(),
+    });
+    localStorage.setItem(reviewsKey(), JSON.stringify(list));
+    return list;
+  }
+
+  // حساب المتوسط وتحديث الهيدر (الرقم + النجوم + عدد التقييمات)
+  function updateRatingSummary(list) {
+    if (!Array.isArray(list) || !list.length) return;
+
+    const count = list.length;
+    const sum = list.reduce((acc, r) => acc + (r.stars || 0), 0);
+    const avg = sum / count;
+
+    if (ratingTextEl) {
+      ratingTextEl.textContent = `${avg.toFixed(1)} من 5`;
+    }
+    if (ratingCountEl) {
+      ratingCountEl.textContent = `(${count} تقييم)`;
+    }
+    if (ratingStarsStaticEl) {
+      const full = Math.round(avg);
+      ratingStarsStaticEl.textContent = "★".repeat(full) + "☆".repeat(5 - full);
+    }
+  }
+
+  // عرض التقييمات في تبويب "التقييمات"
+  function renderReviews(list) {
+    if (!reviewsListEl) return;
+    reviewsListEl.innerHTML = "";
+
+    if (!list.length) {
+      const empty = document.createElement("p");
+      empty.className = "text-[11px] text-slate-400";
+      empty.textContent =
+        "لا يوجد تقييمات حتى الآن. كن أول من يقيّم هذا المنتج.";
+      reviewsListEl.appendChild(empty);
+      return;
+    }
+
+    list
+      .slice()
+      .reverse()
+      .forEach((r) => {
+        const div = document.createElement("div");
+        div.className =
+          "bg-slate-50 border border-slate-100 rounded-xl p-3 text-xs";
+
+        const full = r.stars || 0;
+        const starsLine = "★".repeat(full) + "☆".repeat(5 - full);
+
+        div.innerHTML = `
+        <div class="text-amber-500 text-sm">${starsLine}</div>
+        <p class="text-slate-700 mt-1">${r.text}</p>
+        <p class="text-[10px] text-slate-400 mt-1">
+          ${new Date(r.date).toLocaleDateString("ar-YE")}
+        </p>
+      `;
+        reviewsListEl.appendChild(div);
+      });
+  }
+
+  // فتح المودال
+  if (reviewBtn && reviewModal) {
+    reviewBtn.addEventListener("click", () => {
+      reviewModal.classList.remove("hidden");
+      reviewModal.classList.add("flex");
+    });
+  }
+
+  // إغلاق المودال
+  if (closeReviewBtn && reviewModal && reviewTextEl) {
+    closeReviewBtn.addEventListener("click", () => {
+      reviewModal.classList.add("hidden");
+      reviewModal.classList.remove("flex");
+      selectedStars = 0;
+      highlightStars(0);
+      reviewTextEl.value = "";
+    });
+  }
+
+  // نجوم تقييم تفاعلية (hover + click)
+  const starsWrapper = document.getElementById("review-stars");
+
+  starsEl.forEach((star) => {
+    const value = parseInt(star.getAttribute("data-star"), 10) || 0;
+
+    // معاينة عند المرور بالماوس
+    star.addEventListener("mouseenter", () => {
+      highlightStars(value);
+    });
+
+    // تثبيت عند الضغط
+    star.addEventListener("click", () => {
+      selectedStars = value;
+      highlightStars(selectedStars);
+    });
+  });
+
+  // عند خروج الماوس من منطقة النجوم: رجّع لآخر اختيار ثابت
+  if (starsWrapper) {
+    starsWrapper.addEventListener("mouseleave", () => {
+      highlightStars(selectedStars);
+    });
+  }
+
+  // عند الضغط على "إضافة التقييم"
+  if (submitReviewBtn && reviewModal && reviewTextEl) {
+    submitReviewBtn.addEventListener("click", () => {
+      if (!selectedStars) {
+        showToast("يرجى اختيار عدد النجوم", "error");
+        return;
+      }
+
+      const text = reviewTextEl.value.trim();
+      if (!text) {
+        showToast("اكتب نص التقييم", "error");
+        return;
+      }
+
+      const list = saveReview(selectedStars, text);
+      renderReviews(list);
+      updateRatingSummary(list);
+
+      showToast("تم إضافة التقييم بنجاح ✅", "success");
+
+      reviewModal.classList.add("hidden");
+      reviewModal.classList.remove("flex");
+      reviewTextEl.value = "";
+      selectedStars = 0;
+      highlightStars(0);
+    });
+  }
+
+  // عند تحميل الصفحة: اعرض التقييمات السابقة وحدّث المتوسط
+  const existingReviews = loadReviews();
+  renderReviews(existingReviews);
+  if (existingReviews.length) {
+    updateRatingSummary(existingReviews);
+  }
+
+  // بداية: نجوم فاضية
+  highlightStars(0);
 });

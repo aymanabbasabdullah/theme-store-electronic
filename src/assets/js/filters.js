@@ -1,29 +1,6 @@
 /* assets/js/filters.js
  * -------------------------------------------------
  * Filtering & sorting logic for category.html
- * (matches the current HTML structure you provided)
- *
- * Product cards:
- *   <div
- *     data-product
- *     data-size="M"
- *     data-color="black"
- *     data-price="199"
- *     data-material="cotton"
- *     data-brand="elegance"
- *     data-sale="true"
- *     data-sort-newest="3"
- *     data-sort-bestseller="1"
- *   >
- *
- * Filters:
- *   buttons (size/color/price) => data-filter="size|color|price" + data-value="..."
- *   checkboxes (material/brand/sale) => input[type=checkbox] data-filter="material|brand|sale"
- *
- * Sort:
- *   <select id="sort-select">
- *     value="newest" | "bestseller" | "price-asc" | "price-desc"
- *   </select>
  */
 
 (function () {
@@ -33,13 +10,12 @@
     productsContainer: "#products-grid",
     productCard: "[data-product]",
 
-    // Filters (by type)
-    filterButtons: "[data-filter]", // buttons with data-filter (size, color, price)
+    // Filters (buttons + checkboxes)
+    filterButtons: "[data-filter]",
     clearFiltersButton: "[data-clear-filters]",
     sortSelect: "#sort-select",
   };
 
-  // Data attributes used on product cards
   const PRODUCT_FIELDS = {
     size: "size",
     color: "color",
@@ -47,24 +23,26 @@
     material: "material",
     brand: "brand",
     sale: "sale",
-    newestRank: "sortNewest", // from data-sort-newest
-    bestsellerRank: "sortBestseller", // from data-sort-bestseller
+    newestRank: "sortNewest",
+    bestsellerRank: "sortBestseller",
   };
 
-  // In-memory filter state
+  // ---------- In-memory filter state ----------
   const filterState = {
     sizes: new Set(),
     colors: new Set(),
     priceRanges: [],
     brands: new Set(),
     materials: new Set(),
-    categories: new Set(), // 👈 جديد
+    categories: new Set(),
+    features: new Set(),
     saleOnly: false,
   };
 
   let allProducts = [];
   let productsContainer = null;
   let sortSelect = null;
+  let productsBuilt = false; // 👈 حماية من إعادة بناء الكروت
 
   // ------------- Helpers -------------------
 
@@ -74,34 +52,81 @@
     return Number.isNaN(num) ? fallback : num;
   }
 
-  /**
-   * Detect whether a filter UI element is active.
-   */
+  function formatPrice(num) {
+    return Number(num || 0).toLocaleString("en-US");
+  }
+
+  function getCategoryLabelFromCode(code) {
+    switch (code) {
+      case "mobiles":
+        return "جوالات";
+      case "laptops":
+        return "لابتوبات";
+      case "tvs":
+        return "شاشات / تلفزيونات";
+      case "gaming":
+        return "أجهزة ألعاب";
+      case "audio":
+        return "سماعات وصوتيات";
+      case "accessories":
+        return "إكسسوارات";
+      case "smarthome":
+        return "منزل ذكي";
+      default:
+        return "";
+    }
+  }
+
+  function getChipsHtmlFromProduct(p) {
+    if (!Array.isArray(p.specs)) return "";
+    return p.specs
+      .slice(0, 3)
+      .map((s) => `<span class="chip">${s.value}</span>`)
+      .join("");
+  }
+
+  function getMainImageFromProduct(p) {
+    return (
+      (p.images && p.images.main) ||
+      "https://via.placeholder.com/500x500?text=Product"
+    );
+  }
+
+  function getPriceFromProduct(p) {
+    if (typeof p.basePrice === "number") return p.basePrice;
+    if (Array.isArray(p.variants) && p.variants[0]?.price)
+      return p.variants[0].price;
+    return 0;
+  }
+
+  function getRatingFromProduct(p) {
+    return typeof p.rating === "number" ? p.rating : 4.6;
+  }
+
+  function getRatingCountFromProduct(p) {
+    return typeof p.ratingCount === "number" ? p.ratingCount : 0;
+  }
+
   function isFilterActive(el) {
     if (!el) return false;
-
     if (el.matches('input[type="checkbox"], input[type="radio"]')) {
       return el.checked;
     }
-
     if (el.getAttribute("aria-pressed") === "true") return true;
     if (el.classList.contains("active")) return true;
-
     return false;
   }
 
-  /**
-   * Read all filters from DOM into filterState.
-   */
   function readFiltersFromDOM() {
     filterState.sizes.clear();
     filterState.colors.clear();
     filterState.priceRanges = [];
     filterState.brands.clear();
     filterState.materials.clear();
+    filterState.categories.clear();
+    filterState.features.clear();
     filterState.saleOnly = false;
 
-    // All filter elements (buttons + checkboxes) have data-filter + value/data-value
     const filterEls = document.querySelectorAll(SELECTORS.filterButtons);
 
     filterEls.forEach((el) => {
@@ -111,7 +136,6 @@
       const value = (el.value || el.getAttribute("data-value") || "").trim();
       if (!value) return;
 
-      // Buttons need manual active state; checkboxes use .checked
       const active = isFilterActive(el);
       if (!active) return;
 
@@ -119,11 +143,9 @@
         case "size":
           filterState.sizes.add(value);
           break;
-
         case "color":
           filterState.colors.add(value);
           break;
-
         case "price": {
           const [minStr, maxStr] = value.split("-");
           const min = minStr ? toNumber(minStr, 0) : 0;
@@ -131,19 +153,18 @@
           filterState.priceRanges.push({ min, max });
           break;
         }
-
         case "material":
           filterState.materials.add(value);
           break;
-
         case "brand":
           filterState.brands.add(value);
           break;
-
-        case "category": // 👈 هذا الجديد
+        case "category":
           filterState.categories.add(value);
           break;
-
+        case "feature":
+          filterState.features.add(value.toLowerCase());
+          break;
         case "sale":
           filterState.saleOnly = true;
           break;
@@ -151,13 +172,10 @@
     });
   }
 
-  /**
-   * Check if a product card matches current filterState.
-   */
   function productMatchesFilters(card) {
     const d = card.dataset;
 
-    // 👈 فلتر الكاتيجوري
+    // category
     if (filterState.categories.size > 0) {
       const cat = (d.category || "").trim();
       if (!filterState.categories.has(cat)) return false;
@@ -168,6 +186,7 @@
       const productSize = (d[PRODUCT_FIELDS.size] || "").trim();
       if (!filterState.sizes.has(productSize)) return false;
     }
+
     // color
     if (filterState.colors.size > 0) {
       const productColor = (d[PRODUCT_FIELDS.color] || "").trim();
@@ -195,6 +214,18 @@
       if (!filterState.brands.has(brand)) return false;
     }
 
+    // features
+    if (filterState.features.size > 0) {
+      const raw = (d.feature || d.features || "").toLowerCase();
+      if (!raw) return false;
+      const productFeatures = raw
+        .split(",")
+        .map((f) => f.trim())
+        .filter(Boolean);
+      const hasAny = productFeatures.some((f) => filterState.features.has(f));
+      if (!hasAny) return false;
+    }
+
     // sale only
     if (filterState.saleOnly) {
       const isOnSale = String(d[PRODUCT_FIELDS.sale]).toLowerCase() === "true";
@@ -204,9 +235,6 @@
     return true;
   }
 
-  /**
-   * Show/hide cards based on filterState.
-   */
   function applyFilters() {
     allProducts.forEach((card) => {
       if (productMatchesFilters(card)) {
@@ -217,29 +245,22 @@
     });
   }
 
-  /**
-   * Compare for "newest" sort using data-sort-newest.
-   * Higher number = newer (3 is newer than 1).
-   */
+  // --------- Sort helpers ----------
+
   function compareNewest(a, b) {
     const aRank = toNumber(a.dataset.sortNewest, 0);
     const bRank = toNumber(b.dataset.sortNewest, 0);
-    if (aRank !== bRank) return bRank - aRank; // high -> low (newest first)
+    if (aRank !== bRank) return bRank - aRank;
 
-    // fallback to original order
     const aIndex = toNumber(a.dataset.initialIndex, 0);
     const bIndex = toNumber(b.dataset.initialIndex, 0);
     return aIndex - bIndex;
   }
 
-  /**
-   * Compare for "bestseller" using data-sort-bestseller.
-   * Lower number = more sold (1 هو الأكثر مبيعاً).
-   */
   function compareBestseller(a, b) {
     const aRank = toNumber(a.dataset.sortBestseller, 9999);
     const bRank = toNumber(b.dataset.sortBestseller, 9999);
-    if (aRank !== bRank) return aRank - bRank; // small -> big
+    if (aRank !== bRank) return aRank - bRank;
 
     const aIndex = toNumber(a.dataset.initialIndex, 0);
     const bIndex = toNumber(b.dataset.initialIndex, 0);
@@ -266,9 +287,6 @@
     return aIndex - bIndex;
   }
 
-  /**
-   * Sort cards and re-append to container.
-   */
   function applySort() {
     if (!productsContainer) return;
 
@@ -298,46 +316,38 @@
     sorted.forEach((card) => productsContainer.appendChild(card));
   }
 
-  /**
-   * Apply filters THEN sort.
-   */
   function applyFiltersAndSort() {
     readFiltersFromDOM();
     applyFilters();
     applySort();
   }
 
-  /**
-   * Clear all filters UI + state.
-   */
   function clearAllFilters() {
-    // 1) Clear checkboxes / radio
     document.querySelectorAll("input[data-filter]").forEach((el) => {
       if (el.type === "checkbox" || el.type === "radio") {
         el.checked = false;
       }
     });
 
-    // 2) Clear button active styles
     document.querySelectorAll("button[data-filter]").forEach((el) => {
       el.classList.remove(
         "active",
-        "bg-gray-900",
+        "bg-slate-900",
         "text-white",
-        "border-gray-900"
+        "border-slate-900"
       );
       el.setAttribute("aria-pressed", "false");
     });
 
-    // 3) Reset state
     filterState.sizes.clear();
     filterState.colors.clear();
     filterState.priceRanges = [];
     filterState.brands.clear();
     filterState.materials.clear();
+    filterState.categories.clear();
+    filterState.features.clear();
     filterState.saleOnly = false;
 
-    // 4) Reset sort to newest
     if (sortSelect) {
       sortSelect.value = "newest";
     }
@@ -345,9 +355,225 @@
     applyFiltersAndSort();
   }
 
-  // ------------- Init & Events ----------------
+  // ------------- Build cards from JSON ----------------
+
+  // async function buildProductsFromJson() {
+  //   if (productsBuilt) return; // 👈 لا تعيد البناء لو صارت قبل
+
+  //   const container = document.querySelector(SELECTORS.productsContainer);
+  //   if (!container) return;
+
+  //   let data;
+  //   try {
+  //     const res = await fetch("/src/data/products.json");
+  //     if (!res.ok) throw new Error("فشل تحميل ملف المنتجات");
+  //     data = await res.json();
+  //   } catch (e) {
+  //     console.error("خطأ في تحميل ملف المنتجات:", e);
+  //     return;
+  //   }
+
+  //   container.innerHTML = "";
+
+  //   Object.values(data).forEach((p) => {
+  //     const card = document.createElement("div");
+  //     card.className =
+  //       "group relative rounded-3xl border border-slate-200 bg-white/80 backdrop-blur-sm shadow-[0_18px_40px_rgba(15,23,42,0.12)] hover:-translate-y-1 hover:shadow-2xl transition overflow-hidden flex flex-col h-full";
+  //     card.setAttribute("data-product", "");
+
+  //     if (p.category) card.dataset.category = p.category;
+  //     if (p.brand) card.dataset.brand = p.brand;
+  //     const price = getPriceFromProduct(p);
+  //     card.dataset.price = String(price);
+
+  //     const featuresArr = Array.isArray(p.features) ? p.features : [];
+  //     if (featuresArr.length > 0) {
+  //       card.dataset.feature = featuresArr.join(",");
+  //     }
+
+  //     const hasOffer =
+  //       (p.offer && p.offer.hasOffer) || Boolean(p.onSale || p.isOnSale);
+  //     if (hasOffer) {
+  //       card.dataset.sale = "true";
+  //     }
+
+  //     if (p.sortNewest) card.dataset.sortNewest = String(p.sortNewest);
+  //     if (p.sortBestseller)
+  //       card.dataset.sortBestseller = String(p.sortBestseller);
+
+  //     const img = getMainImageFromProduct(p);
+  //     const rating = getRatingFromProduct(p);
+  //     const ratingCount = getRatingCountFromProduct(p);
+  //     const chipsHtml = getChipsHtmlFromProduct(p);
+  //     const categoryLabel =
+  //       p.categoryLabel || getCategoryLabelFromCode(p.category);
+
+  //     let topRightBadgeText = "";
+  //     let topRightBadgeClass =
+  //       "px-2 py-0.5 rounded-full bg-slate-900 text-white";
+
+  //     if (hasOffer && p.offer?.discountPercent) {
+  //       topRightBadgeText = `خصم ${p.offer.discountPercent}%`;
+  //       topRightBadgeClass =
+  //         "px-2 py-0.5 rounded-full bg-red-500/10 text-red-600";
+  //     } else if (p.isBestSeller) {
+  //       topRightBadgeText = "الأكثر مبيعاً";
+  //       topRightBadgeClass =
+  //         "px-2 py-0.5 rounded-full bg-amber-400/10 text-amber-700";
+  //     } else if (p.isNewArrival) {
+  //       topRightBadgeText = "إصدار جديد";
+  //       topRightBadgeClass =
+  //         "px-2 py-0.5 rounded-full bg-brand-500/10 text-brand-700";
+  //     }
+
+  //     const innerBadgeText = p.isNewArrival ? "جديد" : "";
+
+  //     const stockText =
+  //       p.stockStatus === "out_of_stock"
+  //         ? "غير متوفر"
+  //         : p.stockStatus === "low_stock"
+  //         ? "كمية محدودة"
+  //         : "متوفر";
+
+  //     const stockDotClass =
+  //       p.stockStatus === "out_of_stock"
+  //         ? "bg-red-400"
+  //         : p.stockStatus === "low_stock"
+  //         ? "bg-amber-400"
+  //         : "bg-emerald-400";
+
+  //     const finalPrice = price;
+  //     const oldPrice =
+  //       typeof p.oldPrice === "number" && p.oldPrice > finalPrice
+  //         ? p.oldPrice
+  //         : null;
+
+  //     card.innerHTML = `
+  //       <!-- Top meta -->
+  //       <div class="px-4 pt-3 flex items-center justify-between text-[11px] text-slate-500 relative z-[1]">
+  //         <span class="inline-flex items-center gap-1">
+  //           <span class="w-1.5 h-1.5 rounded-full ${stockDotClass}"></span>
+  //           ${stockText}
+  //         </span>
+  //         ${
+  //           topRightBadgeText
+  //             ? `<span class="${topRightBadgeClass}">${topRightBadgeText}</span>`
+  //             : `<span></span>`
+  //         }
+  //       </div>
+
+  //       <!-- Image -->
+  //       <a href="/src/pages/product.html?id=${encodeURIComponent(
+  //         p.id
+  //       )}" class="block mt-2 relative z-[1]">
+  //         <div class="px-4">
+  //           <div
+  //             class="aspect-[4/3] rounded-2xl bg-slate-900/5 overflow-hidden flex items-center justify-center relative"
+  //           >
+  //             <div
+  //               class="absolute inset-0 bg-[radial-gradient(circle_at_10%_0%,rgba(59,130,246,0.18),transparent_55%),radial-gradient(circle_at_90%_100%,rgba(56,189,248,0.22),transparent_55%)]"
+  //             ></div>
+  //             <div
+  //               class="relative w-[75%] h-[75%] bg-[url('${img}')] bg-center bg-cover rounded-2xl group-hover:scale-105 transition-transform"
+  //             ></div>
+  //             ${
+  //               innerBadgeText
+  //                 ? `<span
+  //                 class="absolute top-3 left-3 rounded-full bg-brand-500 text-white text-[11px] px-2 py-1 shadow-sm"
+  //               >
+  //                 ${innerBadgeText}
+  //               </span>`
+  //                 : ""
+  //             }
+  //           </div>
+  //         </div>
+  //       </a>
+
+  //       <!-- Info -->
+  //       <div class="p-4 flex flex-col gap-2 flex-1 relative z-[1]">
+  //         <div class="flex items-center justify-between text-[11px] text-slate-500">
+  //           <span>${categoryLabel || ""}</span>
+  //           <span class="flex items-center gap-1">
+  //             <span class="text-amber-400">★</span>
+  //             <span>${rating.toFixed(1)}</span>
+  //             ${
+  //               ratingCount
+  //                 ? `<span class="text-slate-400">(${ratingCount} مراجعة)</span>`
+  //                 : ""
+  //             }
+  //           </span>
+  //         </div>
+
+  //         <a
+  //           href="/src/pages/product.html?id=${encodeURIComponent(p.id)}"
+  //           class="text-sm font-semibold line-clamp-2 hover:text-brand-600"
+  //         >
+  //           ${p.name || "منتج إلكتروني"}
+  //         </a>
+
+  //         <p class="text-[11px] text-slate-500 line-clamp-2">
+  //           ${p.shortDescription || ""}
+  //         </p>
+
+  //         <div class="flex flex-wrap gap-1.5 mt-1">
+  //           ${chipsHtml}
+  //         </div>
+
+  //         <div class="mt-auto pt-2 flex items-center justify-between">
+  //           <div class="flex flex-col gap-0.5">
+  //             <span class="text-[11px] text-slate-400">${
+  //               hasOffer ? "السعر بعد الخصم" : "السعر"
+  //             }</span>
+  //             <div class="flex items-baseline gap-1">
+  //               <span class="text-base font-bold ${
+  //                 hasOffer ? "text-red-600" : "text-slate-900"
+  //               }">
+  //                 ${formatPrice(finalPrice)}
+  //               </span>
+  //               <span class="text-[11px] text-slate-500">ريال</span>
+  //             </div>
+  //             ${
+  //               oldPrice
+  //                 ? `<span class="text-[11px] text-slate-400 line-through">
+  //                     ${formatPrice(oldPrice)} ريال
+  //                   </span>`
+  //                 : ""
+  //             }
+  //           </div>
+  //           <div class="flex items-center gap-2">
+  //             <button
+  //               class="inline-flex items-center justify-center rounded-full bg-brand-600 text-white text-[11px] px-4 py-1.5 hover:bg-brand-700 disabled:opacity-60"
+  //               data-add-to-cart
+  //               data-product-id="${p.id}"
+  //               ${p.stockStatus === "out_of_stock" ? "disabled" : ""}
+  //             >
+  //               أضف للسلة
+  //             </button>
+  //             <button
+  //               class="w-8 h-8 rounded-full border border-slate-200 flex items-center justify-center text-slate-400 hover:text-pink-500 hover:border-pink-200"
+  //               data-wishlist-button
+  //               data-product-id="${p.id}"
+  //               aria-label="إضافة للمفضلة"
+  //             >
+  //               ♡
+  //             </button>
+  //           </div>
+  //         </div>
+  //       </div>
+  //     `;
+
+  //     container.appendChild(card);
+  //   });
+
+  //   productsBuilt = true;
+  // }
+
+  // ------------- Build cards from JSON ----------------
 
   async function buildProductsFromJson() {
+    if (window.__categoryProductsBuilt) return; // حماية من إعادة البناء أكثر من مرة
+    window.__categoryProductsBuilt = true;
+
     const container = document.querySelector(SELECTORS.productsContainer);
     if (!container) return;
 
@@ -361,132 +587,257 @@
       return;
     }
 
-    // تنظيف الشبكة
     container.innerHTML = "";
 
-    // لو ملف المنتجات من نوع { "1": {...}, "2": {...} }
     Object.values(data).forEach((p) => {
       const card = document.createElement("div");
       card.className =
-        "bg-white rounded-3xl overflow-hidden border border-slate-100 shadow-sm hover:shadow-md hover:-translate-y-0.5 transition group";
-
-      // data-attributes عشان الفلاتر تشتغل
+        "group relative rounded-3xl border border-slate-200 bg-white/80 backdrop-blur-sm shadow-[0_18px_40px_rgba(15,23,42,0.12)] hover:-translate-y-1 hover:shadow-2xl transition overflow-hidden flex flex-col h-full";
       card.setAttribute("data-product", "");
+
+      // بيانات أساسية
+      const img = getMainImageFromProduct(p);
+      const rating = getRatingFromProduct(p);
+      const ratingCount = getRatingCountFromProduct(p);
+      const chipsHtml = getChipsHtmlFromProduct(p);
+      const categoryLabel =
+        p.categoryLabel || getCategoryLabelFromCode(p.category);
+      const price = getPriceFromProduct(p);
+      const finalPrice = price;
+      const oldPrice =
+        typeof p.oldPrice === "number" && p.oldPrice > finalPrice
+          ? p.oldPrice
+          : null;
+
+      const hasOffer =
+        (p.offer && p.offer.hasOffer) || Boolean(p.onSale || p.isOnSale);
+
+      const stockText =
+        p.stockStatus === "out_of_stock"
+          ? "غير متوفر"
+          : p.stockStatus === "low_stock"
+          ? "كمية محدودة"
+          : "متوفر";
+
+      const stockDotClass =
+        p.stockStatus === "out_of_stock"
+          ? "bg-red-400"
+          : p.stockStatus === "low_stock"
+          ? "bg-amber-400"
+          : "bg-emerald-400";
+
+      // بادجات
+      let topRightBadgeText = "";
+      let topRightBadgeClass =
+        "px-2 py-0.5 rounded-full bg-slate-900 text-white";
+
+      if (hasOffer && p.offer?.discountPercent) {
+        topRightBadgeText = `خصم ${p.offer.discountPercent}%`;
+        topRightBadgeClass =
+          "px-2 py-0.5 rounded-full bg-red-500/10 text-red-600";
+      } else if (p.isBestSeller) {
+        topRightBadgeText = "الأكثر مبيعاً";
+        topRightBadgeClass =
+          "px-2 py-0.5 rounded-full bg-amber-400/10 text-amber-700";
+      } else if (p.isNewArrival) {
+        topRightBadgeText = "إصدار جديد";
+        topRightBadgeClass =
+          "px-2 py-0.5 rounded-full bg-brand-500/10 text-brand-700";
+      }
+
+      const innerBadgeText = p.isNewArrival ? "جديد" : "";
+
+      // ------------ data-* مهم للـ cart.js / wishlist.js ------------
+
+      // على مستوى الكارد نفسه
+      card.dataset.productId = p.id;
+      card.dataset.productName = p.name || "منتج إلكتروني";
+      card.dataset.productPrice = String(finalPrice);
+      card.dataset.productImage = img;
       if (p.category) card.dataset.category = p.category;
       if (p.brand) card.dataset.brand = p.brand;
-      if (p.basePrice) card.dataset.price = String(p.basePrice);
-      if (p.features) card.dataset.feature = p.features.join(","); // لو تبغى تستخدمها
-      if (p.onSale) card.dataset.sale = "true";
+
+      const featuresArr = Array.isArray(p.features) ? p.features : [];
+      if (featuresArr.length > 0) {
+        card.dataset.feature = featuresArr.join(","); // 5g,gaming,...
+      }
+      if (hasOffer) {
+        card.dataset.sale = "true";
+      }
       if (p.sortNewest) card.dataset.sortNewest = String(p.sortNewest);
       if (p.sortBestseller)
         card.dataset.sortBestseller = String(p.sortBestseller);
 
-      // اللينك إلى صفحة المنتج
-      const link = document.createElement("a");
-      link.href = `/src/pages/product.html?id=${encodeURIComponent(p.id)}`;
-      link.className = "block relative";
+      // ------------- HTML للكارد (ستايل "وصل حديثاً") -------------
 
-      const imgWrap = document.createElement("div");
-      imgWrap.className = "aspect-[3/4] bg-slate-100";
-      imgWrap.innerHTML = `
-      <div
-        class="w-full h-full bg-cover bg-center group-hover:scale-105 transition-transform"
-        style="background-image:url('${p.images?.main || ""}')"
-      ></div>
+      card.innerHTML = `
+      <!-- Top meta -->
+      <div class="px-4 pt-3 flex items-center justify-between text-[11px] text-slate-500 relative z-[1]">
+        <span class="inline-flex items-center gap-1">
+          <span class="w-1.5 h-1.5 rounded-full ${stockDotClass}"></span>
+          ${stockText}
+        </span>
+        ${
+          topRightBadgeText
+            ? `<span class="${topRightBadgeClass}">${topRightBadgeText}</span>`
+            : `<span></span>`
+        }
+      </div>
+
+      <!-- Image -->
+      <a href="/src/pages/product.html?id=${encodeURIComponent(
+        p.id
+      )}" class="block mt-2 relative z-[1]">
+        <div class="px-4">
+          <div
+            class="aspect-[4/3] rounded-2xl bg-slate-900/5 overflow-hidden flex items-center justify-center relative"
+          >
+            <div
+              class="absolute inset-0 bg-[radial-gradient(circle_at_10%_0%,rgba(59,130,246,0.18),transparent_55%),radial-gradient(circle_at_90%_100%,rgba(56,189,248,0.22),transparent_55%)]"
+            ></div>
+            <div
+              class="relative w-[75%] h-[75%] bg-[url('${img}')] bg-center bg-cover rounded-2xl group-hover:scale-105 transition-transform"
+            ></div>
+            ${
+              innerBadgeText
+                ? `<span
+              class="absolute top-3 left-3 rounded-full bg-brand-500 text-white text-[11px] px-2 py-1 shadow-sm"
+            >
+              ${innerBadgeText}
+            </span>`
+                : ""
+            }
+          </div>
+        </div>
+      </a>
+
+      <!-- Info -->
+      <div class="p-4 flex flex-col gap-2 flex-1 relative z-[1]">
+        <div class="flex items-center justify-between text-[11px] text-slate-500">
+          <span>${categoryLabel || ""}</span>
+          <span class="flex items-center gap-1">
+            <span class="text-amber-400">★</span>
+            <span>${rating.toFixed(1)}</span>
+            ${
+              ratingCount
+                ? `<span class="text-slate-400">(${ratingCount} مراجعة)</span>`
+                : ""
+            }
+          </span>
+        </div>
+
+        <a
+          href="/src/pages/product.html?id=${encodeURIComponent(p.id)}"
+          class="text-sm font-semibold line-clamp-2 hover:text-brand-600"
+        >
+          ${p.name || "منتج إلكتروني"}
+        </a>
+
+        <p class="text-[11px] text-slate-500 line-clamp-2">
+          ${p.shortDescription || ""}
+        </p>
+
+        <div class="flex flex-wrap gap-1.5 mt-1">
+          ${chipsHtml}
+        </div>
+
+        <div class="mt-auto pt-2 flex items-center justify-between">
+          <div class="flex flex-col gap-0.5">
+            <span class="text-[11px] text-slate-400">${
+              hasOffer ? "السعر بعد الخصم" : "السعر"
+            }</span>
+            <div class="flex items-baseline gap-1">
+              <span class="text-base font-bold ${
+                hasOffer ? "text-red-600" : "text-slate-900"
+              }">
+                ${formatPrice(finalPrice)}
+              </span>
+              <span class="text-[11px] text-slate-500">ريال</span>
+            </div>
+            ${
+              oldPrice
+                ? `<span class="text-[11px] text-slate-400 line-through">
+                    ${formatPrice(oldPrice)} ريال
+                  </span>`
+                : ""
+            }
+          </div>
+          <div class="flex items-center gap-2">
+            <button
+              class="inline-flex items-center justify-center rounded-full bg-brand-600 text-white text-[11px] px-4 py-1.5 hover:bg-brand-700 disabled:opacity-60"
+              data-add-to-cart
+              data-product-id="${p.id}"
+              data-product-name="${(p.name || "منتج إلكتروني").replace(
+                /"/g,
+                "&quot;"
+              )}"
+              data-product-price="${finalPrice}"
+              data-product-image="${img}"
+              ${p.stockStatus === "out_of_stock" ? "disabled" : ""}
+            >
+              أضف للسلة
+            </button>
+            <button
+              class="w-8 h-8 rounded-full border border-slate-200 flex items-center justify-center text-slate-400 hover:text-pink-500 hover:border-pink-200"
+              data-wishlist-button
+              data-product-id="${p.id}"
+              data-product-name="${(p.name || "منتج إلكتروني").replace(
+                /"/g,
+                "&quot;"
+              )}"
+              data-product-price="${finalPrice}"
+              data-product-image="${img}"
+              aria-label="إضافة للمفضلة"
+            >
+              ♡
+            </button>
+          </div>
+        </div>
+      </div>
     `;
 
-      link.appendChild(imgWrap);
-      card.appendChild(link);
-
-      const body = document.createElement("div");
-      body.className = "p-3 space-y-1 text-xs";
-
-      const name = document.createElement("p");
-      name.className = "text-slate-500";
-      name.textContent = p.name || "منتج";
-
-      const short = document.createElement("p");
-      short.className = "text-[11px] text-slate-500";
-      short.textContent = p.shortDescription || "";
-
-      const bottom = document.createElement("div");
-      bottom.className = "flex items-center justify-between mt-1";
-
-      const priceWrap = document.createElement("div");
-      priceWrap.className = "flex items-baseline gap-1";
-
-      const priceSpan = document.createElement("span");
-      priceSpan.className = p.oldPrice
-        ? "font-bold text-red-600"
-        : "font-bold text-brand-600";
-      priceSpan.textContent =
-        (p.basePrice || 0).toLocaleString("en-US") + " ريال";
-
-      priceWrap.appendChild(priceSpan);
-
-      if (p.oldPrice && p.oldPrice > p.basePrice) {
-        const oldSpan = document.createElement("span");
-        oldSpan.className = "line-through text-slate-400 text-[11px]";
-        oldSpan.textContent = p.oldPrice.toLocaleString("en-US") + " ريال";
-        priceWrap.appendChild(oldSpan);
-      }
-
-      const wishBtn = document.createElement("button");
-      wishBtn.className = "text-xs text-slate-500 hover:text-pink-500";
-      wishBtn.setAttribute("data-wishlist-button", "true");
-      wishBtn.textContent = "♡";
-
-      bottom.appendChild(priceWrap);
-      bottom.appendChild(wishBtn);
-
-      body.appendChild(name);
-      body.appendChild(short);
-      body.appendChild(bottom);
-
-      card.appendChild(body);
       container.appendChild(card);
     });
   }
 
+  // --------- Init filters & events ----------
+
   function initFilters() {
     allProducts = Array.from(document.querySelectorAll(SELECTORS.productCard));
-    if (!allProducts.length) return; // not on category page
+    if (!allProducts.length) return;
 
     productsContainer =
       document.querySelector(SELECTORS.productsContainer) ||
       allProducts[0].parentElement;
     sortSelect = document.querySelector(SELECTORS.sortSelect);
 
-    // Save original order index
     allProducts.forEach((card, index) => {
       card.dataset.initialIndex = String(index);
     });
 
-    // Buttons (size/color/price) & checkboxes (material/brand/sale)
     document.querySelectorAll(SELECTORS.filterButtons).forEach((el) => {
       const isInput = el.matches('input[type="checkbox"], input[type="radio"]');
 
       if (isInput) {
         el.addEventListener("change", applyFiltersAndSort);
       } else {
-        // Buttons: toggle active state + Tailwind classes
         el.addEventListener("click", () => {
           const nowActive = !el.classList.contains("active");
 
           if (nowActive) {
             el.classList.add(
               "active",
-              "bg-gray-900",
+              "bg-slate-900",
               "text-white",
-              "border-gray-900"
+              "border-slate-900"
             );
             el.setAttribute("aria-pressed", "true");
           } else {
             el.classList.remove(
               "active",
-              "bg-gray-900",
+              "bg-slate-900",
               "text-white",
-              "border-gray-900"
+              "border-slate-900"
             );
             el.setAttribute("aria-pressed", "false");
           }
@@ -496,12 +847,10 @@
       }
     });
 
-    // Sort select
     if (sortSelect) {
       sortSelect.addEventListener("change", applyFiltersAndSort);
     }
 
-    // Clear filters button
     const clearBtn = document.querySelector(SELECTORS.clearFiltersButton);
     if (clearBtn) {
       clearBtn.addEventListener("click", (e) => {
@@ -510,10 +859,36 @@
       });
     }
 
-    // First run
+    // تفعيل كاتيجوري من URL لو موجود
+    const params = new URLSearchParams(window.location.search);
+    const urlCategory = params.get("category");
+    if (urlCategory && urlCategory !== "all") {
+      document
+        .querySelectorAll('button[data-filter="category"]')
+        .forEach((btn) => {
+          const value = btn.getAttribute("data-value");
+          if (value === urlCategory) {
+            btn.classList.add(
+              "active",
+              "bg-slate-900",
+              "text-white",
+              "border-slate-900"
+            );
+            btn.setAttribute("aria-pressed", "true");
+          } else {
+            btn.classList.remove(
+              "active",
+              "bg-slate-900",
+              "text-white",
+              "border-slate-900"
+            );
+            btn.setAttribute("aria-pressed", "false");
+          }
+        });
+    }
+
     applyFiltersAndSort();
 
-    // Expose small debug API (optional)
     window.categoryFilters = {
       state: filterState,
       apply: applyFiltersAndSort,
@@ -522,17 +897,7 @@
   }
 
   document.addEventListener("DOMContentLoaded", async () => {
-    await buildProductsFromJson(); // 👈 نبني الكروت من JSON
-    initFilters(); // 👈 بعدين نفعّل الفلاتر والفرز
+    await buildProductsFromJson();
+    initFilters();
   });
 })();
-
-// كرت المنتج: data-product ✅
-
-// الفلاتر: data-filter="size|color|price|material|brand|sale" ✅
-
-// قيم الفرز: newest / bestseller / price-asc / price-desc ✅
-
-// حاوية المنتجات: id="products-grid" ✅
-
-// زر "مسح الكل": data-clear-filters ✅

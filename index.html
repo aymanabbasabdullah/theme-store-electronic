@@ -16,14 +16,6 @@
     <script type="module" src="/src/main.ts"></script>
   </head>
   <body class="font-sans bg-brand-50 text-slate-900 text-right">
-    <!-- Toast / Notification -->
-    <div
-      id="toast"
-      class="fixed top-4 right-4 z-50 hidden rounded-xl bg-slate-900 text-white px-4 py-3 text-sm shadow-lg animate-fadeIn"
-    >
-      <span id="toast-message">تمت الإضافة إلى السلة</span>
-    </div>
-
     <!-- Main wrapper -->
     <div class="min-h-screen flex flex-col">
       <!-- HEADER - Mega Menu -->
@@ -633,278 +625,479 @@
       <!-- MAIN CONTENT -->
       <main class="flex-1">
         <!-- Hero Section (إلكترونيات) -->
-        <section class="bg-slate-950 text-slate-50">
-          <div class="container mx-auto px-4 py-10 md:py-16">
-            <div class="grid md:grid-cols-2 gap-10 items-center">
-              <!-- Text -->
-              <div class="space-y-4 animate-fadeIn">
-                <p
-                  class="inline-flex items-center gap-2 text-[11px] uppercase tracking-wide text-emerald-300"
-                >
-                  <span
-                    class="w-2 h-2 rounded-full bg-emerald-400 animate-pulse"
-                  ></span>
-                  تخفيضات تقنية موسمية
-                </p>
+        <!-- Hero Section - متجر التقنية -->
+        <section class="bg-brand-50/80">
+          <div class="container mx-auto px-4 pt-6 pb-10 md:pt-10 md:pb-14">
+            <!-- Card -->
+            <div
+              class="relative overflow-hidden rounded-3xl bg-white border border-slate-100 shadow-[0_20px_60px_rgba(15,23,42,0.06)]"
+            >
+              <!-- Light gradient strip top -->
+              <div
+                class="h-1.5 bg-gradient-to-l from-brand-400 via-sky-500 to-amber-300"
+              ></div>
 
-                <h1 class="text-3xl md:text-4xl font-bold leading-relaxed">
-                  منصتك الأولى لشراء
-                  <span class="text-emerald-300">الإلكترونيات</span>
-                  <br />
-                  بأفضل سعر وجودة
-                </h1>
-
-                <p class="text-slate-300 text-sm md:text-base max-w-xl">
-                  جوالات، لابتوبات، شاشات، أجهزة ألعاب، إكسسوارات، وأجهزة منزلية
-                  ذكية، مع
-                  <span class="text-emerald-300 font-semibold">ضمان معتمد</span>
-                  وشحن سريع داخل اليمن وخدمة مابعد البيع.
-                </p>
-
-                <!-- Actions -->
-                <div class="flex flex-wrap gap-3">
-                  <a
-                    href="/src/pages/category.html?category=hotdeals"
-                    class="inline-flex items-center justify-center rounded-full bg-emerald-400 text-slate-900 px-7 py-2.5 text-sm font-semibold hover:bg-emerald-300 shadow-[0_18px_45px_rgba(16,185,129,0.4)] transition"
-                  >
-                    تسوق العروض الآن
-                    <span class="text-lg">⚡</span>
-                  </a>
-                  <a
-                    href="/src/pages/category.html?category=mobiles"
-                    class="inline-flex items-center justify-center rounded-full border border-slate-500 text-slate-100 px-6 py-2 text-sm hover:bg-slate-800/70 hover:border-slate-300 transition"
-                  >
-                    تصفح الجوالات
-                  </a>
-                </div>
-
-                <!-- Stats -->
-                <div
-                  class="flex flex-wrap items-center gap-4 text-[11px] text-slate-300 pt-2"
-                >
-                  <div class="flex items-center gap-1">
-                    <span>⭐</span>
-                    <span>تقييم 4.9 من أكثر من 8,000 عميل</span>
-                  </div>
-                  <div class="flex items-center gap-1">
-                    <span>🚚</span>
-                    <span>شحن خلال ٢–٥ أيام عمل</span>
-                  </div>
-                  <div class="flex items-center gap-1">
-                    <span>🛡️</span>
-                    <span>ضمان سنتين على معظم الأجهزة</span>
-                  </div>
-                </div>
-
-                <!-- Small feature chips -->
-                <div class="flex flex-wrap gap-2 pt-1 text-[11px]">
-                  <span
-                    class="px-3 py-1 rounded-full bg-slate-900 border border-slate-700 text-slate-200"
-                  >
-                    دعم فني قبل وبعد الشراء
-                  </span>
-                  <span
-                    class="px-3 py-1 rounded-full bg-slate-900 border border-slate-700 text-slate-200"
-                  >
-                    منتجات أصلية من الوكلاء
-                  </span>
-                  <span
-                    class="px-3 py-1 rounded-full bg-slate-900 border border-slate-700 text-slate-200"
-                  >
-                    خيارات دفع مرنة
-                  </span>
-                </div>
-              </div>
-
-              <!-- Image / Tech Mockup -->
-              <div class="relative animate-fadeIn">
-                <div
-                  class="w-full h-64 md:h-80 rounded-3xl bg-gradient-to-br from-emerald-500 via-sky-500 to-slate-900 shadow-[0_25px_70px_rgba(15,23,42,0.7)] flex items-center justify-center overflow-hidden border border-slate-800/60"
-                >
-                  <!-- Glow layers -->
+              <div
+                class="grid md:grid-cols-2 gap-8 lg:gap-12 p-5 sm:p-7 lg:p-9 items-center"
+              >
+                <!-- Text side -->
+                <div class="space-y-4 md:space-y-5 animate-fadeIn">
+                  <!-- Small badge -->
                   <div
-                    class="absolute inset-0 bg-[radial-gradient(circle_at_0%_0%,rgba(15,23,42,0.2),transparent_55%),radial-gradient(circle_at_100%_100%,rgba(15,23,42,0.4),transparent_55%)] mix-blend-soft-light"
-                  ></div>
-
-                  <!-- Top left card -->
-                  <div
-                    class="absolute top-5 left-5 bg-slate-950/80 border border-slate-700/70 rounded-2xl px-4 py-3 text-[11px] shadow-lg backdrop-blur-sm"
+                    class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-brand-50 border border-brand-100 text-[11px] text-brand-700"
                   >
-                    <p
-                      class="font-semibold text-slate-50 mb-1 flex items-center gap-1"
+                    <span
+                      class="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-pulse"
+                    ></span>
+                    عروض إلكترونيات مميزة لهذا الأسبوع
+                  </div>
+
+                  <!-- Heading -->
+                  <h1
+                    class="text-2xl sm:text-3xl lg:text-4xl font-bold leading-relaxed text-slate-900"
+                  >
+                    كل ما تحتاجه من
+                    <span class="text-brand-600">الإلكترونيات</span>
+                    في مكان واحد
+                  </h1>
+
+                  <!-- Sub text -->
+                  <p class="text-sm sm:text-base text-slate-500 max-w-xl">
+                    جوالات، لابتوبات، شاشات، أجهزة ألعاب، سماعات، وإكسسوارات
+                    أصلية مع
+                    <span class="font-semibold text-slate-800">ضمان معتمد</span>
+                    وشحن سريع داخل اليمن.
+                  </p>
+
+                  <!-- Actions -->
+                  <div class="flex flex-wrap gap-3 pt-1">
+                    <a
+                      href="/src/pages/category.html?category=hotdeals"
+                      class="inline-flex items-center justify-center px-7 py-2.5 rounded-full text-sm font-semibold text-white bg-brand-600 hover:bg-brand-500 shadow-[0_16px_40px_rgba(59,130,246,0.45)] transition"
                     >
-                      باقات مكتب ذكي
-                      <span
-                        class="w-1.5 h-1.5 rounded-full bg-emerald-400"
-                      ></span>
-                    </p>
-                    <p class="text-slate-300">
-                      شاشات + لابتوب + إكسسوارات بأسعار خاصة.
-                    </p>
+                      تصفح العروض الآن
+                      <span class="ms-1.5 text-lg">⚡</span>
+                    </a>
+                    <a
+                      href="/src/pages/category.html?category=mobiles"
+                      class="inline-flex items-center justify-center px-6 py-2 rounded-full text-sm font-medium border border-slate-200 text-slate-700 bg-slate-50 hover:bg-white hover:border-brand-300 transition"
+                    >
+                      الجوالات المتاحة
+                    </a>
                   </div>
 
-                  <!-- Bottom right card -->
+                  <!-- Small stats -->
                   <div
-                    class="absolute bottom-5 right-5 bg-emerald-400/95 text-slate-900 rounded-2xl px-4 py-3 text-[11px] shadow-xl"
+                    class="grid grid-cols-2 sm:flex sm:flex-wrap gap-4 pt-2 text-[11px] sm:text-xs text-slate-500"
                   >
-                    <p class="text-slate-800 mb-1">شحن مجاني للطلبات فوق</p>
-                    <p class="font-semibold text-sm">150,000 ريال يمني 🛒</p>
-                  </div>
-
-                  <!-- Devices -->
-                  <div class="flex gap-4 items-end relative">
-                    <div
-                      class="w-32 h-44 rounded-3xl bg-[url('/src/assets/images/products/front.jpeg')] bg-cover bg-center shadow-2xl border border-white/40 transform translate-y-2 group-hover:-translate-y-1 transition"
-                    ></div>
-                    <div
-                      class="w-24 h-40 rounded-3xl bg-[url('/src/assets/images/products/front.jpeg')] bg-cover bg-center shadow-2xl border border-white/40 -mb-4"
-                    ></div>
-                    <div class="hidden sm:block">
-                      <div
-                        class="w-24 h-24 rounded-3xl bg-[url('/src/assets/images/products/front.jpeg')] bg-cover bg-center shadow-2xl border border-white/40"
-                      ></div>
+                    <div class="flex items-center gap-1.5">
+                      <span
+                        ><svg
+                          xmlns="http://www.w3.org/2000/svg"
+                          fill="none"
+                          viewBox="0 0 24 24"
+                          stroke-width="1.5"
+                          stroke="currentColor"
+                          class="size-6"
+                        >
+                          <path
+                            stroke-linecap="round"
+                            stroke-linejoin="round"
+                            d="M11.48 3.499a.562.562 0 0 1 1.04 0l2.125 5.111a.563.563 0 0 0 .475.345l5.518.442c.499.04.701.663.321.988l-4.204 3.602a.563.563 0 0 0-.182.557l1.285 5.385a.562.562 0 0 1-.84.61l-4.725-2.885a.562.562 0 0 0-.586 0L6.982 20.54a.562.562 0 0 1-.84-.61l1.285-5.386a.562.562 0 0 0-.182-.557l-4.204-3.602a.562.562 0 0 1 .321-.988l5.518-.442a.563.563 0 0 0 .475-.345L11.48 3.5Z"
+                          />
+                        </svg>
+                      </span>
+                      <span>تقييم 4.9 من +8,000 عميل</span>
+                    </div>
+                    <div class="flex items-center gap-1.5">
+                      <span>🚚</span>
+                      <span>شحن خلال ٢–٥ أيام عمل</span>
+                    </div>
+                    <div class="flex items-center gap-1.5">
+                      <span>🛡️</span>
+                      <span>ضمان حتى سنتين على الأجهزة</span>
                     </div>
                   </div>
                 </div>
 
-                <!-- Small floating badge -->
-                <div
-                  class="absolute -bottom-6 left-6 bg-slate-900/95 text-slate-100 rounded-2xl px-4 py-3 text-[11px] shadow-xl border border-slate-700/80 backdrop-blur-sm"
-                >
-                  <p class="mb-1 flex items-center gap-1">
-                    <span class="text-emerald-400 text-xs">●</span>
-                    متابعة مباشرة لحالة طلبك
-                  </p>
-                  <p class="text-slate-400">
-                    من لحظة الدفع وحتى استلام الشحنة.
-                  </p>
-                </div>
-              </div>
-            </div>
+                <!-- Visual / devices side -->
+                <div class="relative animate-fadeIn md:delay-150">
+                  <div
+                    class="relative mx-auto w-full max-w-sm rounded-3xl bg-gradient-to-br from-slate-50 via-sky-50 to-brand-50 border border-slate-100 shadow-[0_22px_65px_rgba(15,23,42,0.18)] p-5 sm:p-6 flex flex-col items-center justify-between"
+                  >
+                    <!-- Top label -->
+                    <div
+                      class="w-full flex items-center justify-between text-[11px] text-slate-500 mb-4"
+                    >
+                      <span class="inline-flex items-center gap-1">
+                        <span
+                          class="w-1.5 h-1.5 rounded-full bg-emerald-400"
+                        ></span>
+                        أكثر المنتجات مبيعاً
+                      </span>
+                      <span
+                        class="px-2 py-0.5 rounded-full bg-amber-50 text-amber-600 border border-amber-100"
+                      >
+                        خصم حتى 20٪
+                      </span>
+                    </div>
 
-            <!-- Small trust bar under hero -->
-            <div
-              class="mt-12 grid sm:grid-cols-4 gap-4 text-xs bg-slate-900/60 border border-slate-800 rounded-2xl p-4 backdrop-blur-sm"
-            >
-              <div class="flex items-center gap-2">
-                <span class="text-lg">🔒</span>
-                <div>
-                  <p class="font-semibold text-slate-50">دفع آمن</p>
-                  <p class="text-slate-300">مدى، فيزا، ماستر كارد، Apple Pay</p>
+                    <!-- Devices mockup -->
+                    <div class="flex items-end gap-3 sm:gap-4 mb-5">
+                      <div
+                        class="w-20 h-32 sm:w-24 sm:h-36 rounded-3xl bg-[url('/src/assets/images/products/front.jpeg')] bg-cover bg-center shadow-lg border border-white/70 translate-y-2"
+                      ></div>
+                      <div
+                        class="w-28 h-40 sm:w-32 sm:h-44 rounded-[1.7rem] bg-[url('/src/assets/images/products/front.jpeg')] bg-cover bg-center shadow-xl border border-white/80 -translate-y-1 scale-110"
+                      ></div>
+                      <div
+                        class="hidden sm:block w-20 h-32 rounded-3xl bg-[url('/src/assets/images/products/front.jpeg')] bg-cover bg-center shadow-lg border border-white/70 translate-y-2"
+                      ></div>
+                    </div>
+
+                    <!-- Product info mini card -->
+                    <div
+                      class="w-full rounded-2xl bg-white/90 border border-slate-100 px-3 py-3 text-[11px] shadow-sm backdrop-blur"
+                    >
+                      <div class="flex items-center justify-between mb-1.5">
+                        <p class="font-semibold text-slate-900">
+                          باقة جوال + سماعة بلوتوث
+                        </p>
+                        <span
+                          class="text-[10px] px-2 py-0.5 rounded-full bg-emerald-50 text-emerald-600 border border-emerald-100"
+                        >
+                          متوفر الآن
+                        </span>
+                      </div>
+                      <div class="flex items-end justify-between">
+                        <div class="space-y-0.5">
+                          <p class="text-slate-500">ابتداءً من</p>
+                          <p class="font-bold text-slate-900 text-sm">
+                            85,000
+                            <span class="text-[10px] text-slate-400"
+                              >ريال يمني</span
+                            >
+                          </p>
+                        </div>
+                        <button
+                          class="px-3 py-1.5 rounded-full bg-brand-600 text-white text-[11px] font-medium hover:bg-brand-500 transition"
+                        >
+                          إضافة للسلة
+                        </button>
+                      </div>
+                    </div>
+                  </div>
+
+                  <!-- Floating small card -->
+                  <div
+                    class="hidden sm:flex items-center gap-2 px-3 py-2 rounded-2xl bg-white shadow-[0_12px_35px_rgba(15,23,42,0.16)] border border-slate-100 text-[11px] text-slate-600 absolute -bottom-4 left-3"
+                  >
+                    <span
+                      class="w-7 h-7 rounded-full bg-emerald-50 text-emerald-600 flex items-center justify-center text-lg"
+                    >
+                      💬
+                    </span>
+                    <div>
+                      <p class="font-semibold text-slate-900">
+                        تحتاج مساعدة في الاختيار؟
+                      </p>
+                      <p>فريق الدعم الفني جاهز لمساعدتك قبل الشراء.</p>
+                    </div>
+                  </div>
                 </div>
               </div>
-              <div class="flex items-center gap-2">
-                <span class="text-lg">🛡️</span>
-                <div>
-                  <p class="font-semibold text-slate-50">ضمان سنتين</p>
-                  <p class="text-slate-300">ضمان وكيل معتمد على معظم الأجهزة</p>
-                </div>
-              </div>
-              <div class="flex items-center gap-2">
-                <span class="text-lg">🚚</span>
-                <div>
-                  <p class="font-semibold text-slate-50">شحن سريع</p>
-                  <p class="text-slate-300">٢–٥ أيام عمل للمدن الرئيسية</p>
-                </div>
-              </div>
-              <div class="flex items-center gap-2">
-                <span class="text-lg">💬</span>
-                <div>
-                  <p class="font-semibold text-slate-50">دعم فني</p>
-                  <p class="text-slate-300">
-                    فريق مختص يساعدك في الاختيار والتركيب
-                  </p>
+
+              <!-- Bottom categories strip (اختياري) -->
+              <div
+                class="border-t border-slate-100 bg-slate-50/60 px-4 sm:px-7 py-3 flex flex-wrap gap-2 sm:gap-3 justify-between text-[11px] sm:text-xs text-slate-600"
+              >
+                <div class="flex flex-wrap gap-2 sm:gap-3">
+                  <span
+                    class="px-3 py-1 rounded-full bg-white border border-slate-100"
+                  >
+                    جوالات ذكية
+                  </span>
+                  <span
+                    class="px-3 py-1 rounded-full bg-white border border-slate-100"
+                  >
+                    لابتوبات عمل وجيمينج
+                  </span>
+                  <span
+                    class="px-3 py-1 rounded-full bg-white border border-slate-100"
+                  >
+                    شاشات وتلفزيونات
+                  </span>
+                  <span
+                    class="px-3 py-1 rounded-full bg-white border border-slate-100"
+                  >
+                    سماعات وصوتيات
+                  </span>
                 </div>
               </div>
             </div>
           </div>
         </section>
+        <!-- Brand Strip -->
+        <section class="bg-white py-6 border-y border-slate-100">
+          <div class="container mx-auto px-4">
+            <div
+              class="flex items-center justify-center gap-6 sm:gap-10 opacity-80"
+            >
+              <img
+                src="/src/assets/images/brands/apple.png"
+                class="h-6 sm:h-7"
+                alt="Apple"
+              />
+              <img
+                src="/src/assets/images/brands/samsung.jpg"
+                class="h-5 sm:h-6"
+                alt="Samsung"
+              />
+              <img
+                src="/src/assets/images/brands/xiaomi.jpg"
+                class="h-6 sm:h-7"
+                alt="Xiaomi"
+              />
+              <img
+                src="/src/assets/images/brands/huawei.jpg "
+                class="h-6 sm:h-7"
+                alt="Huawei"
+              />
+              <img
+                src="/src/assets/images/brands/lenovo.png"
+                class="h-6 sm:h-7"
+                alt="Lenovo"
+              />
+            </div>
+          </div>
+        </section>
 
-        <!-- Category Banners (إلكترونيات) -->
+        <!-- Category Banners - تسوق حسب القسم -->
+
         <section class="py-10">
           <div class="container mx-auto px-4">
-            <h2 class="text-xl font-semibold mb-4">تسوق حسب القسم</h2>
-            <div class="grid md:grid-cols-4 gap-4">
+            <div class="flex items-center justify-between gap-2 mb-5">
+              <div>
+                <h2 class="text-xl font-semibold text-slate-900">
+                  تسوق حسب القسم
+                </h2>
+                <p class="text-xs sm:text-sm text-slate-500 mt-1">
+                  اختر فئة الأجهزة التي تناسبك وابدأ التصفح مباشرة.
+                </p>
+              </div>
+              <a
+                href="/src/pages/category.html"
+                class="hidden sm:inline-flex items-center text-xs sm:text-sm font-medium text-brand-600 hover:text-brand-700"
+              >
+                عرض كل الفئات
+                <span class="ms-1">↗</span>
+              </a>
+            </div>
+
+            <div class="grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
               <!-- Mobiles -->
               <a
                 href="/src/pages/category.html?category=mobiles"
-                class="relative rounded-3xl overflow-hidden bg-gradient-to-l from-brand-100 to-white h-40 flex items-center border border-slate-100 shadow-sm hover:shadow-md transition"
+                class="group relative overflow-hidden rounded-3xl bg-white/80 backdrop-blur-sm border border-slate-100 shadow-[0_14px_40px_rgba(15,23,42,0.06)] hover:shadow-[0_18px_55px_rgba(15,23,42,0.12)] transition-all duration-300 ease-out p-4 flex flex-col justify-between"
               >
-                <div class="flex-1 p-4 space-y-1">
-                  <p class="text-sm mb-1 flex items-center gap-1">
-                    <span class="text-lg">📱</span>
-                    <span class="font-semibold">جوالات</span>
-                  </p>
-                  <p class="text-xs text-slate-600">
-                    أحدث جوالات 5G من آبل، سامسونج، شاومي وغيرها.
-                  </p>
+                <!-- Decorative blob -->
+                <span
+                  class="pointer-events-none absolute -left-8 -bottom-10 w-28 h-28 rounded-full bg-brand-500/8 group-hover:bg-brand-500/15 blur-2xl transition"
+                ></span>
+
+                <div class="relative">
+                  <div class="flex items-center justify-between mb-3">
+                    <div class="flex items-center gap-2">
+                      <div
+                        class="w-9 h-9 rounded-2xl bg-gradient-to-tr from-brand-500 to-sky-400 flex items-center justify-center text-white text-lg shadow-sm"
+                      >
+                        📱
+                      </div>
+                      <div>
+                        <p class="text-sm font-semibold text-slate-900">
+                          جوالات
+                        </p>
+                        <p class="text-[11px] text-slate-500">
+                          هواتف ذكية و 5G من أشهر الماركات.
+                        </p>
+                      </div>
+                    </div>
+                    <span
+                      class="text-[10px] px-2 py-0.5 rounded-full bg-emerald-50 text-emerald-600 border border-emerald-100"
+                    >
+                      أحدث الإصدارات
+                    </span>
+                  </div>
+
+                  <div
+                    class="flex items-center justify-between text-[11px] text-slate-500"
+                  >
+                    <span>آبل، سامسونج، شاومي، هواوي...</span>
+                    <span
+                      class="inline-flex items-center gap-1 text-brand-600 group-hover:text-brand-700"
+                    >
+                      تصفح
+                      <span
+                        class="group-hover:translate-x-0.5 transition-transform"
+                        >→</span
+                      >
+                    </span>
+                  </div>
                 </div>
-                <div
-                  class="w-24 h-24 rounded-3xl bg-[url('https://via.placeholder.com/200x200?text=Phones')] bg-cover bg-center m-3"
-                ></div>
               </a>
 
               <!-- Laptops -->
               <a
                 href="/src/pages/category.html?category=laptops"
-                class="relative rounded-3xl overflow-hidden bg-gradient-to-l from-surface-50 to-white h-40 flex items-center border border-slate-100 shadow-sm hover:shadow-md transition"
+                class="group relative overflow-hidden rounded-3xl bg-white/80 backdrop-blur-sm border border-slate-100 shadow-[0_14px_40px_rgba(15,23,42,0.06)] hover:shadow-[0_18px_55px_rgba(15,23,42,0.12)] transition-all duration-300 ease-out p-4 flex flex-col justify-between"
               >
-                <div class="flex-1 p-4 space-y-1">
-                  <p class="text-sm mb-1 flex items-center gap-1">
-                    <span class="text-lg">💻</span>
-                    <span class="font-semibold">لابتوبات</span>
-                  </p>
-                  <p class="text-xs text-slate-600">
-                    لابتوبات عمل، دراسة، وجيمينج بمعالجات حديثة.
-                  </p>
+                <span
+                  class="pointer-events-none absolute -right-10 -top-10 w-28 h-28 rounded-full bg-sky-400/8 group-hover:bg-sky-400/15 blur-2xl transition"
+                ></span>
+
+                <div class="relative">
+                  <div class="flex items-center justify-between mb-3">
+                    <div class="flex items-center gap-2">
+                      <div
+                        class="w-9 h-9 rounded-2xl bg-gradient-to-tr from-sky-500 to-indigo-500 flex items-center justify-center text-white text-lg shadow-sm"
+                      >
+                        💻
+                      </div>
+                      <div>
+                        <p class="text-sm font-semibold text-slate-900">
+                          لابتوبات
+                        </p>
+                        <p class="text-[11px] text-slate-500">
+                          لابتوبات عمل، دراسة، وجيمينج بأداء عالي.
+                        </p>
+                      </div>
+                    </div>
+                    <span
+                      class="text-[10px] px-2 py-0.5 rounded-full bg-slate-50 text-slate-600 border border-slate-200"
+                    >
+                      إنتل &amp; رايزن
+                    </span>
+                  </div>
+
+                  <div
+                    class="flex items-center justify-between text-[11px] text-slate-500"
+                  >
+                    <span>رام حتى 32GB و SSD سريع.</span>
+                    <span
+                      class="inline-flex items-center gap-1 text-brand-600 group-hover:text-brand-700"
+                    >
+                      تصفح
+                      <span
+                        class="group-hover:translate-x-0.5 transition-transform"
+                        >→</span
+                      >
+                    </span>
+                  </div>
                 </div>
-                <div
-                  class="w-24 h-24 rounded-3xl bg-[url('https://via.placeholder.com/200x200?text=Laptops')] bg-cover bg-center m-3"
-                ></div>
               </a>
 
               <!-- TVs -->
               <a
                 href="/src/pages/category.html?category=tvs"
-                class="relative rounded-3xl overflow-hidden bg-gradient-to-l from-brand-50 to-white h-40 flex items-center border border-slate-100 shadow-sm hover:shadow-md transition"
+                class="group relative overflow-hidden rounded-3xl bg-white/80 backdrop-blur-sm border border-slate-100 shadow-[0_14px_40px_rgba(15,23,42,0.06)] hover:shadow-[0_18px_55px_rgba(15,23,42,0.12)] transition-all duration-300 ease-out p-4 flex flex-col justify-between"
               >
-                <div class="flex-1 p-4 space-y-1">
-                  <p class="text-sm mb-1 flex items-center gap-1">
-                    <span class="text-lg">🖥️</span>
-                    <span class="font-semibold">شاشات وتلفزيونات</span>
-                  </p>
-                  <p class="text-xs text-slate-600">
-                    شاشات 4K و 2K بمقاسات متعددة وتجربة مشاهدة مميزة.
-                  </p>
+                <span
+                  class="pointer-events-none absolute -left-12 top-1/2 -translate-y-1/2 w-32 h-32 rounded-full bg-indigo-500/6 group-hover:bg-indigo-500/12 blur-2xl transition"
+                ></span>
+
+                <div class="relative">
+                  <div class="flex items-center justify-between mb-3">
+                    <div class="flex items-center gap-2">
+                      <div
+                        class="w-9 h-9 rounded-2xl bg-gradient-to-tr from-indigo-500 to-slate-700 flex items-center justify-center text-white text-lg shadow-sm"
+                      >
+                        🖥️
+                      </div>
+                      <div>
+                        <p class="text-sm font-semibold text-slate-900">
+                          شاشات وتلفزيونات
+                        </p>
+                        <p class="text-[11px] text-slate-500">
+                          شاشات 4K و 2K لمشاهدة وألعاب بجودة عالية.
+                        </p>
+                      </div>
+                    </div>
+                    <span
+                      class="text-[10px] px-2 py-0.5 rounded-full bg-amber-50 text-amber-600 border border-amber-100"
+                    >
+                      32" حتى 75"
+                    </span>
+                  </div>
+
+                  <div
+                    class="flex items-center justify-between text-[11px] text-slate-500"
+                  >
+                    <span>شاشات ذكية، HDR، ومعدل تحديث عالي.</span>
+                    <span
+                      class="inline-flex items-center gap-1 text-brand-600 group-hover:text-brand-700"
+                    >
+                      تصفح
+                      <span
+                        class="group-hover:translate-x-0.5 transition-transform"
+                        >→</span
+                      >
+                    </span>
+                  </div>
                 </div>
-                <div
-                  class="w-24 h-24 rounded-3xl bg-[url('https://via.placeholder.com/200x200?text=TV+4K')] bg-cover bg-center m-3"
-                ></div>
               </a>
 
               <!-- Gaming -->
               <a
                 href="/src/pages/category.html?category=gaming"
-                class="relative rounded-3xl overflow-hidden bg-gradient-to-l from-pink-50 to-white h-40 flex items-center border border-slate-100 shadow-sm hover:shadow-md transition"
+                class="group relative overflow-hidden rounded-3xl bg-white/80 backdrop-blur-sm border border-slate-100 shadow-[0_14px_40px_rgba(15,23,42,0.06)] hover:shadow-[0_18px_55px_rgba(15,23,42,0.12)] transition-all duration-300 ease-out p-4 flex flex-col justify-between"
               >
-                <div class="flex-1 p-4 space-y-1">
-                  <p class="text-sm mb-1 flex items-center gap-1">
-                    <span class="text-lg">🎮</span>
-                    <span class="font-semibold">أجهزة ألعاب</span>
-                  </p>
-                  <p class="text-xs text-slate-600">
-                    كونسول، يد تحكم، كراسي جيمينج، وسماعات احترافية.
-                  </p>
+                <span
+                  class="pointer-events-none absolute -right-10 -bottom-10 w-30 h-30 rounded-full bg-fuchsia-500/8 group-hover:bg-fuchsia-500/15 blur-2xl transition"
+                ></span>
+
+                <div class="relative">
+                  <div class="flex items-center justify-between mb-3">
+                    <div class="flex items-center gap-2">
+                      <div
+                        class="w-9 h-9 rounded-2xl bg-gradient-to-tr from-fuchsia-500 to-rose-500 flex items-center justify-center text-white text-lg shadow-sm"
+                      >
+                        🎮
+                      </div>
+                      <div>
+                        <p class="text-sm font-semibold text-slate-900">
+                          أجهزة ألعاب
+                        </p>
+                        <p class="text-[11px] text-slate-500">
+                          كونسول، يد تحكم، شاشات جيمينج وإكسسوارات.
+                        </p>
+                      </div>
+                    </div>
+                    <span
+                      class="text-[10px] px-2 py-0.5 rounded-full bg-slate-50 text-slate-600 border border-slate-200"
+                    >
+                      للاعبين المحترفين
+                    </span>
+                  </div>
+
+                  <div
+                    class="flex items-center justify-between text-[11px] text-slate-500"
+                  >
+                    <span>ملحقات تناسب كل منصات الألعاب.</span>
+                    <span
+                      class="inline-flex items-center gap-1 text-brand-600 group-hover:text-brand-700"
+                    >
+                      تصفح
+                      <span
+                        class="group-hover:translate-x-0.5 transition-transform"
+                        >→</span
+                      >
+                    </span>
+                  </div>
                 </div>
-                <div
-                  class="w-24 h-24 rounded-3xl bg-[url('https://via.placeholder.com/200x200?text=Gaming')] bg-cover bg-center m-3"
-                ></div>
               </a>
             </div>
           </div>
         </section>
-
-        <!-- New Arrivals (إلكترونيات) -->
 
         <!-- New Arrivals (إلكترونيات) - تصميم كروت مختلف + بنر عريض -->
         <section class="py-8 bg-white">
@@ -997,6 +1190,56 @@
             </div>
           </div>
         </section>
+        <!-- Features Strip -->
+        <section class="py-6">
+          <div class="container mx-auto px-4">
+            <div class="grid sm:grid-cols-4 gap-4">
+              <!-- Feature -->
+              <div
+                class="flex items-center gap-3 bg-white border border-slate-100 rounded-xl px-4 py-3 shadow-sm"
+              >
+                <span class="text-xl">🚚</span>
+                <div class="text-sm">
+                  <p class="font-semibold text-slate-800">شحن سريع</p>
+                  <p class="text-slate-500 text-xs">٢–٥ أيام عمل</p>
+                </div>
+              </div>
+
+              <!-- Feature -->
+              <div
+                class="flex items-center gap-3 bg-white border border-slate-100 rounded-xl px-4 py-3 shadow-sm"
+              >
+                <span class="text-xl">🛡️</span>
+                <div class="text-sm">
+                  <p class="font-semibold text-slate-800">ضمان سنتين</p>
+                  <p class="text-slate-500 text-xs">ضمان وكيل معتمد</p>
+                </div>
+              </div>
+
+              <!-- Feature -->
+              <div
+                class="flex items-center gap-3 bg-white border border-slate-100 rounded-xl px-4 py-3 shadow-sm"
+              >
+                <span class="text-xl">💬</span>
+                <div class="text-sm">
+                  <p class="font-semibold text-slate-800">دعم فني</p>
+                  <p class="text-slate-500 text-xs">قبل وبعد الشراء</p>
+                </div>
+              </div>
+
+              <!-- Feature -->
+              <div
+                class="flex items-center gap-3 bg-white border border-slate-100 rounded-xl px-4 py-3 shadow-sm"
+              >
+                <span class="text-xl">💵</span>
+                <div class="text-sm">
+                  <p class="font-semibold text-slate-800">دفع عند الاستلام</p>
+                  <p class="text-slate-500 text-xs">متوفّر في أغلب المدن</p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
 
         <!-- Best Sellers - كروت ستايل مختلف + شريط مبيعات صغير -->
         <section class="py-8 bg-brand-50">
@@ -1041,68 +1284,126 @@
           </div>
         </section>
 
-        <!-- Special Offers / بنرات إعلانية -->
+        <!-- Special Offers / بنرات إعلانية مبسّطة -->
         <section class="py-8 bg-white">
           <div class="container mx-auto px-4">
+            <!-- العنوان -->
             <div class="flex items-center justify-between mb-4">
-              <h2 class="text-xl font-semibold">العروض الخاصة</h2>
+              <div>
+                <h2 class="text-xl font-semibold flex items-center gap-2">
+                  <span
+                    class="w-1.5 h-6 rounded-full bg-amber-400 inline-block"
+                  ></span>
+                  <span>العروض الخاصة</span>
+                </h2>
+                <p class="text-xs sm:text-sm text-slate-500 mt-1">
+                  خصومات مختارة على الشاشات واللابتوبات وحزم الإكسسوارات.
+                </p>
+              </div>
               <a
                 href="/src/pages/category.html?category=hotdeals"
-                class="text-xs text-slate-600 hover:text-brand-600"
-                >عرض كل العروض</a
+                class="text-xs sm:text-sm text-slate-600 hover:text-brand-600 flex items-center gap-1"
               >
+                عرض كل العروض
+                <span>↗</span>
+              </a>
             </div>
+
             <div class="grid md:grid-cols-2 gap-4">
-              <!-- Offer banner 1 -->
+              <!-- Offer banner 1 - شاشات 4K -->
               <div
-                class="rounded-3xl bg-slate-900 text-white p-6 md:p-8 flex flex-col md:flex-row items-center gap-4"
+                class="rounded-3xl bg-slate-900 text-white p-6 md:p-7 flex flex-col md:flex-row items-center gap-4 shadow-[0_16px_40px_rgba(15,23,42,0.5)]"
               >
-                <div class="flex-1">
-                  <p class="text-xs uppercase text-slate-300 mb-1">عرض محدود</p>
-                  <h3 class="text-xl font-semibold mb-2">
-                    خصم حتى 30٪ على شاشات 4K المختارة
+                <div class="flex-1 space-y-2">
+                  <span
+                    class="inline-flex items-center gap-1 px-2 py-0.5 rounded-full bg-slate-800 text-[11px] text-slate-200"
+                  >
+                    ⏱️ عرض محدود
+                  </span>
+
+                  <h3 class="text-lg md:text-xl font-semibold">
+                    خصم حتى <span class="text-amber-300">30٪</span> على شاشات 4K
+                    المختارة
                   </h3>
-                  <p class="text-sm text-slate-100 mb-4">
-                    احصل على تجربة مشاهدة سينمائية في منزلك مع شاشات بدقة عالية
-                    وتطبيقات ذكية مدمجة.
+
+                  <p class="text-xs sm:text-sm text-slate-200">
+                    شاشات بدقّة عالية، ألوان واقعية، ومناسبة للأفلام والألعاب
+                    على أعلى إعدادات.
                   </p>
+
+                  <div
+                    class="flex flex-wrap items-center gap-3 pt-1 text-[11px]"
+                  >
+                    <span class="text-slate-300"> أحجام من 43" حتى 75" </span>
+                    <span class="hidden sm:inline-block text-slate-400">
+                      البعض متوفر بكميات محدودة
+                    </span>
+                  </div>
+
                   <a
                     href="/src/pages/category.html?category=tvs"
-                    class="inline-flex items-center justify-center rounded-full bg-white text-slate-900 px-5 py-2 text-xs hover:bg-slate-100"
+                    class="inline-flex items-center justify-center mt-2 rounded-full bg-white text-slate-900 px-5 py-2 text-xs sm:text-sm font-medium hover:bg-slate-100 transition"
                   >
                     تسوق الشاشات الآن
                   </a>
                 </div>
+
                 <div
-                  class="w-32 h-32 rounded-3xl bg-[url('https://via.placeholder.com/200x200?text=4K+TV')] bg-cover bg-center"
+                  class="w-28 h-28 md:w-32 md:h-32 rounded-3xl bg-[url('https://via.placeholder.com/220x220?text=4K+TV')] bg-cover bg-center border border-slate-700"
                 ></div>
               </div>
 
-              <!-- Offer banner 2 -->
+              <!-- Offer banner 2 - حزمة لابتوب + إكسسوارات -->
               <div
-                class="rounded-3xl bg-brand-50 p-6 md:p-8 flex flex-col md:flex-row items-center gap-4 border border-brand-100"
+                class="rounded-3xl bg-brand-50 border border-brand-100 p-6 md:p-7 flex flex-col md:flex-row items-center gap-4 shadow-[0_12px_30px_rgba(15,23,42,0.08)]"
               >
-                <div class="flex-1">
-                  <p class="text-xs text-brand-700 mb-1">
-                    عرض خاص للأعضاء المسجلين
-                  </p>
-                  <h3 class="text-xl font-semibold mb-2">
-                    اشترِ لابتوب واحصل على إكسسوارات بخصم 50٪
+                <div class="flex-1 space-y-2">
+                  <span
+                    class="inline-flex items-center gap-1 px-2 py-0.5 rounded-full bg-brand-100 text-[11px] text-brand-700"
+                  >
+                    🎁 عرض للأعضاء
+                  </span>
+
+                  <h3 class="text-lg md:text-xl font-semibold text-slate-900">
+                    اشترِ لابتوب واحصل على إكسسوارات أصلية بخصم
+                    <span class="text-brand-600">50٪</span>
                   </h3>
-                  <p class="text-sm text-slate-700 mb-4">
-                    العرض يشمل حقائب لابتوب، فارات، ولوحات مفاتيح لاسلكية مختارة
-                    ضمن المجموعة.
+
+                  <p class="text-xs sm:text-sm text-slate-700">
+                    حقيبة، ماوس، ولوحة مفاتيح لاسلكية ضمن حزمة واحدة تناسب العمل
+                    والدراسة.
                   </p>
+
+                  <div
+                    class="flex flex-wrap items-center gap-3 pt-1 text-[11px] text-slate-600"
+                  >
+                    <span>متوفر على موديلات مختارة من إنتل و Ryzen</span>
+                    <span class="hidden sm:inline-block">ضمان حتى سنتين</span>
+                  </div>
+
                   <a
                     href="/src/pages/category.html?category=laptops"
-                    class="inline-flex items-center justify-center rounded-full border border-slate-900 text-slate-900 px-5 py-2 text-xs hover:bg-slate-900 hover:text-white"
+                    class="inline-flex items-center justify-center mt-2 rounded-full border border-slate-900 text-slate-900 px-5 py-2 text-xs sm:text-sm font-medium hover:bg-slate-900 hover:text-white transition"
                   >
                     اكتشف عروض اللابتوبات
                   </a>
                 </div>
+
                 <div
-                  class="w-32 h-32 rounded-3xl bg-[url('https://via.placeholder.com/200x200?text=Laptop+Bundle')] bg-cover bg-center"
-                ></div>
+                  class="w-28 h-28 md:w-32 md:h-32 flex items-center justify-center gap-2"
+                >
+                  <div
+                    class="w-16 h-20 rounded-2xl bg-[url('https://via.placeholder.com/180x220?text=Laptop')] bg-cover bg-center border border-slate-200"
+                  ></div>
+                  <div class="flex flex-col gap-2">
+                    <div
+                      class="w-10 h-10 rounded-2xl bg-[url('https://via.placeholder.com/120x120?text=Mouse')] bg-cover bg-center border border-slate-200"
+                    ></div>
+                    <div
+                      class="w-10 h-10 rounded-2xl bg-[url('https://via.placeholder.com/120x120?text=Bag')] bg-cover bg-center border border-slate-200"
+                    ></div>
+                  </div>
+                </div>
               </div>
             </div>
           </div>
@@ -1111,105 +1412,131 @@
         <!-- Testimonials -->
         <section class="py-10 bg-brand-50">
           <div class="container mx-auto px-4">
-            <div class="flex items-center justify-between mb-6">
-              <h2 class="text-xl font-semibold">ماذا يقول عملاؤنا</h2>
+            <!-- العنوان + موجز التقييم -->
+            <div
+              class="flex flex-col sm:flex-row sm:items-end sm:justify-between gap-3 mb-6"
+            >
+              <div>
+                <h2 class="text-xl font-semibold flex items-center gap-2">
+                  <span
+                    class="w-1.5 h-6 rounded-full bg-amber-400 inline-block"
+                  ></span>
+                  <span>ماذا يقول عملاؤنا</span>
+                </h2>
+                <p class="text-xs sm:text-sm text-slate-500 mt-1">
+                  آراء حقيقية من عملاء اشتروا جوالات، لابتوبات، وأجهزة منزل ذكي
+                  من متجر التقنية.
+                </p>
+              </div>
+
+              <div class="flex items-center gap-3 text-xs sm:text-sm">
+                <div class="flex items-center gap-1 text-amber-500">
+                  <span class="text-base">★</span>
+                  <span class="font-semibold text-slate-800">4.9</span>
+                  <span class="text-slate-500">متوسط التقييم</span>
+                </div>
+                <span class="hidden sm:inline-block text-slate-400">|</span>
+                <span class="text-slate-500">أكثر من ٨,٠٠٠ عميل</span>
+              </div>
             </div>
+
+            <!-- الكروت -->
             <div class="grid md:grid-cols-3 gap-4">
               <!-- Testimonial card -->
               <div
-                class="bg-white rounded-3xl p-5 shadow-sm border border-slate-100"
+                class="relative bg-white rounded-3xl p-5 shadow-sm border border-slate-100 hover:border-brand-200 hover:shadow-md transition"
               >
-                <div class="flex items-center justify-between mb-2">
-                  <p class="font-semibold text-sm">أحمد</p>
+                <!-- علامة الاقتباس -->
+                <span
+                  class="absolute -top-3 right-4 w-7 h-7 rounded-2xl bg-amber-100 text-amber-500 flex items-center justify-center text-lg"
+                >
+                  ❝
+                </span>
+
+                <div class="flex items-center justify-between mb-3">
+                  <div class="flex items-center gap-2">
+                    <div
+                      class="w-8 h-8 rounded-full bg-slate-100 flex items-center justify-center text-xs font-semibold text-slate-700"
+                    >
+                      أ
+                    </div>
+                    <div>
+                      <p class="font-semibold text-sm text-slate-900">أحمد</p>
+                      <p class="text-[11px] text-slate-400">
+                        شراء لابتوب + شاشة
+                      </p>
+                    </div>
+                  </div>
                   <p class="text-xs text-amber-500">★★★★★</p>
                 </div>
-                <p class="text-xs text-slate-600">
+
+                <p class="text-xs text-slate-600 leading-relaxed">
                   اشتريت لابتوب وشاشة 27 بوصة، التغليف ممتاز والتوصيل كان سريع،
-                  والدعم الفني ساعدني في إعداد الجهاز.
+                  والدعم الفني ساعدني في إعداد الجهاز خطوة بخطوة.
                 </p>
               </div>
 
               <div
-                class="bg-white rounded-3xl p-5 shadow-sm border border-slate-100"
+                class="relative bg-white rounded-3xl p-5 shadow-sm border border-slate-100 hover:border-brand-200 hover:shadow-md transition"
               >
-                <div class="flex items-center justify-between mb-2">
-                  <p class="font-semibold text-sm">نورة</p>
+                <span
+                  class="absolute -top-3 right-4 w-7 h-7 rounded-2xl bg-amber-100 text-amber-500 flex items-center justify-center text-lg"
+                >
+                  ❝
+                </span>
+
+                <div class="flex items-center justify-between mb-3">
+                  <div class="flex items-center gap-2">
+                    <div
+                      class="w-8 h-8 rounded-full bg-slate-100 flex items-center justify-center text-xs font-semibold text-slate-700"
+                    >
+                      ن
+                    </div>
+                    <div>
+                      <p class="font-semibold text-sm text-slate-900">نورة</p>
+                      <p class="text-[11px] text-slate-400">
+                        جوال + سماعات بلوتوث
+                      </p>
+                    </div>
+                  </div>
                   <p class="text-xs text-amber-500">★★★★☆</p>
                 </div>
-                <p class="text-xs text-slate-600">
+
+                <p class="text-xs text-slate-600 leading-relaxed">
                   طلبت جوال وسماعات بلوتوث، الجودة ممتازة والأسعار مناسبة مقارنة
-                  بالسوق المحلي.
+                  بالسوق المحلي، وأعجبني تحديث حالة الطلب أول بأول.
                 </p>
               </div>
 
               <div
-                class="bg-white rounded-3xl p-5 shadow-sm border border-slate-100"
+                class="relative bg-white rounded-3xl p-5 shadow-sm border border-slate-100 hover:border-brand-200 hover:shadow-md transition"
               >
-                <div class="flex items-center justify-between mb-2">
-                  <p class="font-semibold text-sm">ليان</p>
+                <span
+                  class="absolute -top-3 right-4 w-7 h-7 rounded-2xl bg-amber-100 text-amber-500 flex items-center justify-center text-lg"
+                >
+                  ❝
+                </span>
+
+                <div class="flex items-center justify-between mb-3">
+                  <div class="flex items-center gap-2">
+                    <div
+                      class="w-8 h-8 rounded-full bg-slate-100 flex items-center justify-center text-xs font-semibold text-slate-700"
+                    >
+                      ل
+                    </div>
+                    <div>
+                      <p class="font-semibold text-sm text-slate-900">ليان</p>
+                      <p class="text-[11px] text-slate-400">أجهزة منزل ذكي</p>
+                    </div>
+                  </div>
                   <p class="text-xs text-amber-500">★★★★★</p>
                 </div>
-                <p class="text-xs text-slate-600">
-                  أعجبني تنوع أجهزة المنزل الذكي والعروض الخاصة بها. تجربة تسوق
-                  سهلة وواضحة.
+
+                <p class="text-xs text-slate-600 leading-relaxed">
+                  أعجبني تنوع أجهزة المنزل الذكي والعروض الخاصة بها. التركيب كان
+                  سهل، وخدمة ما بعد البيع تجاوبت بسرعة مع استفساراتي.
                 </p>
               </div>
-            </div>
-          </div>
-        </section>
-
-        <!-- Blog teaser -->
-        <section class="py-10 bg-white">
-          <div class="container mx-auto px-4">
-            <div class="flex items-center justify-between mb-4">
-              <h2 class="text-xl font-semibold">من المدونة</h2>
-              <a href="#" class="text-xs text-slate-600 hover:text-brand-600"
-                >عرض كل المقالات</a
-              >
-            </div>
-            <div class="grid md:grid-cols-3 gap-4">
-              <article
-                class="bg-brand-50 rounded-3xl p-4 border border-brand-100"
-              >
-                <h3 class="text-sm font-semibold mb-2">
-                  كيف تختار لابتوب مناسب لعملك أو دراستك؟
-                </h3>
-                <p class="text-xs text-slate-600 mb-3">
-                  تعرف على أهم المواصفات التي يجب الانتباه لها عند شراء لابتوب،
-                  مثل نوع المعالج، الذاكرة، وسعة التخزين...
-                </p>
-                <a href="#" class="text-xs text-brand-700 hover:underline"
-                  >قراءة المزيد</a
-                >
-              </article>
-              <article
-                class="bg-brand-50 rounded-3xl p-4 border border-brand-100"
-              >
-                <h3 class="text-sm font-semibold mb-2">
-                  دليل شراء جوال 5G في ٢٠٢٥
-                </h3>
-                <p class="text-xs text-slate-600 mb-3">
-                  شبكات الجيل الخامس أصبحت متوفرة أكثر، وهذه أهم النقاط قبل شراء
-                  جوال 5G يناسب استخدامك اليومي...
-                </p>
-                <a href="#" class="text-xs text-brand-700 hover:underline"
-                  >قراءة المزيد</a
-                >
-              </article>
-              <article
-                class="bg-brand-50 rounded-3xl p-4 border border-brand-100"
-              >
-                <h3 class="text-sm font-semibold mb-2">
-                  أساسيات بناء مكتب عمل / Gaming متكامل
-                </h3>
-                <p class="text-xs text-slate-600 mb-3">
-                  من اختيار الشاشة المناسبة إلى الإضاءة والإكسسوارات، هذه نصائح
-                  لبناء بيئة عمل أو جيمينج مريحة وعملية...
-                </p>
-                <a href="#" class="text-xs text-brand-700 hover:underline"
-                  >قراءة المزيد</a
-                >
-              </article>
             </div>
           </div>
         </section>
@@ -1389,7 +1716,38 @@
           </div>
         </div>
       </footer>
+      <div id="toast-container" class="fixed top-32 left-4 z-[999]"></div>
     </div>
+
+    <a
+      id="floating-wa-btn"
+      href="https://wa.me/967770807260"
+      target="_blank"
+      rel="noopener"
+      class="fixed bottom-6 right-6 z-[120] group"
+      aria-label="تواصل عبر واتساب"
+    >
+      <div
+        class="relative w-12 h-12 <!-- حجم أصغر للموبايل --> sm:w-[58px] sm:h-[58px] <!-- حجم أكبر للكمبيوتر --> rounded-full bg-emerald-500 shadow-lg shadow-emerald-500/30 flex items-center justify-center text-white transition-all duration-300 hover:bg-emerald-600 hover:scale-110 hover:shadow-emerald-500/40 backdrop-blur-md bg-opacity-95"
+      >
+        <!-- نبضة (أقل وضوحاً على الموبايل) -->
+        <span
+          class="absolute inset-0 rounded-full bg-emerald-500/30 sm:bg-emerald-500/40 animate-[ping_2s_ease-in-out_infinite]"
+        ></span>
+
+        <!-- أيقونة واتساب -->
+        <svg
+          xmlns="http://www.w3.org/2000/svg"
+          viewBox="0 0 32 32"
+          class="relative w-6 h-6 <!-- أيقونة أصغر للموبايل --> sm:w-7 sm:h-7 <!-- حجم أكبر للكمبيوتر --> transition-transform duration-300 group-hover:rotate-6"
+          fill="currentColor"
+        >
+          <path
+            d="M16.01 3.2C9.56 3.2 4.4 8.36 4.4 14.81c0 2.52.82 4.86 2.21 6.77L4 28l6.63-2.55a11.6 11.6 0 0 0 5.38 1.33h.01c6.45 0 11.61-5.16 11.61-11.61 0-3.1-1.21-6.01-3.41-8.2A11.53 11.53 0 0 0 16.01 3.2Zm0 2.13c2.84 0 5.5 1.11 7.51 3.12a10.45 10.45 0 0 1 3.08 7.44c0 5.8-4.72 10.52-10.52 10.52-1.78 0-3.54-.45-5.1-1.3l-.37-.2-3.93 1.51 1.05-4.13-.27-.42a10.4 10.4 0 0 1-1.72-5.69C5.74 10.05 10.46 5.33 16 5.33Zm-4.13 4.41c-.22 0-.57.08-.88.38-.3.3-1.15 1.12-1.15 2.73 0 1.6 1.18 3.15 1.35 3.37.17.22 2.32 3.7 5.74 4.88 2.84.99 3.42.89 4.04.83.62-.06 1.99-.81 2.27-1.59.28-.78.28-1.45.2-1.59-.08-.14-.3-.22-.63-.38-.33-.17-1.99-.98-2.3-1.09-.3-.11-.52-.17-.74.17-.22.33-.85 1.09-1.04 1.31-.19.22-.38.25-.7.08-.33-.17-1.39-.51-2.65-1.62-.98-.87-1.64-1.94-1.83-2.27-.19-.33-.02-.51.14-.67.14-.14.33-.36.49-.53.17-.17.22-.28.33-.47.11-.19.06-.36 0-.53-.06-.17-.73-1.81-1.01-2.48-.24-.57-.49-.6-.71-.61Z"
+          />
+        </svg>
+      </div>
+    </a>
 
     <!-- JS -->
     <script src="/src/assets/js/main.js"></script>

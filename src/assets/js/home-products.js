@@ -178,18 +178,27 @@ function renderNewArrivals(products) {
             }
           </div>
           <div class="flex items-center gap-2">
-            <button
-              class="inline-flex items-center justify-center rounded-full bg-brand-600 text-white text-[11px] px-4 py-1.5 hover:bg-brand-700"
-              data-add-to-cart
-              data-product-id="${p.id}"
-            >
-              أضف للسلة
-            </button>
+           <button
+            class="inline-flex items-center justify-center rounded-full bg-brand-600 text-white text-[11px] px-4 py-1.5 hover:bg-brand-700"
+            data-add-to-cart="true"
+            data-product-id="${p.id}"
+            data-product-name="${p.name}"
+            data-product-price="${p.basePrice || p.price || 0}"
+            data-product-image="${p.images?.main || p.image || ""}"
+          >
+            أضف للسلة
+          </button>
+
             <button
               class="w-8 h-8 rounded-full border border-slate-200 flex items-center justify-center text-slate-400 hover:text-pink-500 hover:border-pink-200"
               data-wishlist-button
               data-product-id="${p.id}"
+              data-product-name="${p.name}"
+              data-product-price="${p.basePrice || p.price || 0}"
+              data-product-image="${p.images?.main || p.image || ""}"
               aria-label="إضافة للمفضلة"
+              
+              
             >
               ♡
             </button>
@@ -221,7 +230,7 @@ function renderBestSellers(products) {
 
     card.innerHTML = `
       <div
-        class="absolute inset-x-0 top-0 h-20 bg-gradient-to-b from-amber-400/70 to-transparent pointer-events-none"
+        class="absolute inset-x-0 top-0 h-20 bg-linear-to-b from-amber-400/70 to-transparent pointer-events-none"
       ></div>
 
       <!-- Badge -->
@@ -243,7 +252,7 @@ function renderBestSellers(products) {
       >
         <div class="px-4">
           <div
-            class="aspect-[4/3] rounded-2xl bg-slate-900/5 overflow-hidden flex items-center justify-center"
+            class="aspect-4/3 rounded-2xl bg-slate-900/5 overflow-hidden flex items-center justify-center"
           >
             <div
               class="w-[80%] h-[80%] bg-[url('${img}')] bg-center bg-cover rounded-2xl group-hover:scale-105 transition-transform"
@@ -278,13 +287,18 @@ function renderBestSellers(products) {
               <span class="text-[11px] text-slate-500">ريال</span>
             </div>
           </div>
+      
           <button
             class="inline-flex items-center justify-center rounded-full bg-amber-400 text-slate-900 text-[11px] px-4 py-1.5 hover:bg-amber-300"
-            data-add-to-cart
+            data-add-to-cart="true"
             data-product-id="${p.id}"
+            data-product-name="${p.name}"
+            data-product-price="${p.basePrice || p.price || 0}"
+            data-product-image="${p.images?.main || p.image || ""}"
           >
             أضف للسلة
           </button>
+
         </div>
       </div>
     `;

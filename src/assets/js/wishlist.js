@@ -8,6 +8,25 @@
 (function () {
   const WISHLIST_KEY = "ea_wishlist";
 
+  // SVGs لحالة زر المفضلة
+  const svgOff = `
+<svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4"
+fill="none" viewBox="0 0 24 24" stroke="currentColor">
+  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+    d="M4.318 6.318a4.5 4.5 0 016.364 0L12 7.636l1.318-1.318a4.5 
+    4.5 0 116.364 6.364L12 21l-7.682-8.318a4.5 
+    4.5 0 010-6.364z"/>
+</svg>`;
+
+  const svgOn = `
+<svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4"
+fill="currentColor" viewBox="0 0 24 24" stroke="currentColor">
+  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+    d="M4.318 6.318a4.5 4.5 0 016.364 0L12 7.636l1.318-1.318a4.5 
+    4.5 0 116.364 6.364L12 21l-7.682-8.318a4.5 
+    4.5 0 010-6.364z"/>
+</svg>`;
+
   // -------- Helpers: storage --------
   function getRawWishlist() {
     try {
@@ -27,7 +46,6 @@
     // - مصفوفة IDs: ["prod-1", "prod-2"]
     // - مصفوفة كائنات: [{id, name, price, image, size, color}, ...]
     if (!Array.isArray(raw)) return [];
-
     if (raw.length === 0) return [];
 
     if (typeof raw[0] === "string") {
@@ -64,7 +82,7 @@
   }
 
   function isSameItem(a, b) {
-    // نميّز فقط بـ id حالياً
+    // حالياً نميّز بالـ id فقط
     return a.id === b.id;
   }
 
@@ -99,7 +117,6 @@
     const id = btn.getAttribute("data-product-id") || "product-" + Date.now();
 
     let name = btn.getAttribute("data-product-name") || "";
-
     let price = parseFloat(btn.getAttribute("data-product-price") || "0") || 0;
     let image = btn.getAttribute("data-product-image") || "";
     let size = btn.getAttribute("data-product-size") || "";
@@ -164,39 +181,65 @@
     renderWishlistPageIfNeeded(); // لو نحن في wishlist.html
   }
 
-function updateButtonState(btn, active) {
-  const labelSpan = btn.querySelector(".wishlist-label");
+  // -------- UI: زر المفضلة (نفس ستايل صفحة المنتج) --------
+  function updateButtonState(btn, inWishlist) {
+    if (!btn) return;
 
-  if (active) {
-    btn.classList.add("text-red-500");
-    btn.classList.remove("text-gray-500");
-    if (labelSpan) labelSpan.textContent = "تمت الاضافة المفضلة";
-    btn.setAttribute("aria-pressed", "true");
-  } else {
-    btn.classList.remove("text-red-500");
-    btn.classList.add("text-gray-500");
-    if (labelSpan) labelSpan.textContent = "أضف إلى المفضلة";
-    btn.setAttribute("aria-pressed", "false");
+    const icon = btn.querySelector(".wishlist-icon");
+    const label = btn.querySelector(".wishlist-label");
+
+    if (inWishlist) {
+      btn.setAttribute("data-wishlist-state", "on");
+      btn.classList.remove(
+        "border-slate-300",
+        "text-slate-700",
+        "bg-white",
+        "text-gray-500"
+      );
+      btn.classList.add(
+        "border-pink-400",
+        "text-pink-600",
+        "bg-pink-50",
+        "hover:bg-pink-100"
+      );
+
+      if (icon) icon.innerHTML = svgOn;
+      if (label) label.textContent = "في المفضلة";
+    } else {
+      btn.setAttribute("data-wishlist-state", "off");
+      btn.classList.remove(
+        "border-pink-400",
+        "text-pink-600",
+        "bg-pink-50",
+        "hover:bg-pink-100",
+        "text-red-500"
+      );
+      btn.classList.add(
+        "border-slate-300",
+        "text-slate-700",
+        "bg-white",
+        "text-gray-500"
+      );
+
+      if (icon) icon.innerHTML = svgOff;
+      if (label) label.textContent = "أضف إلى المفضلة";
+    }
   }
-}
-
 
   function syncButtonsState() {
     const list = getWishlist();
     const ids = list.map((x) => x.id);
     document.querySelectorAll("[data-wishlist-button]").forEach((btn) => {
-      const id =
-        btn.getAttribute("data-product-id") ||
-        (btn.closest("[data-product],[data-product-card]") &&
-          (btn
-            .closest("[data-product],[data-product-card]")
-            .getAttribute("data-product-id") ||
-            btn
-              .closest("[data-product],[data-product-card]")
-              .getAttribute("data-id"))) ||
-        null;
+      const card = btn.closest("[data-product],[data-product-card]");
+      const fromCardId =
+        card &&
+        (card.getAttribute("data-product-id") || card.getAttribute("data-id"));
+
+      const id = btn.getAttribute("data-product-id") || fromCardId || null;
 
       if (id && ids.includes(id)) {
+        // لازم نحدّث data-product-id عشان يبقى ثابت
+        btn.setAttribute("data-product-id", id);
         updateButtonState(btn, true);
       } else {
         updateButtonState(btn, false);
@@ -207,7 +250,7 @@ function updateButtonState(btn, active) {
   // -------- Wishlist page rendering --------
   function formatPrice(num) {
     const value = Number(num) || 0;
-    return `${value.toFixed(0)} ريال`;
+    return `${value.toLocaleString("en-US")} ريال`;
   }
 
   function renderWishlistPageIfNeeded() {
@@ -228,7 +271,7 @@ function updateButtonState(btn, active) {
     list.forEach((item) => {
       const card = document.createElement("div");
       card.className =
-        "bg-white rounded-2xl overflow-hidden border border-gray-100 shadow-sm group";
+        "group relative rounded-3xl border border-slate-200 bg-white/80 backdrop-blur-sm shadow-[0_18px_40px_rgba(15,23,42,0.08)] hover:-translate-y-1 hover:shadow-2xl transition flex flex-col h-full";
       card.setAttribute("data-product-card", "");
       card.setAttribute("data-product-id", item.id);
       card.setAttribute("data-price", String(item.price || 0));
@@ -237,34 +280,53 @@ function updateButtonState(btn, active) {
       if (item.color) card.setAttribute("data-color", item.color);
       if (item.image) card.setAttribute("data-product-image", item.image);
 
+      const productUrl = `/src/pages/product.html?id=${encodeURIComponent(
+        item.id
+      )}`;
+
       card.innerHTML = `
-        <a href="product.html" class="block relative">
-          <div class="aspect-[3/4] bg-gray-100">
-            ${
-              item.image
-                ? `<img src="${item.image}" alt="${
-                    item.name || ""
-                  }" class="w-full h-full object-cover" />`
-                : `<div class="w-full h-full bg-[url('https://via.placeholder.com/400x500')] bg-cover bg-center"></div>`
-            }
+        <!-- Image -->
+        <a href="${productUrl}" class="block mt-2">
+          <div class="px-3 pt-3">
+            <div
+              class="aspect-[4/3] rounded-2xl bg-slate-900/5 overflow-hidden flex items-center justify-center relative"
+            >
+              <div
+                class="absolute inset-0 bg-[radial-gradient(circle_at_10%_0%,rgba(59,130,246,0.16),transparent_55%),radial-gradient(circle_at_90%_100%,rgba(56,189,248,0.18),transparent_55%)]"
+              ></div>
+              ${
+                item.image
+                  ? `<img src="${item.image}" alt="${
+                      item.name || ""
+                    }" class="relative w-[75%] h-[75%] object-contain rounded-2xl group-hover:scale-105 transition-transform" />`
+                  : `<div class="relative w-[75%] h-[75%] bg-[url('https://via.placeholder.com/400x400?text=Product')] bg-center bg-cover rounded-2xl group-hover:scale-105 transition-transform"></div>`
+              }
+            </div>
           </div>
         </a>
-        <div class="p-3 space-y-1 text-xs">
-          <p class="text-gray-600 truncate" data-product-name>
+
+        <!-- Info -->
+        <div class="p-4 flex flex-col gap-2 flex-1">
+          <a
+            href="${productUrl}"
+            class="text-sm font-semibold line-clamp-2 hover:text-brand-600"
+            data-product-name
+          >
             ${item.name || "منتج من قائمة المفضلة"}
-          </p>
-          <div class="flex items-center justify-between mt-1">
-            <span class="font-bold">${formatPrice(item.price || 0)}</span>
-            <div class="flex items-center gap-1">
-              <button
-                class="text-xs text-gray-500 hover:text-red-500"
-                data-wishlist-button
-                data-product-id="${item.id}"
-              >
-                ♥
-              </button>
-              <button
-                class="text-xs text-gray-700 hover:text-brand-600"
+          </a>
+
+          <div class="flex items-center justify-between mt-auto pt-1">
+            <div class="flex flex-col gap-0.5">
+              <span class="text-[11px] text-slate-400">السعر التقريبي</span>
+              <span class="text-base font-bold text-slate-900">
+                ${formatPrice(item.price || 0)}
+              </span>
+            </div>
+
+            
+            <div class="flex items-end gap-1">
+            <button
+                class="inline-flex items-center justify-center rounded-full bg-brand-600 text-white text-[11px] px-4 py-1.5 hover:bg-brand-700"
                 data-add-to-cart
                 data-product-id="${item.id}"
                 data-product-name="${item.name || ""}"
@@ -272,6 +334,13 @@ function updateButtonState(btn, active) {
                 ${item.image ? `data-product-image="${item.image}"` : ""}
               >
                 أضف إلى السلة
+              </button>
+              <button
+                class="inline-flex items-center gap-1 rounded-full border border-slate-300 bg-white text-[11px] px-3 py-1 hover:border-pink-300 hover:text-pink-500 transition"
+                data-wishlist-button
+                data-product-id="${item.id}"
+              >
+                <span class="wishlist-icon" aria-hidden="true"></span>
               </button>
             </div>
           </div>
@@ -281,7 +350,7 @@ function updateButtonState(btn, active) {
       container.appendChild(card);
     });
 
-    // بعد ما نرسم، نحدّث حالة الأزرار
+    // بعد ما نرسم، نحدّث حالة الأزرار بناءً على localStorage
     syncButtonsState();
   }
 
@@ -308,7 +377,7 @@ function updateButtonState(btn, active) {
   // -------- Init on DOM ready --------
   document.addEventListener("DOMContentLoaded", () => {
     initWishlistButtons();
-    syncButtonsState();
-    renderWishlistPageIfNeeded();
+    syncButtonsState(); // يحدّث حالة الأيقونة واللون لو المنتج محفوظ
+    renderWishlistPageIfNeeded(); // لو نحن في صفحة wishlist.html يرسم الكروت
   });
 })();

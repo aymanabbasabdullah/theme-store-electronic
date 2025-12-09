@@ -255,54 +255,77 @@
       const lineTotal = (item.price || 0) * (item.qty || 1);
       subtotal += lineTotal;
 
-      const wrapper = document.createElement('div');
-      wrapper.className = 'flex gap-3 border-b border-gray-100 pb-3 last:border-b-0';
+            const wrapper = document.createElement('div');
+      wrapper.className =
+        'flex gap-3 sm:gap-4 rounded-2xl bg-surface-50 border border-slate-100 p-3 sm:p-4 shadow-sm';
       wrapper.setAttribute('data-cart-item-key', item.key);
 
       wrapper.innerHTML = `
-        <div class="w-16 h-20 rounded-xl bg-gray-100 flex-shrink-0 overflow-hidden">
+        <div class="w-16 h-20 sm:w-20 sm:h-24 rounded-xl bg-slate-100 flex-shrink-0 overflow-hidden">
           ${
             item.image
               ? `<img src="${item.image}" alt="${item.name || ''}" class="w-full h-full object-cover" />`
-              : `<div class="w-full h-full bg-gradient-to-br from-gray-200 to-gray-100"></div>`
+              : `<div class="w-full h-full bg-linear-to-br from-slate-200 to-slate-100"></div>`
           }
         </div>
-        <div class="flex-1 text-xs">
-          <div class="flex justify-between gap-2 mb-1">
-            <p class="font-medium line-clamp-2">${item.name || 'منتج'}</p>
+
+        <div class="flex-1 text-xs flex flex-col gap-1.5">
+          <div class="flex items-start justify-between gap-2">
+            <div class="flex-1">
+              <p class="font-medium text-slate-900 line-clamp-2">
+                ${item.name || 'منتج'}
+              </p>
+              <p class="mt-0.5 text-[11px] text-slate-500">
+                ${
+                  item.size
+                    ? `<span class="chip">المقاس: ${item.size}</span>`
+                    : ''
+                }
+                ${
+                  item.color
+                    ? `<span class="chip mr-1">اللون: ${item.color}</span>`
+                    : ''
+                }
+              </p>
+            </div>
             <button
               type="button"
-              class="text-[11px] text-red-500 hover:underline"
+              class="text-[11px] text-red-500 hover:text-red-600 hover:underline"
               data-cart-remove="${item.key}"
             >
               إزالة
             </button>
           </div>
-          <p class="text-[11px] text-gray-500 mb-1">
-            ${item.size ? `المقاس: ${item.size}` : ''}${item.size && item.color ? ' · ' : ''}${item.color ? `اللون: ${item.color}` : ''}
-          </p>
-          <div class="flex items-center justify-between mt-1">
+
+          <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-2 mt-1.5">
             <div class="flex items-baseline gap-1">
-              <span class="font-semibold">${formatPrice(item.price || 0)}</span>
-              <span class="text-[11px] text-gray-400">× ${item.qty || 1}</span>
-              <span class="text-[11px] text-gray-500">= ${formatPrice(lineTotal)}</span>
+              <span class="text-sm font-semibold text-slate-900">
+                ${formatPrice(item.price || 0)}
+              </span>
+              <span class="text-[11px] text-slate-400">× ${item.qty || 1}</span>
+              <span class="text-[11px] text-slate-500">
+                = ${formatPrice(lineTotal)}
+              </span>
             </div>
-            <div class="flex items-center gap-1">
+
+            <div class="flex items-center gap-1.5">
               <button
                 type="button"
-                class="w-7 h-7 inline-flex items-center justify-center rounded-full border border-gray-300 text-[13px]"
+                class="w-7 h-7 inline-flex items-center justify-center rounded-full border border-slate-200 text-[13px] text-slate-600 hover:bg-slate-50"
                 data-cart-qty-decrease="${item.key}"
               >-</button>
+
               <input
                 type="number"
                 min="1"
-                class="w-10 text-center border border-gray-200 rounded-full text-[11px] py-1"
+                class="w-10 text-center border border-slate-200 rounded-full text-[11px] py-1"
                 value="${item.qty || 1}"
                 data-cart-qty-input="${item.key}"
               />
+
               <button
                 type="button"
-                class="w-7 h-7 inline-flex items-center justify-center rounded-full border border-gray-300 text-[13px]"
+                class="w-7 h-7 inline-flex items-center justify-center rounded-full border border-slate-200 text-[13px] text-slate-600 hover:bg-slate-50"
                 data-cart-qty-increase="${item.key}"
               >+</button>
             </div>

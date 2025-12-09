@@ -117,3 +117,41 @@ body {
 .animate-fadeOut {
   animation: fadeOut 0.3s ease-in forwards;
 }
+@keyframes hero-fade-up {
+  0% {
+    opacity: 0;
+    transform: translateY(18px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes pulse-soft {
+  0%,
+  100% {
+    opacity: 0.4;
+    transform: scale(1);
+  }
+  50% {
+    opacity: 1;
+    transform: scale(1.25);
+  }
+}
+
+.animate-hero-fade {
+  animation: hero-fade-up 0.7s ease-out both;
+}
+
+.animate-hero-fade.delay-150 {
+  animation-delay: 0.15s;
+}
+
+.animate-hero-fade.delay-300 {
+  animation-delay: 0.3s;
+}
+
+.animate-pulse-soft {
+  animation: pulse-soft 1.8s ease-in-out infinite;
+}

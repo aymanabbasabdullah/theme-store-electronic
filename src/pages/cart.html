@@ -2,262 +2,264 @@
 <html lang="ar" dir="rtl">
   <head>
     <meta charset="UTF-8" />
-    <title>متجر الأناقة - سلة التسوق</title>
+    <title>سلة التسوق | متجر الأناقة</title>
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <!-- Fonts & Tailwind same as others -->
+
+    <!-- Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
       href="https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;600;700&display=swap"
       rel="stylesheet"
     />
+
+    <!-- Vite / Tailwind -->
     <script type="module" src="/src/main.ts"></script>
   </head>
-  <body class="font-sans bg-brand-50 text-gray-900 text-right">
-    <!-- Toast -->
+  <body
+    class="font-sans bg-brand-50 text-slate-900 text-right min-h-screen flex flex-col"
+  >
+    <!-- Toast (نفس IDs اللي يستخدمها cart.js) -->
     <div
       id="toast"
-      class="fixed top-4 right-4 z-50 hidden rounded-xl bg-brand-800 text-white px-4 py-3 text-sm shadow-lg"
+      class="fixed top-4 left-1/2 -translate-x-1/2 z-50 hidden items-center gap-2 rounded-2xl bg-slate-900 text-white px-4 py-2.5 text-xs shadow-lg animate-fadeIn"
     >
+      <span
+        class="inline-flex items-center justify-center w-6 h-6 rounded-full bg-emerald-500 text-[11px]"
+      >
+        ✔
+      </span>
       <span id="toast-message">تم تحديث السلة</span>
     </div>
 
     <div class="min-h-screen flex flex-col">
-      <!-- HEADER مختصر -->
-      <header class="border-b border-gray-200 bg-white">
+      <!-- HEADER -->
+      <header class="bg-white/90 border-b border-slate-200">
         <div
           class="container mx-auto px-4 py-4 flex items-center justify-between"
         >
-          <a href="/index.html" class="text-2xl font-bold">متجر الأناقة</a>
-          <a
-            href="/src/pages/account.html"
-            class="text-xs text-gray-600 hover:text-gray-900"
-            >الحساب</a
-          >
+          <a href="/index.html" class="flex items-center gap-2">
+            <div
+              class="w-9 h-9 rounded-2xl bg-brand-500 flex items-center justify-center text-white text-sm font-bold shadow-sm"
+            >
+              EA
+            </div>
+            <div class="leading-tight">
+              <p class="text-sm font-semibold">متجر الأناقة</p>
+              <p class="text-[11px] text-slate-500">سلة التسوق</p>
+            </div>
+          </a>
+
+          <nav class="flex items-center gap-4 text-xs">
+            <a
+              href="/src/pages/category.html"
+              class="inline-flex items-center gap-1 text-slate-600 hover:text-brand-600"
+            >
+              <span>متابعة التسوق</span>
+              <span class="text-slate-400">↩</span>
+            </a>
+            <a
+              href="/src/pages/account.html"
+              class="inline-flex items-center gap-1 text-slate-600 hover:text-brand-700"
+            >
+              <span
+                class="w-7 h-7 rounded-full bg-slate-100 flex items-center justify-center"
+              >
+                <svg
+                  class="w-4 h-4"
+                  fill="none"
+                  viewBox="0 0 24 24"
+                  stroke="currentColor"
+                  stroke-width="1.6"
+                >
+                  <path
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    d="M15.75 6A3.75 3.75 0 1 1 8.25 6a3.75 3.75 0 0 1 7.5 0Zm-9.204 9.443A6.75 6.75 0 0 1 18 18.75a.75.75 0 0 1-.75.75h-10.5A.75.75 0 0 1 6 18.75c0-1.54.526-2.959 1.546-4.057Z"
+                  />
+                </svg>
+              </span>
+              <span>الحساب</span>
+            </a>
+          </nav>
         </div>
       </header>
 
       <main class="flex-1">
-        <div class="container mx-auto px-4 py-6">
-          <nav class="text-[11px] text-gray-500 mb-3">
-            <ol class="flex flex-wrap gap-1 items-center">
-              <li>
-                <a href="/index.html" class="hover:text-brand-600">الرئيسية</a>
-              </li>
-              <li>/</li>
-              <li><span class="text-gray-700">سلة التسوق</span></li>
-            </ol>
-          </nav>
+        <div class="container mx-auto px-4 py-6 lg:py-10">
+          <!-- Bread + عنوان -->
+          <div class="mb-6 lg:mb-8">
+            <nav class="text-[11px] text-slate-500 mb-2">
+              <ol class="flex flex-wrap gap-1 items-center">
+                <li>
+                  <a href="/index.html" class="hover:text-brand-600"
+                    >الرئيسية</a
+                  >
+                </li>
+                <li>/</li>
+                <li><span class="text-slate-700">سلة التسوق</span></li>
+              </ol>
+            </nav>
 
-          <h1 class="text-2xl font-semibold mb-4">سلة التسوق</h1>
-
-          <div class="grid lg:grid-cols-3 gap-6">
-            <!-- Cart items -->
-            <section
-              class="lg:col-span-2 bg-white rounded-3xl border border-gray-100 p-4"
+            <div
+              class="flex flex-col md:flex-row md:items-end md:justify-between gap-3"
             >
+              <div>
+                <h1 class="text-2xl md:text-3xl font-semibold mb-1">
+                  سلة التسوق
+                </h1>
+                <p class="text-xs md:text-sm text-slate-600 max-w-xl">
+                  تحقّق من العناصر التي اخترتها، يمكنك تعديل الكمية أو إزالة
+                  المنتجات قبل إتمام عملية الشراء.
+                </p>
+              </div>
+
+              <!-- Step / حالة التقدم -->
+              <div
+                class="inline-flex items-center gap-2 rounded-full bg-white border border-slate-200 px-3 py-1 text-[11px] shadow-sm"
+              >
+                <span
+                  class="w-5 h-5 rounded-full bg-brand-500 text-white flex items-center justify-center text-[10px]"
+                >
+                  1
+                </span>
+                <span>مراجعة السلة</span>
+                <span class="w-1 h-[1px] bg-slate-200 mx-1"></span>
+                <span class="text-slate-400">معلومات التوصيل</span>
+                <span class="w-1 h-[1px] bg-slate-200 mx-1"></span>
+                <span class="text-slate-400">الدفع</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- الشبكة الرئيسية -->
+          <div class="grid lg:grid-cols-3 gap-6 items-start">
+            <!-- عناصر السلة -->
+            <section
+              class="lg:col-span-2 bg-white rounded-3xl border border-slate-100 shadow-[var(--shadow-soft)] p-4 sm:p-5"
+            >
+              <!-- حالة السلة الفارغة -->
               <div
                 id="cart-empty"
-                class="text-center text-xs text-gray-500 py-10 hidden"
+                class="text-center text-xs text-slate-500 py-10 hidden"
               >
-                السلة فارغة حالياً.
+                <div
+                  class="mx-auto mb-3 w-12 h-12 rounded-2xl bg-slate-50 flex items-center justify-center"
+                >
+                  <svg
+                    class="w-6 h-6 text-slate-400"
+                    fill="none"
+                    viewBox="0 0 24 24"
+                    stroke="currentColor"
+                    stroke-width="1.6"
+                  >
+                    <path
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                      d="M3 3h2l.75 3M7 13h10l2-7H5.75M7 13 5.75 6M7 13l-1.2 4.8A1 1 0 0 0 6.78 19H18M10 21a1 1 0 1 0 0-2 1 1 0 0 0 0 2Zm7 1a1.5 1.5 0 1 0 0-3 1.5 1.5 0 0 0 0 3Z"
+                    />
+                  </svg>
+                </div>
+                <p class="mb-2">السلة فارغة حالياً.</p>
                 <a
                   href="/src/pages/category.html"
-                  class="text-brand-700 hover:underline"
-                  >ابدأ التسوق الآن</a
+                  class="inline-flex items-center gap-1 text-brand-600 hover:text-brand-700 text-[11px]"
                 >
+                  <span>ابدأ التسوق الآن</span>
+                  <span>→</span>
+                </a>
               </div>
 
-              <div id="cart-items" class="space-y-4">
-                <!-- Cart items will be rendered via JS -->
-              </div>
+              <!-- هنا cart.js يرسم الكروت -->
+              <div id="cart-items" class="space-y-4"></div>
             </section>
 
-            <!-- Summary -->
+            <!-- ملخص الطلب -->
             <aside
-              class="bg-white rounded-3xl border border-gray-100 p-4 text-xs space-y-4"
+              class="bg-white rounded-3xl border border-slate-100 shadow-[var(--shadow-soft)] p-4 sm:p-5 text-xs space-y-4 lg:sticky lg:top-24"
             >
-              <h2 class="text-sm font-semibold mb-2">ملخص الطلب</h2>
+              <h2 class="text-sm font-semibold mb-1 text-slate-900">
+                ملخص الطلب
+              </h2>
 
-              <!-- Free shipping progress -->
-              <div class="space-y-1">
-                <div class="flex justify-between mb-1">
-                  <span>قيمة السلة</span>
-                  <span id="cart-subtotal">0 ريال</span>
+              <!-- progress الشحن -->
+              <div
+                class="rounded-2xl bg-surface-50 border border-surface-200 p-3 space-y-2"
+              >
+                <div class="flex items-center justify-between text-[11px] mb-1">
+                  <span class="text-slate-600">قيمة المنتجات</span>
+                  <span id="cart-subtotal" class="font-semibold text-slate-900"
+                    >0 ريال</span
+                  >
                 </div>
-                <p id="free-shipping-message" class="text-[11px] text-gray-600">
-                  تبقى لك 50,000 ريال للحصول على شحن مجاني.
+                <p
+                  id="free-shipping-message"
+                  class="text-[11px] text-slate-500"
+                >
+                  تبقى لك 300 ريال للحصول على شحن مجاني.
                 </p>
                 <div
-                  class="w-full h-2 bg-gray-100 rounded-full overflow-hidden"
+                  class="w-full h-2 rounded-full bg-slate-100 overflow-hidden"
                 >
                   <div
                     id="free-shipping-progress"
-                    class="h-full bg-brand-500 w-0"
+                    class="h-full bg-gradient-to-l from-brand-600 to-brand-400 w-0 transition-all duration-300"
                   ></div>
                 </div>
               </div>
 
-              <div class="border-t border-gray-100 pt-3">
-                <div class="flex items-center justify-between mb-2">
-                  <span class="font-semibold">الإجمالي</span>
-                  <span id="cart-total" class="font-bold">0 ريال</span>
+              <!-- الشحن -->
+              <div
+                class="flex items-center justify-between text-[11px] text-slate-600 border-b border-slate-100 pb-2"
+              >
+                <span>رسوم الشحن التقديرية</span>
+                <span
+                  id="estimated-shipping"
+                  class="font-semibold text-slate-900"
+                  >0 ريال</span
+                >
+              </div>
+
+              <!-- الإجمالي -->
+              <div class="pt-2 space-y-3">
+                <div class="flex items-center justify-between">
+                  <span class="text-[11px] font-semibold text-slate-800"
+                    >الإجمالي المستحق</span
+                  >
+                  <span id="cart-total" class="font-bold text-lg text-brand-600"
+                    >0 ريال</span
+                  >
                 </div>
+                <p class="text-[11px] text-slate-500 leading-relaxed">
+                  الأسعار تشمل ضريبة القيمة المضافة إن وجدت. سيتم احتساب الشحن
+                  والخصومات بدقة في صفحة إتمام الشراء.
+                </p>
+
                 <a
                   href="/src/pages/checkout.html"
-                  class="block text-center rounded-full bg-brand-800 text-white py-2 text-xs hover:bg-brand-900"
+                  class="block text-center rounded-full bg-gradient-to-l from-brand-600 to-brand-500 text-white py-2.5 text-xs font-semibold hover:from-brand-700 hover:to-brand-600 shadow-sm transition"
                 >
-                  إتمام الشراء
+                  إتمام الشراء الآن
                 </a>
+
+                <button
+                  type="button"
+                  onclick="window.Cart && window.Cart.clearCart()"
+                  class="w-full text-center rounded-full border border-slate-200 py-2 text-[11px] text-slate-600 hover:bg-slate-50"
+                >
+                  تفريغ السلة بالكامل
+                </button>
               </div>
             </aside>
           </div>
         </div>
       </main>
 
-      <!-- FOOTER -->
-      <!-- FOOTER -->
-      <footer class="border-t border-gray-200 bg-white mt-10">
-        <div class="container mx-auto px-4 py-10">
-          <div class="grid md:grid-cols-4 gap-8 text-sm">
-            <div>
-              <h4 class="font-semibold mb-3">متجر الأناقة</h4>
-              <p class="text-xs text-gray-600 mb-3">
-                متجر إلكتروني للملابس يقدم أحدث صيحات الموضة بجودة عالية وخدمة
-                مميزة لعملائنا في العالم العربي.
-              </p>
-              <p class="text-xs text-gray-500">
-                ساعات العمل: من الأحد إلى الخميس، 9 صباحاً - 6 مساءً.
-              </p>
-            </div>
-            <div>
-              <h4 class="font-semibold mb-3">روابط مهمة</h4>
-              <ul class="space-y-2 text-xs text-gray-600">
-                <li>
-                  <a href="/src/pages/about.html" class="hover:text-brand-600"
-                    >من نحن</a
-                  >
-                </li>
-                <li>
-                  <a
-                    href="/src/pages/shipping-policy.html"
-                    class="hover:text-brand-600"
-                    >سياسة الشحن</a
-                  >
-                </li>
-                <li>
-                  <a
-                    href="/src/pages/return-policy.html"
-                    class="hover:text-brand-600"
-                    >سياسة الاستبدال والاسترجاع</a
-                  >
-                </li>
-                <li>
-                  <a href="/src/pages/faq.html" class="hover:text-brand-600"
-                    >الأسئلة الشائعة</a
-                  >
-                </li>
-                <li>
-                  <a href="/src/pages/contact.html" class="hover:text-brand-600"
-                    >تواصل معنا</a
-                  >
-                </li>
-              </ul>
-            </div>
-            <div>
-              <h4 class="font-semibold mb-3">حسابي</h4>
-              <ul class="space-y-2 text-xs text-gray-600">
-                <li>
-                  <a
-                    href="/src/pages/src/pages/account.html"
-                    class="hover:text-brand-600"
-                    >لوحة التحكم</a
-                  >
-                </li>
-                <li>
-                  <a href="/src/pages/cart.html" class="hover:text-brand-600"
-                    >سلة التسوق</a
-                  >
-                </li>
-                <li>
-                  <a
-                    href="/src/pages/checkout.html"
-                    class="hover:text-brand-600"
-                    >إتمام الشراء</a
-                  >
-                </li>
-              </ul>
-            </div>
-            <div>
-              <h4 class="font-semibold mb-3">تابعنا</h4>
-              <div class="flex gap-4 text-lg mb-3">
-                <!-- Instagram -->
-                <a href="#" class="hover:text-brand-600" aria-label="Instagram">
-                  <svg
-                    xmlns="http://www.w3.org/2000/svg"
-                    class="w-6 h-6"
-                    fill="currentColor"
-                    viewBox="0 0 24 24"
-                  >
-                    <path
-                      d="M7.75 2h8.5A5.75 5.75 0 0 1 22 7.75v8.5A5.75 5.75 0 0 1 16.25 22h-8.5A5.75 5.75 0 0 1 2 16.25v-8.5A5.75 5.75 0 0 1 7.75 2zm0 1.5A4.25 4.25 0 0 0 3.5 7.75v8.5A4.25 4.25 0 0 0 7.75 20.5h8.5A4.25 4.25 0 0 0 20.5 16.25v-8.5A4.25 4.25 0 0 0 16.25 3.5h-8.5zM12 7a5 5 0 1 1 0 10 5 5 0 0 1 0-10zm0 1.5a3.5 3.5 0 1 0 0 7 3.5 3.5 0 0 0 0-7zm5-1.75a1.25 1.25 0 1 1 0 2.5 1.25 1.25 0 0 1 0-2.5z"
-                    />
-                  </svg>
-                </a>
-
-                <!-- Twitter (X) -->
-                <a
-                  href="#"
-                  class="hover:text-brand-600"
-                  aria-label="Twitter / X"
-                >
-                  <svg
-                    xmlns="http://www.w3.org/2000/svg"
-                    class="w-6 h-6"
-                    fill="currentColor"
-                    viewBox="0 0 24 24"
-                  >
-                    <path
-                      d="M18.146 2h3.123l-6.817 7.79L22 22h-6.343l-4.96-6.507L4.8 22H1.674l7.31-8.35L2 2h6.47l4.474 5.932L18.146 2zm-2.217 17.597h1.727L8.173 4.295H6.314l9.615 15.302z"
-                    />
-                  </svg>
-                </a>
-
-                <!-- TikTok -->
-                <a href="#" class="hover:text-brand-600" aria-label="TikTok">
-                  <svg
-                    xmlns="http://www.w3.org/2000/svg"
-                    class="w-6 h-6"
-                    fill="currentColor"
-                    viewBox="0 0 24 24"
-                  >
-                    <path
-                      d="M12.95 2h3.03c.15 1.33.76 2.54 1.72 3.44A6.3 6.3 0 0 0 19.7 7v3.03a9.3 9.3 0 0 1-3.47-.7 9.55 9.55 0 0 1-1.32-.67v6.55a6.82 6.82 0 0 1-1.25 3.97A6.36 6.36 0 0 1 9.4 22a6.4 6.4 0 0 1-1.9-.29 6.45 6.45 0 0 1-1.62-.83 6.37 6.37 0 0 1-2.31-3.05A6.5 6.5 0 0 1 3.4 15c0-1.3.37-2.56 1.06-3.64A6.37 6.37 0 0 1 7.74 8.4a6.28 6.28 0 0 1 3.48.07v3.29a3.1 3.1 0 0 0-1.47-.38 3.16 3.16 0 0 0-2.19.9A3.3 3.3 0 0 0 6.7 15c0 .86.33 1.66.93 2.26.6.6 1.4.94 2.24.94a3.16 3.16 0 0 0 2.23-.92 3.1 3.1 0 0 0 .93-2.25V2z"
-                    />
-                  </svg>
-                </a>
-              </div>
-
-              <p class="text-xs text-gray-600 mb-2">
-                اشترك في النشرة البريدية للحصول على أحدث العروض.
-              </p>
-              <form class="flex gap-2">
-                <input
-                  type="email"
-                  class="flex-1 rounded-full border border-gray-200 px-3 py-1.5 text-xs focus:outline-none focus:border-brand-500"
-                  placeholder="أدخل بريدك الإلكتروني"
-                />
-                <button
-                  type="submit"
-                  class="rounded-full bg-brand-800 text-white text-xs px-4 py-1.5 hover:bg-brand-900"
-                >
-                  اشتراك
-                </button>
-              </form>
-            </div>
-          </div>
+      <!-- FOOTER مبسّط -->
+      <footer class="border-t border-slate-200 bg-white mt-10">
+        <div class="container mx-auto px-4 py-6">
           <div
-            class="mt-8 border-t border-gray-100 pt-4 flex flex-col md:flex-row items-center justify-between text-[11px] text-gray-500 gap-2"
+            class="flex flex-col md:flex-row items-center justify-between gap-3 text-[11px] text-slate-500"
           >
             <p>© <span id="year"></span> متجر الأناقة. جميع الحقوق محفوظة.</p>
             <p>تم تطوير الموقع من قبل م/ايمن عجلان.</p>
@@ -269,5 +271,10 @@
     <!-- JS -->
     <script src="/src/assets/js/main.js"></script>
     <script src="/src/assets/js/cart.js"></script>
+    <script>
+      document.getElementById("year").textContent = new Date()
+        .getFullYear()
+        .toString();
+    </script>
   </body>
 </html>

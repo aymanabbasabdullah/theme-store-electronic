@@ -11,13 +11,15 @@
       rel="stylesheet"
     />
     <script type="module" src="/src/main.ts"></script>
+
+    <!-- ستايل بسيط خاص بمربع الفاتورة -->
     <style>
       #invoice-wrapper {
-        background: white;
+        background: #ffffff;
         padding: 25px;
         border-radius: 18px;
-        border: 1px solid #eee;
-        box-shadow: 0 0 15px rgba(0, 0, 0, 0.06);
+        border: 1px solid #e5e7eb;
+        box-shadow: 0 12px 35px rgba(15, 23, 42, 0.08);
       }
 
       #invoice-wrapper h2 {
@@ -25,8 +27,8 @@
         margin-bottom: 10px;
       }
 
-      .invoice-header {
-        border-bottom: 1px solid #eee;
+      .invoice-header-line {
+        border-bottom: 1px solid #f1f5f9;
         margin-bottom: 15px;
         padding-bottom: 10px;
       }
@@ -40,7 +42,7 @@
         class="sticky top-0 z-50 border-b border-gray-200 bg-white/90 backdrop-blur"
       >
         <div class="container mx-auto px-4 py-2 sm:py-3 relative">
-          <!-- Top bar (مخفي في أصغر شاشات عشان ما يصير الهيدر طويل مررة) -->
+          <!-- Top bar -->
           <div
             class="hidden sm:flex items-center justify-between py-2 text-xs text-gray-500"
           >
@@ -270,8 +272,7 @@
             </ul>
           </nav>
 
-          <!-- MOBILE NAV (toggle) -->
-          <!-- MOBILE NAV (toggle) -->
+          <!-- MOBILE NAV (panel) -->
           <div
             id="mobile-nav-panel"
             class="md:hidden hidden absolute inset-x-0 top-full bg-white/95 backdrop-blur-sm border-t border-gray-100 shadow-lg rounded-b-2xl max-h-[80vh] overflow-y-auto"
@@ -379,128 +380,121 @@
             </ol>
           </nav>
 
-          <!-- Header -->
-          <header
-            class="bg-white rounded-2xl shadow-soft p-5 sm:p-6 mb-6 sm:mb-8"
-          >
-            <div
-              class="flex flex-wrap items-center justify-between gap-3 border-b border-gray-100 pb-3 mb-3"
-            >
-              <div>
-                <p class="text-xs text-gray-500 mb-1">
-                  رقم الطلب:
+          <!-- ====== هنا منطقة الفاتورة التي ستتحول إلى PDF ====== -->
+          <div id="invoice-wrapper">
+            <!-- Header -->
+            <header class="mb-6 sm:mb-8">
+              <div
+                class="invoice-header-line flex flex-wrap items-center justify-between gap-3"
+              >
+                <div>
+                  <p class="text-xs text-gray-500 mb-1">
+                    رقم الطلب:
+                    <span
+                      id="details-order-id"
+                      class="font-semibold text-brand-800"
+                      >--</span
+                    >
+                  </p>
+                  <p class="text-xs text-gray-500">
+                    تاريخ الطلب:
+                    <span id="details-order-date" class="font-medium">--</span>
+                  </p>
+                </div>
+
+                <div class="flex flex-wrap gap-2 items-center">
                   <span
-                    id="details-order-id"
-                    class="font-semibold text-brand-800"
-                    >--</span
+                    id="details-order-status"
+                    class="inline-flex items-center rounded-full bg-amber-50 text-amber-700 text-[0.7rem] px-3 py-1"
                   >
-                </p>
-                <p class="text-xs text-gray-500">
-                  تاريخ الطلب:
-                  <span id="details-order-date" class="font-medium">--</span>
-                </p>
+                    قيد المعالجة
+                  </span>
+                </div>
               </div>
 
-              <div class="flex flex-wrap gap-2 items-center">
-                <span
-                  id="details-order-status"
-                  class="inline-flex items-center rounded-full bg-amber-50 text-amber-700 text-[0.7rem] px-3 py-1"
-                >
-                  قيد المعالجة
-                </span>
-                <button
-                  id="download-pdf-btn"
-                  type="button"
-                  class="text-xs rounded-2xl border border-gray-200 px-3 py-1.5 hover:border-brand-800 hover:text-brand-800 transition"
-                >
-                  تحميل الفاتورة PDF
-                </button>
-              </div>
-            </div>
-
-            <div
-              class="grid grid-cols-1 sm:grid-cols-3 gap-4 text-xs sm:text-sm text-gray-600"
-            >
-              <div>
-                <p class="font-semibold mb-1 text-gray-800">بيانات العميل</p>
-                <p id="customer-name">--</p>
-                <p id="customer-phone">--</p>
-                <p id="customer-email">--</p>
-              </div>
-              <div>
-                <p class="font-semibold mb-1 text-gray-800">عنوان الشحن</p>
-                <p id="address-city">--</p>
-                <p id="address-street">--</p>
-                <p id="address-district">--</p>
-              </div>
-              <div>
-                <p class="font-semibold mb-1 text-gray-800">الدفع والشحن</p>
-                <p>طريقة الدفع: <span id="payment-method">--</span></p>
-                <p>رقم عملية المحفظة: <span id="payment-txid">لا يوجد</span></p>
-                <p>
-                  رقم الجوال المحوَّل منه:
-                  <span id="payment-from-phone">--</span>
-                </p>
-                <p>طريقة الشحن: <span id="shipping-method">--</span></p>
-                <p>رسوم الشحن: <span id="shipping-cost">--</span></p>
-              </div>
-            </div>
-          </header>
-
-          <!-- Items -->
-          <section
-            class="bg-white rounded-2xl shadow-soft p-5 sm:p-6 mb-6 space-y-4 text-sm"
-          >
-            <h2 class="text-lg font-semibold mb-2">المنتجات</h2>
-
-            <div id="order-items" class="space-y-3">
-              <!-- سيتم تعبئته بالجافاسكربت -->
-            </div>
-          </section>
-
-          <!-- Summary -->
-          <section
-            class="bg-white rounded-2xl shadow-soft p-5 sm:p-6 text-sm space-y-3"
-          >
-            <h2 class="text-lg font-semibold mb-2">ملخص الفاتورة</h2>
-
-            <div class="space-y-1 text-gray-600">
-              <div class="flex items-center justify-between">
-                <span>إجمالي المنتجات</span>
-                <span id="summary-subtotal">--</span>
-              </div>
-              <div class="flex items-center justify-between">
-                <span>رسوم الشحن</span>
-                <span id="summary-shipping">--</span>
-              </div>
-              <div class="flex items-center justify-between">
-                <span>الخصم</span>
-                <span id="summary-discount">--</span>
-              </div>
-            </div>
-
-            <div
-              class="flex items-center justify-between border-t border-gray-100 pt-3 mt-2 text-sm font-semibold"
-            >
-              <span>الإجمالي النهائي</span>
-              <span id="summary-total" class="text-brand-800">--</span>
-            </div>
-
-            <div class="flex flex-wrap gap-3 pt-3">
-              <a
-                href="/src/pages/account.html"
-                class="inline-flex items-center justify-center rounded-2xl border border-gray-200 px-4 py-2 text-xs sm:text-sm hover:border-brand-800 hover:text-brand-800 transition"
+              <div
+                class="grid grid-cols-1 sm:grid-cols-3 gap-4 text-xs sm:text-sm text-gray-600"
               >
-                الرجوع إلى طلباتي
-              </a>
-              <a
-                href="/src/pages/category.html"
-                class="inline-flex items-center justify-center rounded-2xl bg-gray-900 text-white px-4 py-2 text-xs sm:text-sm hover:bg-black transition"
+                <div>
+                  <p class="font-semibold mb-1 text-gray-800">بيانات العميل</p>
+                  <p id="customer-name">--</p>
+                  <p id="customer-phone">--</p>
+                  <p id="customer-email">--</p>
+                </div>
+                <div>
+                  <p class="font-semibold mb-1 text-gray-800">عنوان الشحن</p>
+                  <p id="address-city">--</p>
+                  <p id="address-street">--</p>
+                  <p id="address-district">--</p>
+                </div>
+                <div>
+                  <p class="font-semibold mb-1 text-gray-800">الدفع والشحن</p>
+                  <p>طريقة الدفع: <span id="payment-method">--</span></p>
+                  <p>
+                    رقم عملية المحفظة: <span id="payment-txid">لا يوجد</span>
+                  </p>
+                  <p>
+                    رقم الجوال المحوَّل منه:
+                    <span id="payment-from-phone">--</span>
+                  </p>
+                  <p>طريقة الشحن: <span id="shipping-method">--</span></p>
+                  <p>رسوم الشحن: <span id="shipping-cost">--</span></p>
+                </div>
+              </div>
+            </header>
+
+            <!-- Items -->
+            <section class="mb-6 space-y-4 text-sm">
+              <h2 class="text-lg font-semibold mb-2">المنتجات</h2>
+
+              <div id="order-items" class="space-y-3">
+                <!-- يتم تعبئته بالجافاسكربت -->
+              </div>
+            </section>
+
+            <!-- Summary -->
+            <section class="text-sm space-y-3">
+              <h2 class="text-lg font-semibold mb-2">ملخص الفاتورة</h2>
+
+              <div class="space-y-1 text-gray-600">
+                <div class="flex items-center justify-between">
+                  <span>إجمالي المنتجات</span>
+                  <span id="summary-subtotal">--</span>
+                </div>
+                <div class="flex items-center justify-between">
+                  <span>رسوم الشحن</span>
+                  <span id="summary-shipping">--</span>
+                </div>
+                <div class="flex items-center justify-between">
+                  <span>الخصم</span>
+                  <span id="summary-discount">--</span>
+                </div>
+              </div>
+
+              <div
+                class="flex items-center justify-between border-t border-gray-100 pt-3 mt-2 text-sm font-semibold"
               >
-                شراء منتجات مشابهة
-              </a>
-            </div>
-          </section>
+                <span>الإجمالي النهائي</span>
+                <span id="summary-total" class="text-brand-800">--</span>
+              </div>
+            </section>
+          </div>
+
+          <!-- أزرار أسفل الفاتورة (ليست جزء من PDF لو حاب تخليها برا) -->
+          <div class="flex flex-wrap gap-3 pt-6">
+            <a
+              href="/src/pages/category.html"
+              class="inline-flex items-center justify-center rounded-2xl bg-brand-600 text-white font-semibold hover:bg-brand-700 transition shadow-soft/40 px-4 py-2 text-xs sm:text-sm"
+            >
+              شراء منتجات مشابهة
+            </a>
+            <a
+              href="/src/pages/account.html"
+              class="inline-flex items-center justify-center rounded-2xl border border-slate-200 bg-white px-5 py-2.5 font-semibold text-slate-700 hover:border-brand-600 hover:text-brand-700 transition text-xs sm:text-sm"
+            >
+              الرجوع إلى طلباتي
+            </a>
+          </div>
         </div>
       </main>
 
@@ -652,6 +646,7 @@
       </footer>
     </div>
 
+    <!-- JS files -->
     <script src="/src/assets/js/main.js"></script>
     <script src="/src/assets/js/cart.js"></script>
     <script src="/src/assets/js/order-details.js"></script>

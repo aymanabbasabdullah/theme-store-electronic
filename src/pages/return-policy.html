@@ -2,8 +2,10 @@
 <html lang="ar" dir="rtl">
   <head>
     <meta charset="UTF-8" />
-    <title>سياسة الاستبدال والاسترجاع | متجر الأناقة</title>
+    <title>سياسة الاستبدال والاسترجاع | متجر التقنية</title>
     <meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <!-- Google Fonts (Arabic friendly) -->
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
@@ -11,22 +13,28 @@
       rel="stylesheet"
     />
 
-    <!-- Tailwind -->
+    <!-- Tailwind / main entry -->
     <script type="module" src="/src/main.ts"></script>
   </head>
-  <body class="bg-brand-50/60 text-brand-800 font-sans">
+  <body class="bg-brand-50/60 text-slate-900 font-sans">
     <div class="min-h-screen flex flex-col">
-      <!-- HEADER -->
+      <!-- HEADER - Mega Menu -->
       <header
-        class="sticky top-0 z-50 border-b border-gray-200 bg-white/90 backdrop-blur"
+        class="sticky top-0 z-50 border-b border-slate-200 bg-white/90 backdrop-blur"
       >
         <div class="container mx-auto px-4 py-2 sm:py-3 relative">
-          <!-- Top bar (مخفي في أصغر شاشات عشان ما يصير الهيدر طويل مررة) -->
+          <!-- Top bar -->
           <div
-            class="hidden sm:flex items-center justify-between py-2 text-xs text-gray-500"
+            class="hidden sm:flex items-center justify-between py-2 text-xs text-slate-500"
           >
-            <span>شحن داخل صنعاء مجاناً للطلبات فوق 50,000 ريال يمني</span>
-            <a href="/src/pages/login.html" class="hover:text-gray-800">
+            <span>
+              شحن سريع داخل صنعاء وباقي المحافظات للطلبات فوق
+              <span class="font-semibold text-brand-600">50,000 ريال يمني</span>
+            </span>
+            <a
+              href="/src/pages/login.html"
+              class="hover:text-brand-700 transition"
+            >
               تسجيل الدخول / إنشاء حساب
             </a>
           </div>
@@ -37,7 +45,7 @@
             <button
               id="mobile-menu-toggle"
               type="button"
-              class="md:hidden inline-flex items-center justify-center rounded-xl border border-gray-200 p-2"
+              class="md:hidden inline-flex items-center justify-center rounded-xl border border-slate-200 p-2 bg-white"
               aria-label="فتح قائمة التنقل"
               aria-expanded="false"
               aria-controls="mobile-nav-panel"
@@ -48,7 +56,7 @@
                 viewBox="0 0 24 24"
                 stroke-width="1.5"
                 stroke="currentColor"
-                class="size-6"
+                class="size-6 text-slate-800"
               >
                 <path
                   stroke-linecap="round"
@@ -61,27 +69,49 @@
             <!-- Logo -->
             <a
               href="index.html"
-              class="text-xl sm:text-2xl font-bold tracking-wide text-gray-900"
+              class="flex items-center gap-2 text-xl sm:text-2xl font-bold tracking-wide text-slate-900"
             >
-              متجر الأناقة
+              <span
+                class="flex items-center justify-center w-9 h-9 rounded-2xl bg-brand-500 text-white text-lg shadow-md"
+                >⚡</span
+              >
+              <span>متجر التقنية</span>
             </a>
 
             <!-- Search (desktop) -->
             <form class="hidden md:flex flex-1 max-w-xl mx-4">
               <div
-                class="flex flex-1 items-center rounded-full bg-gray-100 px-4 py-2 gap-2"
+                class="flex flex-1 items-center rounded-full bg-slate-100 px-4 py-2 gap-2 border border-slate-200"
               >
                 <input
                   type="text"
-                  class="flex-1 bg-transparent text-sm focus:outline-none text-right"
-                  placeholder="ابحث عن منتج، فئة، أو علامة تجارية..."
+                  class="flex-1 bg-transparent text-sm focus:outline-none text-right placeholder:text-slate-400"
+                  placeholder="ابحث عن جوال، لابتوب، أو منتج إلكتروني..."
                 />
-                <span class="text-xs text-gray-400">بحث</span>
+                <span
+                  class="text-xs text-slate-500 flex items-center gap-1 cursor-pointer"
+                >
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    fill="none"
+                    viewBox="0 0 24 24"
+                    stroke-width="1.5"
+                    stroke="currentColor"
+                    class="size-4"
+                  >
+                    <path
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                      d="m21 21-5.197-5.197m0 0A7.5 7.5 0 1 0 5.196 5.196a7.5 7.5 0 0 0 10.607 10.607Z"
+                    />
+                  </svg>
+                  بحث
+                </span>
               </div>
             </form>
 
             <!-- Icons -->
-            <div class="flex items-center gap-3 sm:gap-4 text-gray-700">
+            <div class="flex items-center gap-3 sm:gap-4 text-slate-700">
               <!-- Search icon for mobile -->
               <button
                 id="mobile-search-toggle"
@@ -107,9 +137,10 @@
                 </svg>
               </button>
 
+              <!-- Account -->
               <a
                 href="/src/pages/account.html"
-                class="md:inline text-xl"
+                class="md:inline text-xl hover:text-brand-600 transition"
                 title="الحساب"
               >
                 <svg
@@ -130,9 +161,10 @@
                 </svg>
               </a>
 
+              <!-- Wishlist -->
               <button
                 type="button"
-                class="text-xl"
+                class="text-xl hover:text-brand-600 transition"
                 title="المفضلة"
                 onclick="window.location='/src/pages/wishlist.html'"
               >
@@ -155,9 +187,10 @@
                 </svg>
               </button>
 
+              <!-- Cart -->
               <a
                 href="/src/pages/cart.html"
-                class="relative text-xl"
+                class="relative text-xl hover:text-brand-600 transition"
                 title="السلة"
               >
                 <svg
@@ -189,131 +222,387 @@
           <div id="mobile-search" class="md:hidden hidden pb-3">
             <form>
               <div
-                class="flex items-center rounded-full bg-gray-100 px-4 py-2 gap-2"
+                class="flex items-center rounded-full bg-slate-100 px-4 py-2 gap-2 border border-slate-200"
               >
                 <input
                   type="text"
-                  class="flex-1 bg-transparent text-sm focus:outline-none text-right"
-                  placeholder="ابحث عن منتج، فئة، أو علامة تجارية..."
+                  class="flex-1 bg-transparent text-sm focus:outline-none text-right placeholder:text-slate-400"
+                  placeholder="ابحث عن جوال، لابتوب، أو منتج إلكتروني..."
                 />
-                <span class="text-xs text-gray-400">بحث</span>
+                <span class="text-xs text-slate-500">بحث</span>
               </div>
             </form>
           </div>
 
-          <!-- Navigation (desktop) -->
+          <!-- Navigation + Mega Menu (desktop) -->
           <nav
             id="main-nav"
-            class="border-t border-gray-100 pt-3 pb-4 text-sm text-gray-700 hidden md:flex md:border-0 md:py-0"
+            class="border-t border-slate-100 pt-3 pb-4 text-sm text-slate-700 hidden md:flex md:border-0 md:py-0"
             aria-label="التنقل الرئيسي"
           >
-            <ul class="flex flex-col md:flex-row gap-3 md:gap-8">
+            <ul class="flex flex-row gap-6 lg:gap-8">
+              <li>
+                <a href="index.html" class="hover:text-brand-600 font-medium">
+                  الرئيسية
+                </a>
+              </li>
+
+              <!-- Mobiles - Mega Menu -->
+              <li class="relative group">
+                <button
+                  type="button"
+                  class="inline-flex items-center gap-1 hover:text-brand-600 font-medium"
+                >
+                  جوالات
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    class="w-4 h-4"
+                    fill="none"
+                    viewBox="0 0 24 24"
+                    stroke="currentColor"
+                  >
+                    <path
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                      stroke-width="1.5"
+                      d="M19 9l-7 7-7-7"
+                    />
+                  </svg>
+                </button>
+
+                <!-- Mega Panel -->
+                <div
+                  class="invisible opacity-0 group-hover:visible group-hover:opacity-100 transition-all duration-200 absolute right-0 mt-3 w-[min(100vw,900px)]"
+                >
+                  <div
+                    class="rounded-3xl bg-white shadow-2xl border border-slate-100 p-5 grid grid-cols-2 lg:grid-cols-4 gap-4"
+                  >
+                    <!-- Column 1 -->
+                    <div>
+                      <h4 class="text-xs font-semibold text-slate-500 mb-2">
+                        حسب النظام
+                      </h4>
+                      <ul class="space-y-1 text-xs text-slate-700">
+                        <li>
+                          <a
+                            href="/src/pages/category.html?category=mobiles&os=android"
+                            class="hover:text-brand-600"
+                            >أندرويد</a
+                          >
+                        </li>
+                        <li>
+                          <a
+                            href="/src/pages/category.html?category=mobiles&os=ios"
+                            class="hover:text-brand-600"
+                            >iOS (آيفون)</a
+                          >
+                        </li>
+                        <li>
+                          <a
+                            href="/src/pages/category.html?category=mobiles&os=feature"
+                            class="hover:text-brand-600"
+                            >أجهزة بسيطة (Feature Phones)</a
+                          >
+                        </li>
+                      </ul>
+                    </div>
+
+                    <!-- Column 2 -->
+                    <div>
+                      <h4 class="text-xs font-semibold text-slate-500 mb-2">
+                        حسب الفئة السعرية
+                      </h4>
+                      <ul class="space-y-1 text-xs text-slate-700">
+                        <li>
+                          <a
+                            href="/src/pages/category.html?category=mobiles&price=budget"
+                            class="hover:text-brand-600"
+                            >جوالات اقتصادية</a
+                          >
+                        </li>
+                        <li>
+                          <a
+                            href="/src/pages/category.html?category=mobiles&price=mid"
+                            class="hover:text-brand-600"
+                            >فئة متوسطة</a
+                          >
+                        </li>
+                        <li>
+                          <a
+                            href="/src/pages/category.html?category=mobiles&price=flagship"
+                            class="hover:text-brand-600"
+                            >أعلى الفئة (Flagship)</a
+                          >
+                        </li>
+                      </ul>
+                    </div>
+
+                    <!-- Column 3 -->
+                    <div>
+                      <h4 class="text-xs font-semibold text-slate-500 mb-2">
+                        الماركات المميزة
+                      </h4>
+                      <ul class="space-y-1 text-xs text-slate-700">
+                        <li>
+                          <a
+                            href="/src/pages/search.html?brand=Apple&category=mobiles"
+                            class="hover:text-brand-600"
+                            >Apple (آيفون)</a
+                          >
+                        </li>
+                        <li>
+                          <a
+                            href="/src/pages/search.html?brand=Samsung&category=mobiles"
+                            class="hover:text-brand-600"
+                            >Samsung</a
+                          >
+                        </li>
+                        <li>
+                          <a
+                            href="/src/pages/search.html?brand=Xiaomi&category=mobiles"
+                            class="hover:text-brand-600"
+                            >Xiaomi</a
+                          >
+                        </li>
+                        <li>
+                          <a
+                            href="/src/pages/search.html?brand=Huawei&category=mobiles"
+                            class="hover:text-brand-600"
+                            >Huawei</a
+                          >
+                        </li>
+                      </ul>
+                    </div>
+
+                    <!-- Column 4 - Banner -->
+                    <div
+                      class="rounded-2xl bg-gradient-to-l from-brand-500 to-brand-400 text-white p-4 flex flex-col justify-between"
+                    >
+                      <div class="text-xs mb-2 opacity-90">عرض اليوم</div>
+                      <p class="text-sm font-semibold mb-1">
+                        خصم حتى 20٪ على جوالات 5G المختارة
+                      </p>
+                      <p class="text-[11px] opacity-90 mb-3">
+                        استبدل جوالك القديم بجوال جديد مع ضمان سنتين.
+                      </p>
+                      <a
+                        href="/src/pages/category.html?category=mobiles&tag=deal"
+                        class="inline-flex items-center justify-center rounded-full bg-white/95 text-brand-700 px-4 py-1.5 text-[11px] hover:bg-slate-50"
+                      >
+                        تسوق العروض الآن
+                      </a>
+                    </div>
+                  </div>
+                </div>
+              </li>
+
+              <!-- Laptops - Mega Menu -->
+              <li class="relative group">
+                <button
+                  type="button"
+                  class="inline-flex items-center gap-1 hover:text-brand-600 font-medium"
+                >
+                  لابتوبات
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    class="w-4 h-4"
+                    fill="none"
+                    viewBox="0 0 24 24"
+                    stroke="currentColor"
+                  >
+                    <path
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                      stroke-width="1.5"
+                      d="M19 9l-7 7-7-7"
+                    />
+                  </svg>
+                </button>
+
+                <div
+                  class="invisible opacity-0 group-hover:visible group-hover:opacity-100 transition-all duration-200 absolute right-0 mt-3 w-[min(100vw,900px)]"
+                >
+                  <div
+                    class="rounded-3xl bg-white shadow-2xl border border-slate-100 p-5 grid grid-cols-2 lg:grid-cols-4 gap-4"
+                  >
+                    <div>
+                      <h4 class="text-xs font-semibold text-slate-500 mb-2">
+                        حسب الاستخدام
+                      </h4>
+                      <ul class="space-y-1 text-xs text-slate-700">
+                        <li>
+                          <a
+                            href="/src/pages/category.html?category=laptops&type=work"
+                            class="hover:text-brand-600"
+                            >لابتوبات عمل</a
+                          >
+                        </li>
+                        <li>
+                          <a
+                            href="/src/pages/category.html?category=laptops&type=study"
+                            class="hover:text-brand-600"
+                            >لابتوبات دراسة</a
+                          >
+                        </li>
+                        <li>
+                          <a
+                            href="/src/pages/category.html?category=laptops&type=gaming"
+                            class="hover:text-brand-600"
+                            >لابتوبات جيمينج</a
+                          >
+                        </li>
+                      </ul>
+                    </div>
+                    <div>
+                      <h4 class="text-xs font-semibold text-slate-500 mb-2">
+                        المواصفات الشائعة
+                      </h4>
+                      <ul class="space-y-1 text-xs text-slate-700">
+                        <li>RAM 8GB / 16GB / 32GB</li>
+                        <li>SSD 256GB / 512GB / 1TB</li>
+                        <li>شاشات 14" / 15.6" / 17"</li>
+                      </ul>
+                    </div>
+                    <div>
+                      <h4 class="text-xs font-semibold text-slate-500 mb-2">
+                        معالجات
+                      </h4>
+                      <ul class="space-y-1 text-xs text-slate-700">
+                        <li>Intel Core i5 / i7 / i9</li>
+                        <li>AMD Ryzen 5 / 7</li>
+                      </ul>
+                    </div>
+                    <div
+                      class="rounded-2xl bg-slate-900 text-white p-4 flex flex-col justify-between"
+                    >
+                      <div class="text-xs mb-2 opacity-80">
+                        باقة عمل + جيمينج
+                      </div>
+                      <p class="text-sm font-semibold mb-1">
+                        وفر حتى 15٪ على حزم اللابتوبات مع الشاشات والإكسسوارات
+                      </p>
+                      <a
+                        href="/src/pages/category.html?category=laptops&tag=bundle"
+                        class="inline-flex items-center justify-center rounded-full bg-white text-slate-900 px-4 py-1.5 text-[11px] hover:bg-slate-100"
+                      >
+                        اكتشف الباقات
+                      </a>
+                    </div>
+                  </div>
+                </div>
+              </li>
+
+              <!-- Simple Links -->
               <li>
                 <a
-                  href="/src/pages/category.html"
-                  class="hover:text-brand-600"
-                  data-category="men"
-                  >رجال</a
+                  href="/src/pages/category.html?category=desktops"
+                  class="hover:text-brand-600 font-medium"
+                  >أجهزة مكتبية</a
                 >
               </li>
               <li>
                 <a
-                  href="/src/pages/category.html?type=women"
-                  class="hover:text-brand-600"
-                  data-category="women"
-                  >نساء</a
+                  href="/src/pages/category.html?category=tvs"
+                  class="hover:text-brand-600 font-medium"
+                  >شاشات وتلفزيونات</a
                 >
               </li>
               <li>
                 <a
-                  href="/src/pages/category.html?type=children"
-                  class="hover:text-brand-600"
-                  data-category="children"
-                  >أطفال</a
+                  href="/src/pages/category.html?category=audio"
+                  class="hover:text-brand-600 font-medium"
+                  >سماعات وصوتيات</a
                 >
               </li>
               <li>
                 <a
-                  href="/src/pages/category.html?type=sale"
-                  class="hover:text-brand-600"
-                  data-category="sale"
-                  >عروض</a
+                  href="/src/pages/category.html?category=gaming"
+                  class="hover:text-brand-600 font-medium"
+                  >أجهزة ألعاب</a
                 >
               </li>
               <li>
                 <a
-                  href="/src/pages/category.html?type=new"
-                  class="hover:text-brand-600"
-                  data-category="new"
-                  >جديد</a
+                  href="/src/pages/category.html?category=accessories"
+                  class="hover:text-brand-600 font-medium"
+                  >إكسسوارات</a
+                >
+              </li>
+              <li>
+                <a
+                  href="/src/pages/category.html?category=smarthome"
+                  class="hover:text-brand-600 font-medium"
+                  >أجهزة منزلية ذكية</a
                 >
               </li>
             </ul>
           </nav>
 
-          <!-- MOBILE NAV (toggle) -->
-          <!-- MOBILE NAV (toggle) -->
+          <!-- MOBILE NAV (panel) -->
           <div
             id="mobile-nav-panel"
-            class="md:hidden hidden absolute inset-x-0 top-full bg-white/95 backdrop-blur-sm border-t border-gray-100 shadow-lg rounded-b-2xl max-h-[80vh] overflow-y-auto"
+            class="md:hidden hidden absolute inset-x-0 top-full bg-white/95 backdrop-blur-sm border-t border-slate-100 shadow-lg rounded-b-2xl max-h-[80vh] overflow-y-auto"
           >
             <div class="container mx-auto px-3 py-2">
-              <nav class="text-sm text-gray-800">
-                <ul class="flex flex-col divide-y divide-gray-100">
+              <nav class="text-sm text-slate-800">
+                <ul class="flex flex-col divide-y divide-slate-100">
                   <li>
                     <a
-                      href="/src/pages/category.html?type=men"
-                      data-category="men"
-                      class="flex items-center justify-between py-3 px-2 text-base hover:text-brand-600 hover:bg-gray-50 transition"
+                      href="index.html"
+                      class="flex items-center justify-between py-3 px-2 text-base hover:text-brand-600 hover:bg-slate-50 transition"
                     >
-                      <span>رجال</span>
-                      <span class="text-xs opacity-60">تسوق الآن</span>
+                      <span>الرئيسية</span>
+                      <span class="text-xs opacity-60">متجر التقنية</span>
                     </a>
                   </li>
                   <li>
                     <a
-                      href="/src/pages/category.html?type=women"
-                      data-category="women"
-                      class="flex items-center justify-between py-3 px-2 text-base hover:text-brand-600 hover:bg-gray-50 transition"
+                      href="/src/pages/category.html?category=mobiles"
+                      class="flex items-center justify-between py-3 px-2 text-base hover:text-brand-600 hover:bg-slate-50 transition"
                     >
-                      <span>نساء</span>
-                      <span class="text-xs opacity-60">تسوق الآن</span>
+                      <span>جوالات</span>
+                      <span class="text-xs opacity-60">هواتف ذكية</span>
                     </a>
                   </li>
                   <li>
                     <a
-                      href="/src/pages/category.html?type=children"
-                      data-category="children"
-                      class="flex items-center justify-between py-3 px-2 text-base hover:text-brand-600 hover:bg-gray-50 transition"
+                      href="/src/pages/category.html?category=laptops"
+                      class="flex items-center justify-between py-3 px-2 text-base hover:text-brand-600 hover:bg-slate-50 transition"
                     >
-                      <span>أطفال</span>
-                      <span class="text-xs opacity-60">تسوق الآن</span>
+                      <span>لابتوبات</span>
+                      <span class="text-xs opacity-60">عمل وجيمينج</span>
                     </a>
                   </li>
                   <li>
                     <a
-                      href="/src/pages/category.html?type=sale"
-                      data-category="sale"
-                      class="flex items-center justify-between py-3 px-2 text-base hover:text-brand-600 hover:bg-gray-50 transition"
+                      href="/src/pages/category.html?category=tvs"
+                      class="flex items-center justify-between py-3 px-2 text-base hover:text-brand-600 hover:bg-slate-50 transition"
                     >
-                      <span>عروض</span>
-                      <span class="text-xs opacity-60">خصومات</span>
+                      <span>شاشات وتلفزيونات</span>
                     </a>
                   </li>
                   <li>
                     <a
-                      href="/src/pages/category.html?type=new"
-                      data-category="new"
-                      class="flex items-center justify-between py-3 px-2 text-base hover:text-brand-600 hover:bg-gray-50 transition"
+                      href="/src/pages/category.html?category=gaming"
+                      class="flex items-center justify-between py-3 px-2 text-base hover:text-brand-600 hover:bg-slate-50 transition"
                     >
-                      <span>جديد</span>
-                      <span class="text-xs opacity-60">وصل حديثًا</span>
+                      <span>أجهزة ألعاب</span>
+                      <span class="text-xs opacity-60">كونسول وإكسسوارات</span>
+                    </a>
+                  </li>
+                  <li>
+                    <a
+                      href="/src/pages/category.html?category=accessories"
+                      class="flex items-center justify-between py-3 px-2 text-base hover:text-brand-600 hover:bg-slate-50 transition"
+                    >
+                      <span>إكسسوارات</span>
+                      <span class="text-xs opacity-60">كفرات، شواحن...</span>
                     </a>
                   </li>
                   <li>
                     <a
                       href="/src/pages/about.html"
-                      class="flex items-center justify-between py-3 px-2 text-base hover:text-brand-600 hover:bg-gray-50 transition"
+                      class="flex items-center justify-between py-3 px-2 text-base hover:text-brand-600 hover:bg-slate-50 transition"
                     >
                       <span>من نحن</span>
                     </a>
@@ -321,7 +610,7 @@
                   <li>
                     <a
                       href="/src/pages/contact.html"
-                      class="flex items-center justify-between py-3 px-2 text-base hover:text-brand-600 hover:bg-gray-50 transition"
+                      class="flex items-center justify-between py-3 px-2 text-base hover:text-brand-600 hover:bg-slate-50 transition"
                     >
                       <span>تواصل معنا</span>
                     </a>
@@ -333,150 +622,305 @@
         </div>
       </header>
 
-      <!-- END HEADER -->
-
+      <!-- Toast container -->
       <div
         id="toast-container"
         class="fixed top-4 left-4 z-40 flex flex-col gap-2 max-w-xs"
       ></div>
 
+      <!-- MAIN -->
       <main class="flex-1">
-        <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-8 sm:py-12">
+        <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 py-8 sm:py-12">
+          <!-- Breadcrumb -->
           <nav
-            class="text-xs sm:text-sm text-gray-500 mb-6"
+            class="text-xs sm:text-sm text-slate-500 mb-4 sm:mb-6"
             aria-label="مسار الصفحة"
           >
             <ol class="flex flex-wrap items-center gap-1">
               <li>
-                <a href="index.html" class="hover:text-brand-800">الرئيسية</a>
+                <a href="index.html" class="hover:text-brand-700">الرئيسية</a>
               </li>
-              <li class="text-gray-400">/</li>
-              <li class="text-brand-800 font-medium">
+              <li class="text-slate-400">/</li>
+              <li class="text-brand-700 font-medium">
                 سياسة الاستبدال والاسترجاع
               </li>
             </ol>
           </nav>
 
-          <header class="mb-6 sm:mb-8">
-            <h1 class="text-2xl sm:text-3xl font-semibold mb-2">
-              سياسة الاستبدال والاسترجاع
-            </h1>
-            <p class="text-sm sm:text-base text-gray-500">
-              نهدف في متجر الأناقة إلى رضاك التام عن تجربتك، لذلك نوفر لك سياسة
-              استبدال واسترجاع واضحة ومرنة.
-            </p>
+          <!-- Page header / hero -->
+          <header
+            class="mb-6 sm:mb-8 flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between"
+          >
+            <div class="space-y-2">
+              <div
+                class="inline-flex items-center gap-2 px-2.5 py-1 rounded-full bg-brand-100 text-[11px] text-brand-700"
+              >
+                <span
+                  class="inline-flex items-center justify-center w-5 h-5 rounded-full bg-brand-500 text-white text-[11px]"
+                >
+                  ♻️
+                </span>
+                <span>استبدال واسترجاع مرن على أجهزتك الإلكترونية</span>
+              </div>
+
+              <h1 class="text-2xl sm:text-3xl font-semibold text-slate-900">
+                سياسة الاستبدال والاسترجاع
+              </h1>
+              <p
+                class="text-sm sm:text-base text-slate-500 max-w-xl leading-relaxed"
+              >
+                نسعى في متجر التقنية إلى رضاك التام عن تجربتك في شراء الجوالات،
+                اللابتوبات، والإلكترونيات الأخرى، لذلك نوفر سياسة استبدال
+                واسترجاع واضحة وعادلة تناسب نوعية المنتجات الإلكترونية.
+              </p>
+            </div>
+
+            <div
+              class="mt-2 sm:mt-0 text-xs sm:text-sm text-slate-500 flex flex-col items-start sm:items-end gap-1"
+            >
+              <div
+                class="inline-flex items-center gap-2 px-2.5 py-1 rounded-full bg-emerald-50 text-emerald-700 border border-emerald-100"
+              >
+                <span class="text-[13px]">🔒</span>
+                <span>ضمان على الأجهزة الأصلية حسب سياسة كل منتج</span>
+              </div>
+              <p class="text-[11px] sm:text-xs">
+                آخر تحديث:
+                <span class="font-medium text-slate-600">١ ديسمبر ٢٠٢٥</span>
+              </p>
+            </div>
           </header>
 
-          <section
-            class="bg-white rounded-2xl shadow-soft p-5 sm:p-6 space-y-5 text-sm sm:text-base leading-relaxed"
+          <!-- Content + side card -->
+          <div
+            class="grid gap-6 lg:grid-cols-[minmax(0,2fr)_minmax(260px,1fr)]"
           >
-            <div>
-              <h2 class="text-lg font-semibold mb-2">
-                أولاً: فترة الاستبدال والاسترجاع
-              </h2>
-              <ul class="list-disc pr-5 space-y-1 text-gray-700">
-                <li>
-                  يمكنك طلب الاستبدال أو الاسترجاع خلال ٧ أيام من تاريخ استلام
-                  الطلب.
-                </li>
-                <li>
-                  يجب أن يكون المنتج في حالته الأصلية وغير مستخدم ومع جميع
-                  الملصقات والتغليف.
-                </li>
-                <li>
-                  لا يمكن استرجاع أو استبدال المنتجات الداخلية (مثل الملابس
-                  الداخلية) حفاظاً على الصحة والسلامة.
-                </li>
-              </ul>
-            </div>
+            <!-- Main policy content -->
+            <section
+              class="bg-white rounded-2xl shadow-soft p-5 sm:p-6 space-y-6 text-sm sm:text-base leading-relaxed border border-slate-100"
+            >
+              <!-- Section 1 -->
+              <div class="space-y-2">
+                <h2 class="text-lg font-semibold text-slate-900">
+                  أولاً: فترة الاستبدال والاسترجاع
+                </h2>
+                <ul class="list-disc pr-5 space-y-1.5 text-slate-700">
+                  <li>
+                    يمكنك طلب الاستبدال أو الاسترجاع خلال
+                    <span class="font-medium">٧ أيام</span> من تاريخ استلام
+                    الطلب.
+                  </li>
+                  <li>
+                    يجب أن يكون المنتج في
+                    <span class="font-medium">حالة جديدة تماماً</span>، غير
+                    مستخدم، مع كامل التغليف الأصلي، الملصقات، الإكسسوارات،
+                    الكتيبات، وأرقام التسلسلات.
+                  </li>
+                  <li>
+                    لا يُقبل استرجاع أو استبدال المنتجات التي تم فتح
+                    <span class="font-medium">أختام الضمان</span> الخاصة بها أو
+                    العبوات الداخلية، إلا في حالة وجود عيب مصنعي واضح.
+                  </li>
+                  <li>
+                    بعض المنتجات (مثل السماعات، ملحقات العناية الشخصية
+                    الإلكترونية، أو البرامج/التراخيص الرقمية) قد لا تُستبدل ولا
+                    تُسترجع بعد فتح التغليف، حفاظاً على السلامة وسياسات الموردين.
+                  </li>
+                </ul>
+              </div>
 
-            <div>
-              <h2 class="text-lg font-semibold mb-2">
-                ثانياً: الحالات التي يحق فيها الاسترجاع
-              </h2>
-              <ul class="list-disc pr-5 space-y-1 text-gray-700">
-                <li>استلام منتج مختلف عن الطلب.</li>
-                <li>وجود عيب مصنعي واضح في المنتج.</li>
-                <li>تضرر المنتج أثناء الشحن.</li>
-              </ul>
-              <p class="text-gray-700 mt-2">
-                في هذه الحالات، يتحمل المتجر تكلفة الشحن كاملة لإعادة المنتج
-                وإرساله من جديد أو استرجاع المبلغ.
+              <hr class="border-dashed border-slate-100" />
+
+              <!-- Section 2 -->
+              <div class="space-y-2">
+                <h2 class="text-lg font-semibold text-slate-900">
+                  ثانياً: الحالات التي يحق فيها الاسترجاع أو الاستبدال
+                </h2>
+                <ul class="list-disc pr-5 space-y-1.5 text-slate-700">
+                  <li>استلام منتج مختلف تماماً عن المواصفات الموجودة في الموقع.</li>
+                  <li>وجود عيب مصنعي ظاهر في الجهاز أو عدم عمله عند التشغيل.</li>
+                  <li>تضرر المنتج بشكل واضح أثناء الشحن (كسر، خدوش كبيرة، ...).</li>
+                  <li>
+                    استلام منتج مستعمل أو معاد تغليفه بشكل غير مطابق للمنتج
+                    الجديد المتفق عليه.
+                  </li>
+                </ul>
+                <p class="text-slate-700 mt-2">
+                  في هذه الحالات، يتحمل المتجر كامل تكاليف الشحن (إرجاع المنتج
+                  إلينا، ثم إعادة شحن البديل لك أو استرجاع المبلغ).
+                </p>
+              </div>
+
+              <hr class="border-dashed border-slate-100" />
+
+              <!-- Section 3 -->
+              <div class="space-y-2">
+                <h2 class="text-lg font-semibold text-slate-900">
+                  ثالثاً: الحالات التي لا يحق فيها الاسترجاع أو الاستبدال
+                </h2>
+                <ul class="list-disc pr-5 space-y-1.5 text-slate-700">
+                  <li>
+                    استخدام الجهاز لفترة أدت إلى ظهور آثار استعمال واضحة
+                    (خدوش، كسر، تلف بسبب سوء الاستخدام).
+                  </li>
+                  <li>
+                    إزالة الملصقات الأصلية، أختام الضمان، أو العبث بأختام
+                    البراغي (خاصة بأجهزة الجوال واللابتوب).
+                  </li>
+                  <li>
+                    محاولة صيانة الجهاز في مراكز غير معتمدة أو تغيير أي قطع
+                    داخلية.
+                  </li>
+                  <li>
+                    انتهاء فترة الاسترجاع المحددة (بعد مرور أكثر من ٧ أيام من
+                    تاريخ الاستلام).
+                  </li>
+                  <li>
+                    البرامج، الألعاب، التراخيص الرقمية، والمنتجات القابلة
+                    للاستنساخ بعد فتحها أو تفعيلها.
+                  </li>
+                </ul>
+              </div>
+
+              <hr class="border-dashed border-slate-100" />
+
+              <!-- Section 4 -->
+              <div class="space-y-2">
+                <h2 class="text-lg font-semibold text-slate-900">
+                  رابعاً: المبالغ المستردة
+                </h2>
+                <ul class="list-disc pr-5 space-y-1.5 text-slate-700">
+                  <li>
+                    يتم استرجاع المبلغ إلى
+                    <span class="font-medium">نفس وسيلة الدفع</span> المستخدمة في
+                    الطلب كلما أمكن ذلك.
+                  </li>
+                  <li>
+                    قد يستغرق ظهور المبلغ في حسابك البنكي من
+                    <span class="font-medium">٧ إلى ١٤ يوم عمل</span> حسب سياسة
+                    البنك أو مزود خدمة الدفع.
+                  </li>
+                  <li>
+                    رسوم الشحن الأصلية لا تُسترد إلا في حال كان الخطأ من المتجر
+                    (منتج خاطئ، ناقص، تالف، أو غير مطابق للمواصفات).
+                  </li>
+                  <li>
+                    في حال تم الاسترجاع لأسباب شخصية (تغيير رأي، لون، أو موديل)
+                    مع سلامة المنتج، قد يتحمل العميل تكلفة الشحن ذهاباً وإياباً.
+                  </li>
+                </ul>
+              </div>
+
+              <hr class="border-dashed border-slate-100" />
+
+              <!-- Section 5 -->
+              <div class="space-y-2">
+                <h2 class="text-lg font-semibold text-slate-900">
+                  خامساً: طريقة طلب الاستبدال أو الاسترجاع
+                </h2>
+                <p class="text-slate-700 mb-2">
+                  يمكنك تقديم طلب الاستبدال أو الاسترجاع عبر صفحة
+                  <a
+                    href="/src/pages/contact.html"
+                    class="text-brand-700 hover:text-brand-600 underline underline-offset-2"
+                  >
+                    تواصل معنا
+                  </a>
+                  مع تزويدنا بالمعلومات التالية:
+                </p>
+                <ul class="list-disc pr-5 space-y-1.5 text-slate-700">
+                  <li>رقم الطلب.</li>
+                  <li>اسم المنتج ورقمه إن وجد.</li>
+                  <li>سبب الاستبدال أو الاسترجاع بالتفصيل.</li>
+                  <li>
+                    صور أو فيديو توضح المشكلة (في حال وجود عيب أو تلف في الجهاز).
+                  </li>
+                </ul>
+                <p class="text-slate-700 mt-2">
+                  بعد استلام طلبك، سيتواصل معك فريق خدمة العملاء لتأكيد
+                  الموافقة، ترتيب استلام الجهاز، أو توجيهك لأقرب فرع/شركة شحن
+                  معتمدة.
+                </p>
+              </div>
+
+              <p class="text-[11px] sm:text-xs text-slate-400 pt-2">
+                تحتفظ إدارة متجر التقنية بحق تعديل سياسة الاستبدال والاسترجاع في
+                أي وقت، وسيتم توضيح أي تحديثات في هذه الصفحة.
               </p>
-            </div>
+            </section>
 
-            <div>
-              <h2 class="text-lg font-semibold mb-2">
-                ثالثاً: الحالات التي لا يحق فيها الاسترجاع
-              </h2>
-              <ul class="list-disc pr-5 space-y-1 text-gray-700">
-                <li>استخدام المنتج أو غسله أو إزالة الملصقات الأصلية.</li>
-                <li>تلف المنتج بسبب سوء الاستخدام.</li>
-                <li>انتهاء فترة الاسترجاع المحددة.</li>
-              </ul>
-            </div>
-
-            <div>
-              <h2 class="text-lg font-semibold mb-2">
-                رابعاً: المبالغ المستردة
-              </h2>
-              <ul class="list-disc pr-5 space-y-1 text-gray-700">
-                <li>
-                  يتم استرجاع المبلغ إلى نفس وسيلة الدفع المستخدمة في الطلب.
-                </li>
-                <li>
-                  قد يستغرق ظهور المبلغ في حسابك البنكي من ٧ إلى ١٤ يوم عمل حسب
-                  البنك.
-                </li>
-                <li>
-                  رسوم الشحن الأصلية لا تُسترد إلا في حال كان الخطأ من المتجر.
-                </li>
-              </ul>
-            </div>
-
-            <div>
-              <h2 class="text-lg font-semibold mb-2">
-                خامساً: طريقة طلب الاستبدال أو الاسترجاع
-              </h2>
-              <p class="text-gray-700 mb-2">
-                يمكنك تقديم طلب الاستبدال أو الاسترجاع عبر صفحة
-                <a
-                  href="contact.html"
-                  class="text-brand-800 underline underline-offset-2"
+            <!-- Side info card -->
+            <aside
+              class="space-y-4 lg:space-y-5 lg:sticky lg:top-24 h-max"
+              aria-label="ملخص سياسة الاستبدال والاسترجاع"
+            >
+              <div
+                class="bg-slate-900 text-slate-50 rounded-2xl p-4 sm:p-5 shadow-soft flex flex-col gap-3"
+              >
+                <p class="text-sm font-semibold flex items-center gap-2">
+                  <span
+                    class="inline-flex items-center justify-center w-7 h-7 rounded-xl bg-slate-800"
+                    >📦</span
+                  >
+                  ملخص سريع لسياسة الاستبدال والاسترجاع
+                </p>
+                <ul
+                  class="text-xs sm:text-[13px] space-y-1.5 text-slate-100/90"
                 >
-                  تواصل معنا
+                  <li>• يمكنك الاسترجاع أو الاستبدال خلال ٧ أيام.</li>
+                  <li>• يجب أن يكون الجهاز بحالته الأصلية وغير مستخدم.</li>
+                  <li>• المتجر يتحمل الشحن إذا كان الخطأ من جانبه.</li>
+                  <li>• لا استرجاع للبرامج/التراخيص بعد التفعيل.</li>
+                  <li>• المبلغ يُعاد لنفس وسيلة الدفع كلما أمكن.</li>
+                </ul>
+                <a
+                  href="/src/pages/faq.html"
+                  class="mt-2 inline-flex items-center justify-center gap-1.5 text-[12px] px-3 py-1.5 rounded-full bg-slate-50 text-slate-900 hover:bg-slate-100 transition"
+                >
+                  مزيد من الأسئلة الشائعة
                 </a>
-                مع ذكر رقم الطلب وسبب الاستبدال أو الاسترجاع، وسيتواصل معك فريق
-                خدمة العملاء لتأكيد الطلب.
-              </p>
-            </div>
+              </div>
 
-            <p class="text-xs text-gray-500">
-              آخر تحديث لسياسة الاستبدال والاسترجاع: ١ ديسمبر ٢٠٢٥م. تحتفظ إدارة
-              متجر الأناقة بحق تعديل هذه السياسة في أي وقت، وسيتم توضيح ذلك في
-              هذه الصفحة.
-            </p>
-          </section>
+              <div
+                class="bg-white rounded-2xl border border-dashed border-brand-200 p-4 sm:p-4.5 text-xs sm:text-sm text-slate-700 space-y-2"
+              >
+                <p class="font-semibold text-slate-900">
+                  نصائح قبل فتح علبة الجهاز:
+                </p>
+                <ul class="list-disc pr-5 space-y-1.5">
+                  <li>تأكد أن الموديل، اللون، وسعة التخزين هي المطلوبة.</li>
+                  <li>
+                    صوّر العلبة قبل الفتح في حال لاحظت أي ضرر في التغليف الخارجي.
+                  </li>
+                  <li>
+                    احتفظ بالفاتورة والملحقات الأصلية كاملة حتى انتهاء فترة
+                    الضمان.
+                  </li>
+                </ul>
+              </div>
+            </aside>
+          </div>
         </div>
       </main>
 
       <!-- FOOTER -->
-      <footer class="border-t border-gray-200 bg-white mt-10">
+      <footer class="border-t border-slate-200 bg-white mt-10">
         <div class="container mx-auto px-4 py-10">
           <div class="grid md:grid-cols-4 gap-8 text-sm">
             <div>
-              <h4 class="font-semibold mb-3">متجر الأناقة</h4>
-              <p class="text-xs text-gray-600 mb-3">
-                متجر إلكتروني للملابس يقدم أحدث صيحات الموضة بجودة عالية وخدمة
-                مميزة لعملائنا في العالم العربي.
+              <h4 class="font-semibold mb-3">متجر التقنية</h4>
+              <p class="text-xs text-slate-600 mb-3">
+                متجر إلكتروني متخصص في بيع الأجهزة الإلكترونية، الجوالات،
+                اللابتوبات، الشاشات، وأجهزة الألعاب مع ضمان معتمد وخدمة ما بعد
+                البيع في العالم العربي.
               </p>
-              <p class="text-xs text-gray-500">
+              <p class="text-xs text-slate-500">
                 ساعات العمل: من الأحد إلى الخميس، 9 صباحاً - 6 مساءً.
               </p>
             </div>
             <div>
               <h4 class="font-semibold mb-3">روابط مهمة</h4>
-              <ul class="space-y-2 text-xs text-gray-600">
+              <ul class="space-y-2 text-xs text-slate-600">
                 <li>
                   <a href="/src/pages/about.html" class="hover:text-brand-600"
                     >من نحن</a
@@ -510,7 +954,7 @@
             </div>
             <div>
               <h4 class="font-semibold mb-3">حسابي</h4>
-              <ul class="space-y-2 text-xs text-gray-600">
+              <ul class="space-y-2 text-xs text-slate-600">
                 <li>
                   <a href="/src/pages/account.html" class="hover:text-brand-600"
                     >لوحة التحكم</a
@@ -531,7 +975,7 @@
               </ul>
             </div>
             <div>
-              <h4 class="font-semibold mb-3">تابعنا</h4>
+              <h4 class="font-semibold mb-3">تابعنا وطرق الدفع</h4>
               <div class="flex gap-4 text-lg mb-3">
                 <!-- Instagram -->
                 <a href="#" class="hover:text-brand-600" aria-label="Instagram">
@@ -580,28 +1024,57 @@
                 </a>
               </div>
 
-              <p class="text-xs text-gray-600 mb-2">
-                اشترك في النشرة البريدية للحصول على أحدث العروض.
+              <p class="text-xs text-slate-600 mb-2">
+                اشترك في النشرة البريدية للحصول على أحدث العروض والتخفيضات على
+                الإلكترونيات.
               </p>
               <form class="flex gap-2">
                 <input
                   type="email"
-                  class="flex-1 rounded-full border border-gray-200 px-3 py-1.5 text-xs focus:outline-none focus:border-brand-500"
+                  class="flex-1 rounded-full border border-slate-200 px-3 py-1.5 text-xs focus:outline-none focus:border-brand-500"
                   placeholder="أدخل بريدك الإلكتروني"
                 />
                 <button
                   type="submit"
-                  class="rounded-full bg-gray-900 text-white text-xs px-4 py-1.5 hover:bg-gray-800"
+                  class="rounded-full bg-slate-900 text-white text-xs px-4 py-1.5 hover:bg-slate-800"
                 >
                   اشتراك
                 </button>
               </form>
+
+              <div class="mt-4">
+                <p class="text-xs mb-2 text-slate-600">طرق الدفع المتاحة:</p>
+                <div class="flex flex-wrap gap-2 text-[11px] text-slate-800">
+                  <span
+                    class="px-3 py-1 rounded-full bg-slate-100 border border-slate-200"
+                    >مدى</span
+                  >
+                  <span
+                    class="px-3 py-1 rounded-full bg-slate-100 border border-slate-200"
+                    >VISA</span
+                  >
+                  <span
+                    class="px-3 py-1 rounded-full bg-slate-100 border border-slate-200"
+                    >Mastercard</span
+                  >
+                  <span
+                    class="px-3 py-1 rounded-full bg-slate-100 border border-slate-200"
+                    >Apple Pay</span
+                  >
+                  <span
+                    class="px-3 py-1 rounded-full bg-slate-100 border border-slate-200"
+                    >الدفع عند الاستلام</span
+                  >
+                </div>
+              </div>
             </div>
           </div>
           <div
-            class="mt-8 border-t border-gray-100 pt-4 flex flex-col md:flex-row items-center justify-between text-[11px] text-gray-500 gap-2"
+            class="mt-8 border-t border-slate-100 pt-4 flex flex-col md:flex-row items-center justify-between text-[11px] text-slate-500 gap-2 px-4"
           >
-            <p>© <span id="year"></span> متجر الأناقة. جميع الحقوق محفوظة.</p>
+            <p>
+              © <span id="year"></span> متجر التقنية. جميع الحقوق محفوظة.
+            </p>
             <p>تم تطوير الموقع من قبل م/ايمن عجلان.</p>
           </div>
         </div>

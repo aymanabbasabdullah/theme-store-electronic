@@ -17,12 +17,6 @@
   </head>
   <body class="font-sans bg-brand-50 text-slate-900 text-right">
     <!-- Toast -->
-    <div
-      id="toast"
-      class="fixed top-4 right-4 z-50 hidden rounded-xl bg-slate-900 text-white px-4 py-3 text-sm shadow-lg animate-fadeIn"
-    >
-      <span id="toast-message">تمت الإضافة إلى السلة</span>
-    </div>
 
     <div class="min-h-screen flex flex-col">
       <!-- HEADER -->
@@ -504,8 +498,9 @@
                 <a
                   href="/src/pages/category.html?category=desktops"
                   class="hover:text-brand-600 font-medium"
-                  >أجهزة مكتبية</a
                 >
+                  المنتجات الإلكترونية
+                </a>
               </li>
               <li>
                 <a
@@ -1100,6 +1095,7 @@
           </div>
         </div>
       </footer>
+      <div id="toast-container" class="fixed top-32 left-4 z-[999]"></div>
     </div>
 
     <!-- JS -->
@@ -1107,7 +1103,7 @@
     <script src="/src/assets/js/cart.js"></script>
     <script src="/src/assets/js/wishlist.js"></script>
     <script src="/src/assets/js/filters.js"></script>
-    <script src="/src/assets/js/category-data.js"></script>
+    <!-- <script src="/src/assets/js/category-data.js"></script> -->
 
     <!-- سكربت ديناميكية العناوين حسب ?category -->
     <script>
