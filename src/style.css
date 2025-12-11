@@ -155,3 +155,57 @@ body {
 .animate-pulse-soft {
   animation: pulse-soft 1.8s ease-in-out infinite;
 }
+
+
+
+/* Leaflet container شوية ضبط على هوية المتجر */
+#location-map.leaflet-container {
+  font-family: "Cairo", system-ui, sans-serif;
+  box-shadow: 0 10px 30px rgba(15, 23, 42, 0.12);
+}
+
+/* ماركر مخصص بألوان البراند (Drop Pin) */
+.map-pin-outer {
+  position: relative;
+  width: 30px;
+  height: 30px;
+  background: linear-gradient(135deg, #3b82f6, #2563eb); /* brand-500 -> brand-600 */
+  border-radius: 50% 50% 50% 0;
+  transform: rotate(-45deg);
+  border: 3px solid #e4ecff; /* brand-100 */
+  box-shadow: 0 10px 22px rgba(37, 99, 235, 0.45);
+}
+
+.map-pin-inner {
+  position: absolute;
+  bottom:-8px;
+  left: -8px;
+  width: 10px;
+  height: 10px;
+  background: #f9fafb;
+  border-radius: 999px;
+   
+}
+
+/* نبضة خفيفة حول الماركر */
+.map-pin-pulse {
+  position: absolute;
+  inset: 50%;
+  width: 38px;
+  height: 38px;
+  border-radius: 999px;
+  transform: translate(-50%, -50%);
+  background: rgba(59, 130, 246, 0.18); /* brand-500 */
+  animation: mapPulse 1.8s ease-out infinite;
+}
+
+@keyframes mapPulse {
+  0% {
+    transform: translate(-50%, -50%) scale(0.5);
+    opacity: 0.8;
+  }
+  100% {
+    transform: translate(-50%, -50%) scale(1.4);
+    opacity: 0;
+  }
+}

@@ -2,7 +2,7 @@
 <html lang="ar" dir="rtl">
   <head>
     <meta charset="UTF-8" />
-    <title>إتمام الشراء | متجر الأناقة</title>
+    <title>إتمام الشراء | متجر التقنية</title>
     <meta name="viewport" content="width=device-width, initial-scale=1" />
 
     <!-- Google Fonts (Arabic friendly) -->
@@ -13,6 +13,13 @@
       rel="stylesheet"
     />
 
+    <!-- Leaflet Maps -->
+    <link
+      rel="stylesheet"
+      href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"
+    />
+    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+
     <!-- Tailwind / main bundle -->
     <script type="module" src="/src/main.ts"></script>
   </head>
@@ -22,67 +29,97 @@
     <div class="min-h-screen flex flex-col">
       <!-- HEADER - Mega Menu -->
       <header
-        class="sticky top-0 z-50 border-b border-slate-200 bg-white/90 backdrop-blur"
+        class="sticky top-0 z-50 backdrop-blur-xl bg-white/80 border-b border-slate-200 shadow-[0_4px_20px_-5px_rgba(0,0,0,0.05)]"
       >
-        <div class="container mx-auto px-4 py-2 sm:py-3">
-          <!-- Top bar (اختياري) -->
+        <div class="container mx-auto px-4">
+          <!-- Top bar -->
           <div
-            class="hidden sm:flex items-center justify-between py-2 text-xs text-slate-500"
+            class="hidden sm:flex items-center justify-between py-2 text-[11px] text-slate-500"
           >
-            <span> دفع آمن وشحن سريع داخل اليمن </span>
+            <span class="flex items-center gap-1">
+              <span class="text-brand-600 text-base">⚡</span>
+              شحن سريع ودفع آمن داخل اليمن
+            </span>
+
             <a
               href="/src/pages/contact.html"
-              class="hover:text-brand-700 transition"
+              class="hover:text-brand-700 transition font-medium"
             >
               تحتاج مساعدة؟
             </a>
           </div>
 
           <!-- Main row -->
-          <div class="flex items-center justify-between py-3 gap-4">
+          <div class="flex items-center justify-between py-3 sm:py-4">
             <!-- Logo -->
-            <a
-              href="/index.html"
-              class="flex items-center gap-2 text-xl sm:text-2xl font-bold tracking-wide text-slate-900"
-            >
-              <span
-                class="flex items-center justify-center w-9 h-9 rounded-2xl bg-brand-500 text-white text-lg shadow-md"
-                >⚡</span
+            <a href="/index.html" class="flex items-center gap-3 group">
+              <div
+                class="w-10 h-10 rounded-2xl flex items-center justify-center bg-gradient-to-tr from-brand-600 to-brand-500 text-white text-xl font-bold shadow-md group-hover:scale-105 transition"
               >
-              <span>متجر التقنية</span>
+                ⚡
+              </div>
+
+              <div class="flex flex-col leading-tight">
+                <span
+                  class="text-lg sm:text-xl font-semibold text-slate-900 group-hover:text-brand-700 transition"
+                >
+                  متجر التقنية
+                </span>
+                <span class="text-[10px] text-slate-400 hidden sm:block">
+                  أفضل الأجهزة الإلكترونية
+                </span>
+              </div>
             </a>
 
-            <!-- Right side: خطوات / سلة صغيرة -->
-            <div class="flex items-center gap-3 text-sm">
+            <!-- Right side -->
+            <div class="flex items-center gap-3">
+              <!-- Back to cart -->
               <a
                 href="/src/pages/cart.html"
-                class="hidden sm:inline-flex items-center gap-1 text-slate-600 hover:text-brand-600"
-              >
-                <svg
-                  xmlns="http://www.w3.org/2000/svg"
-                  class="w-4 h-4"
-                  fill="none"
-                  viewBox="0 0 24 24"
-                  stroke="currentColor"
-                >
-                  <path
-                    stroke-linecap="round"
-                    stroke-linejoin="round"
-                    stroke-width="1.5"
-                    d="M10.25 6.75L4.75 12l5.5 5.25M19.25 12H5"
-                  />
-                </svg>
-                العودة إلى السلة
-              </a>
-
-              <div
-                class="inline-flex items-center gap-1 rounded-full bg-emerald-50 text-emerald-700 px-2.5 py-1 text-[11px]"
+                class="hidden group sm:inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full border border-slate-200 bg-white hover:bg-slate-50 text-xs text-slate-600 hover:text-brand-700 transition"
               >
                 <span
-                  class="w-4 h-4 rounded-full bg-emerald-500 text-white flex items-center justify-center text-[9px]"
-                  >✓</span
+                  class="w-7 h-7 rounded-full bg-slate-50 flex items-center justify-center shadow-sm"
                 >
-                <span>دفع آمن</span>
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    viewBox="0 0 16 16"
+                    fill="currentColor"
+                    class="w-4 h-4 group-hover:text-brand-500 transition-all duration-200"
+                  >
+                    <path
+                      fill-rule="evenodd"
+                      d="M1 8a7 7 0 1 0 14 0A7 7 0 0 0 1 8Zm10.25.75a.75.75 0 0 0 0-1.5H6.56l1.22-1.22a.75.75 0 1 0-1.06-1.06l-2.5 2.5a.75.75 0 0 0 0 1.06l2.5 2.5A.75.75 0 0 0 6.56 8.75h4.69Z"
+                      clip-rule="evenodd"
+                    />
+                  </svg>
+                </span>
+
+                <span>العودة للسلة</span>
+              </a>
+
+              <!-- Safe Payment -->
+              <div
+                class="inline-flex items-center gap-2 rounded-full bg-emerald-50 border border-emerald-100 text-emerald-700 px-3.5 py-1.5 text-xs shadow-sm"
+              >
+                <span
+                  class="w-7 h-7 rounded-full bg-slate-50 flex items-center justify-center shadow-sm"
+                >
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    viewBox="0 0 24 24"
+                    fill="currentColor"
+                    class="h-4 w-4"
+                  >
+                    <path
+                      fill-rule="evenodd"
+                      d="M2.25 12c0-5.385 4.365-9.75 9.75-9.75s9.75 4.365 9.75 9.75-4.365 9.75-9.75 9.75S2.25 17.385 2.25 12Zm13.36-1.814a.75.75 0 1 0-1.22-.872l-3.236 4.53L9.53 12.22a.75.75 0 0 0-1.06 1.06l2.25 2.25a.75.75 0 0 0 1.14-.094l3.75-5.25Z"
+                      clip-rule="evenodd"
+                    />
+                  </svg>
+                </span>
+
+                <span class="font-medium">دفع آمن</span>
               </div>
             </div>
           </div>
@@ -283,11 +320,12 @@
                   </div>
                 </div>
 
-                <!-- Block 2: Shipping address -->
+                <!-- Block 2: Shipping address + Map -->
                 <div
-                  class="bg-white rounded-2xl shadow-soft p-5 sm:p-6 border border-slate-100"
+                  class="bg-white rounded-2xl shadow-soft p-5 sm:p-6 border border-slate-100 space-y-5"
                 >
-                  <div class="flex items-start justify-between gap-3 mb-4">
+                  <!-- العنوان -->
+                  <div class="flex items-start justify-between gap-3">
                     <div>
                       <div class="flex items-center gap-2 mb-1.5">
                         <span
@@ -304,6 +342,7 @@
                     </div>
                   </div>
 
+                  <!-- نموذج العنوان -->
                   <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
                     <!-- Country -->
                     <div>
@@ -394,6 +433,70 @@
                         حفظ هذا العنوان للاستخدام لاحقاً
                       </label>
                     </div>
+                  </div>
+
+                  <!-- 🔥 تحديد الموقع على الخريطة -->
+                  <div
+                    class="mt-4 rounded-2xl border border-brand-100 bg-brand-50/40 p-4 space-y-3"
+                  >
+                    <div
+                      class="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-3"
+                    >
+                      <div class="space-y-1">
+                        <p class="text-sm font-medium text-slate-800">
+                          حدد موقعك على الخريطة (اختياري ولكن يساعد مندوب
+                          التوصيل)
+                        </p>
+                        <p class="text-[11px] text-slate-500">
+                          يمكنك سحب العلامة الزرقاء لتحديد موقعك، أو استخدام زر
+                          "موقعي الحالي".
+                        </p>
+                      </div>
+
+                      <button
+                        type="button"
+                        id="detect-location-btn"
+                        class="inline-flex items-center gap-1 rounded-full bg-gradient-to-l from-brand-600 to-brand-500 text-white text-[11px] px-3 py-1.5 hover:from-brand-500 hover:to-brand-400 shadow-sm transition"
+                      >
+                        <span>📍</span>
+                        <span>استخدم موقعي الحالي</span>
+                      </button>
+                    </div>
+
+                    <!-- حالة / نتيجة تحديد الموقع -->
+                    <p
+                      id="location-status"
+                      class="text-[11px] text-slate-600 bg-white/70 rounded-2xl px-3 py-2 border border-slate-100"
+                    >
+                      لم يتم اختيار موقع حتى الآن. يمكنك الضغط على الخريطة أو
+                      استخدام "موقعي الحالي".
+                    </p>
+
+                    <!-- رابط معاينة في Google Maps -->
+                    <a
+                      id="location-preview-link"
+                      href="#"
+                      target="_blank"
+                      rel="noopener"
+                      class="hidden text-[11px] items-center gap-1 text-brand-700 hover:text-brand-800"
+                    >
+                      افتح موقعي في Google Maps ↗
+                    </a>
+
+                    <!-- الخريطة -->
+                    <div
+                      id="location-map"
+                      class="mt-2 h-[340px] z-10 sm:h-[380px] lg:h-[420px] w-full rounded-2xl overflow-hidden border border-slate-200 bg-slate-100"
+                    ></div>
+
+                    <!-- حقول مخفية للإحداثيات -->
+                    <input type="hidden" name="latitude" id="latitude" />
+                    <input type="hidden" name="longitude" id="longitude" />
+
+                    <p class="text-[10px] text-slate-400">
+                      ⚠️ ملاحظة: تحديد الموقع تقريبي حسب GPS والإنترنت، لذلك
+                      يُفضّل كتابة وصف واضح للعنوان في حقل الشارع أو الملاحظات.
+                    </p>
                   </div>
                 </div>
 
@@ -711,7 +814,7 @@
                         id="wallet-from-phone"
                         name="walletFromPhone"
                         class="w-full rounded-2xl border border-slate-200 bg-slate-50 py-2.5 px-4 text-sm outline-none focus:bg-white focus:ring-2 focus:ring-brand-600/80 focus:border-brand-600/80 text-right placeholder:text-right"
-                        placeholder="مثال: 0771234567"
+                        placeholder="مثال:  770807260"
                       />
                     </div>
 
@@ -1164,5 +1267,158 @@
     <script src="/src/assets/js/main.js"></script>
     <script src="/src/assets/js/cart.js"></script>
     <script src="/src/assets/js/checkout.js"></script>
+    <!-- Leaflet JS -->
+    <script
+      src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"
+      integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo="
+      crossorigin=""
+    ></script>
+    <script>
+      document.addEventListener("DOMContentLoaded", function () {
+        const mapContainer = document.getElementById("location-map");
+        if (!mapContainer) return;
+
+        const statusEl = document.getElementById("location-status");
+        const detectBtn = document.getElementById("detect-location-btn");
+        const previewLink = document.getElementById("location-preview-link");
+        const latInput = document.getElementById("latitude");
+        const lngInput = document.getElementById("longitude");
+
+        // ✅ إحداثيات افتراضية (مثلاً وسط صنعاء) - عدّلها لو حاب
+        const defaultLat = 15.3694;
+        const defaultLng = 44.191;
+
+        // إنشاء الخريطة
+        const map = L.map("location-map", {
+          center: [defaultLat, defaultLng],
+          zoom: 13,
+          zoomControl: false,
+        });
+
+        // إضافة تحكم الزوم في مكان أنسب (أسفل يسار مثلاً)
+        L.control
+          .zoom({
+            position: "bottomleft",
+          })
+          .addTo(map);
+
+        L.tileLayer(
+          "https://tiles.stadiamaps.com/tiles/alidade_smooth/{z}/{x}/{y}.png",
+          {
+            maxZoom: 20,
+            detectRetina: true,
+          }
+        ).addTo(map);
+
+        setTimeout(() => map.invalidateSize(), 300);
+
+        // ✅ Icon مخصص بألوان الهوية
+        const brandPinIcon = L.divIcon({
+          className: "",
+          iconSize: [38, 38],
+          iconAnchor: [19, 28],
+          html: `
+                    <div style="position: relative;">
+                      <div class="map-pin-pulse"></div>
+                      <div class="map-pin-outer">
+                        <div class="map-pin-inner"></div>
+                      </div>
+                    </div>
+                  `,
+        });
+
+        // إنشاء ماركر قابل للسحب
+        let marker = L.marker([defaultLat, defaultLng], {
+          draggable: true,
+          icon: brandPinIcon,
+        }).addTo(map);
+
+        // تحديث الحقول والنص والرابط
+        function updateLocation(lat, lng) {
+          if (latInput) latInput.value = lat.toFixed(6);
+          if (lngInput) lngInput.value = lng.toFixed(6);
+
+          if (statusEl) {
+            statusEl.textContent = `تم اختيار موقع تقريباً عند الإحداثيات: (${lat.toFixed(
+              5
+            )} ، ${lng.toFixed(5)})`;
+            statusEl.classList.remove("text-slate-600");
+            statusEl.classList.add("text-brand-700");
+          }
+
+          if (previewLink) {
+            previewLink.href = `https://www.google.com/maps?q=${lat},${lng}`;
+            previewLink.classList.remove("hidden");
+          }
+        }
+
+        // أول تحديث بالقيم الافتراضية
+        updateLocation(defaultLat, defaultLng);
+
+        // عند سحب الماركر
+        marker.on("moveend", function (e) {
+          const pos = e.target.getLatLng();
+          updateLocation(pos.lat, pos.lng);
+        });
+
+        // زر "استخدم موقعي الحالي"
+        if (detectBtn && navigator.geolocation) {
+          detectBtn.addEventListener("click", function () {
+            detectBtn.disabled = true;
+            detectBtn.classList.add("opacity-70");
+            if (statusEl) {
+              statusEl.textContent = "جاري تحديد موقعك التقريبي...";
+              statusEl.classList.remove("text-brand-700");
+              statusEl.classList.add("text-slate-600");
+            }
+
+            navigator.geolocation.getCurrentPosition(
+              function (pos) {
+                const { latitude, longitude } = pos.coords;
+                map.setView([latitude, longitude], 15);
+                marker.setLatLng([latitude, longitude]);
+                updateLocation(latitude, longitude);
+                detectBtn.disabled = false;
+                detectBtn.classList.remove("opacity-70");
+
+                if (window.showToast) {
+                  window.showToast(
+                    "تم تحديد موقعك التقريبي على الخريطة ✅",
+                    "success"
+                  );
+                }
+              },
+              function () {
+                detectBtn.disabled = false;
+                detectBtn.classList.remove("opacity-70");
+                if (statusEl) {
+                  statusEl.textContent =
+                    "تعذر تحديد الموقع تلقائياً، يمكنك سحب العلامة أو الضغط على الخريطة.";
+                  statusEl.classList.remove("text-brand-700");
+                  statusEl.classList.add("text-red-600");
+                }
+                if (window.showToast) {
+                  window.showToast(
+                    "تعذر الوصول إلى موقعك. تأكد من تفعيل GPS/الموقع.",
+                    "error"
+                  );
+                }
+              },
+              {
+                enableHighAccuracy: true,
+                timeout: 8000,
+              }
+            );
+          });
+        }
+
+        // السماح للمستخدم يضغط على الخريطة لتغيير الموقع
+        map.on("click", function (e) {
+          const { lat, lng } = e.latlng;
+          marker.setLatLng([lat, lng]);
+          updateLocation(lat, lng);
+        });
+      });
+    </script>
   </body>
 </html>

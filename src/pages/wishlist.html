@@ -25,33 +25,57 @@
 
     <div class="min-h-screen flex flex-col">
       <!-- HEADER - Mega Menu -->
-      <header
-        class="sticky top-0 z-50 border-b border-slate-200 bg-white/90 backdrop-blur"
+       <header
+        class="sticky top-0 z-50 border-b border-slate-200 bg-white/80 backdrop-blur-xl shadow-[0_8px_30px_rgba(15,23,42,0.06)]"
       >
-        <div class="container mx-auto px-4 py-2 sm:py-3 relative">
+        <div class="container mx-auto px-4">
           <!-- Top bar -->
           <div
-            class="hidden sm:flex items-center justify-between py-2 text-xs text-slate-500"
+            class="hidden sm:flex items-center justify-between py-1.5 text-[11px] text-slate-500"
           >
-            <span>
-              شحن سريع داخل صنعاء وباقي المحافظات للطلبات فوق
-              <span class="font-semibold text-brand-600">50,000 ريال يمني</span>
-            </span>
+            <div class="inline-flex items-center gap-2">
+              <span
+                class="inline-flex items-center gap-1 rounded-full bg-slate-100 px-2.5 py-1"
+              >
+                <span class="w-1.5 h-1.5 rounded-full bg-emerald-500"></span>
+                <span>شحن سريع داخل صنعاء وباقي المحافظات</span>
+              </span>
+              <span class="hidden md:inline">
+                للطلبات فوق
+                <span class="font-semibold text-brand-600">
+                  50,000 ريال يمني
+                </span>
+              </span>
+            </div>
+
             <a
               href="/src/pages/login.html"
-              class="hover:text-brand-700 transition"
+              class="inline-flex items-center gap-1 hover:text-brand-700 transition"
             >
-              تسجيل الدخول / إنشاء حساب
+              <svg
+                class="w-3.5 h-3.5"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="1.7"
+                viewBox="0 0 24 24"
+              >
+                <path
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  d="M15.75 6A3.75 3.75 0 1 1 8.25 6a3.75 3.75 0 0 1 7.5 0Zm-9.204 9.443A6.75 6.75 0 0 1 18 18.75a.75.75 0 0 1-.75.75h-10.5A.75.75 0 0 1 6 18.75c0-1.54.526-2.959 1.546-4.057Z"
+                />
+              </svg>
+              <span>تسجيل الدخول / إنشاء حساب</span>
             </a>
           </div>
 
-          <!-- Main header -->
-          <div class="flex items-center justify-between py-3 gap-4">
+          <!-- Main header row -->
+          <div class="flex items-center justify-between gap-3 py-3">
             <!-- Mobile menu button -->
             <button
               id="mobile-menu-toggle"
               type="button"
-              class="md:hidden inline-flex items-center justify-center rounded-xl border border-slate-200 p-2 bg-white"
+              class="md:hidden inline-flex items-center justify-center rounded-xl border border-slate-200 p-2 bg-white shadow-sm"
               aria-label="فتح قائمة التنقل"
               aria-expanded="false"
               aria-controls="mobile-nav-panel"
@@ -60,7 +84,7 @@
                 xmlns="http://www.w3.org/2000/svg"
                 fill="none"
                 viewBox="0 0 24 24"
-                stroke-width="1.5"
+                stroke-width="1.7"
                 stroke="currentColor"
                 class="size-6 text-slate-800"
               >
@@ -78,51 +102,67 @@
               class="flex items-center gap-2 text-xl sm:text-2xl font-bold tracking-wide text-slate-900"
             >
               <span
-                class="flex items-center justify-center w-9 h-9 rounded-2xl bg-brand-500 text-white text-lg shadow-md"
-                >⚡</span
+                class="flex items-center justify-center w-9 h-9 rounded-2xl bg-gradient-to-l from-brand-600 to-brand-500 text-white text-lg shadow-md shadow-brand-500/40"
               >
-              <span>متجر التقنية</span>
+                ⚡
+              </span>
+              <span class="leading-tight">
+                <span class="block">متجر التقنية</span>
+                <span
+                  class="block text-[11px] font-normal text-slate-400 hidden sm:block"
+                >
+                  إلكترونيات، جوالات، لابتوبات وأكثر
+                </span>
+              </span>
             </a>
 
             <!-- Search (desktop) -->
             <form class="hidden md:flex flex-1 max-w-xl mx-4">
               <div
-                class="flex flex-1 items-center rounded-full bg-slate-100 px-4 py-2 gap-2 border border-slate-200"
+                class="flex flex-1 items-center rounded-full bg-slate-50 px-3.5 py-1.5 gap-2 border border-slate-200/80 shadow-inner shadow-slate-100"
               >
                 <input
                   type="text"
                   class="flex-1 bg-transparent text-sm focus:outline-none text-right placeholder:text-slate-400"
-                  placeholder="ابحث عن جوال، لابتوب، أو منتج إلكتروني..."
+                  placeholder="ابحث عن جوال، لابتوب، شاشة، سماعة..."
                 />
-                <span
-                  class="text-xs text-slate-500 flex items-center gap-1 cursor-pointer"
-                >
-                  <svg
-                    xmlns="http://www.w3.org/2000/svg"
-                    fill="none"
-                    viewBox="0 0 24 24"
-                    stroke-width="1.5"
-                    stroke="currentColor"
-                    class="size-4"
+                <div class="flex items-center gap-2">
+                  <span
+                    class="hidden lg:inline text-[11px] text-slate-400 border border-slate-200 rounded-full px-2 py-0.5"
                   >
-                    <path
-                      stroke-linecap="round"
-                      stroke-linejoin="round"
-                      d="m21 21-5.197-5.197m0 0A7.5 7.5 0 1 0 5.196 5.196a7.5 7.5 0 0 0 10.607 10.607Z"
-                    />
-                  </svg>
-                  بحث
-                </span>
+                    مثال: شاومي 5G / لابتوب i7
+                  </span>
+                  <button
+                    type="submit"
+                    class="inline-flex items-center gap-1 rounded-full bg-gradient-to-l from-brand-600 to-brand-500 text-white text-xs px-3 py-1.5 shadow-sm hover:shadow-md hover:opacity-95 transition"
+                  >
+                    <svg
+                      xmlns="http://www.w3.org/2000/svg"
+                      fill="none"
+                      viewBox="0 0 24 24"
+                      stroke-width="1.7"
+                      stroke="currentColor"
+                      class="w-4 h-4"
+                    >
+                      <path
+                        stroke-linecap="round"
+                        stroke-linejoin="round"
+                        d="m21 21-5.197-5.197m0 0A7.5 7.5 0 1 0 5.196 5.196a7.5 7.5 0 0 0 10.607 10.607Z"
+                      />
+                    </svg>
+                    <span>بحث</span>
+                  </button>
+                </div>
               </div>
             </form>
 
-            <!-- Icons -->
-            <div class="flex items-center gap-3 sm:gap-4 text-slate-700">
-              <!-- Search icon for mobile -->
+            <!-- Right icons -->
+            <div class="flex items-center gap-2 sm:gap-3 text-slate-700">
+              <!-- Mobile search -->
               <button
                 id="mobile-search-toggle"
                 type="button"
-                class="md:hidden text-xl"
+                class="md:hidden inline-flex items-center justify-center w-9 h-9 rounded-full bg-slate-50 border border-slate-200 text-slate-700 hover:text-brand-600 hover:border-brand-200 transition"
                 aria-label="فتح البحث"
                 aria-controls="mobile-search"
                 aria-expanded="false"
@@ -131,9 +171,9 @@
                   xmlns="http://www.w3.org/2000/svg"
                   fill="none"
                   viewBox="0 0 24 24"
-                  stroke-width="1.5"
+                  stroke-width="1.7"
                   stroke="currentColor"
-                  class="size-6"
+                  class="w-5 h-5"
                 >
                   <path
                     stroke-linecap="round"
@@ -146,89 +186,104 @@
               <!-- Account -->
               <a
                 href="/src/pages/account.html"
-                class="md:inline text-xl hover:text-brand-600 transition"
+                class="hidden sm:inline-flex flex-col items-center justify-center text-[11px] hover:text-brand-600 transition"
                 title="الحساب"
               >
-                <svg
-                  xmlns="http://www.w3.org/2000/svg"
-                  class="h-6 w-6"
-                  fill="none"
-                  viewBox="0 0 24 24"
-                  stroke="currentColor"
+                <span
+                  class="w-9 h-9 rounded-full bg-slate-50 border border-slate-200 flex items-center justify-center mb-0.5"
                 >
-                  <path
-                    stroke-linecap="round"
-                    stroke-linejoin="round"
-                    stroke-width="2"
-                    d="M12 12c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 
-             1.79-4 4 1.79 4 4 4zm0 2c-3.33 0-6 2-6 
-             4v1h12v-1c0-2-2.67-4-6-4z"
-                  />
-                </svg>
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    class="w-4.5 h-4.5"
+                    fill="none"
+                    viewBox="0 0 24 24"
+                    stroke="currentColor"
+                    stroke-width="1.7"
+                  >
+                    <path
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                      d="M12 12c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 
+                1.79-4 4 1.79 4 4 4zm0 2c-3.33 0-6 2-6 
+                4v1h12v-1c0-2-2.67-4-6-4z"
+                    />
+                  </svg>
+                </span>
+                <span>حسابي</span>
               </a>
 
               <!-- Wishlist -->
               <button
                 type="button"
-                class="text-xl hover:text-brand-600 transition"
+                class="hidden sm:inline-flex flex-col items-center justify-center text-[11px] hover:text-brand-600 transition"
                 title="المفضلة"
                 onclick="window.location='/src/pages/wishlist.html'"
               >
-                <svg
-                  xmlns="http://www.w3.org/2000/svg"
-                  class="h-6 w-6"
-                  fill="none"
-                  viewBox="0 0 24 24"
-                  stroke="currentColor"
+                <span
+                  class="w-9 h-9 rounded-full bg-slate-50 border border-slate-200 flex items-center justify-center mb-0.5"
                 >
-                  <path
-                    stroke-linecap="round"
-                    stroke-linejoin="round"
-                    stroke-width="2"
-                    d="M4.318 6.318a4.5 4.5 0 016.364 
-           0L12 7.636l1.318-1.318a4.5 
-           4.5 0 116.364 6.364L12 21l-7.682-8.318a4.5 
-           4.5 0 010-6.364z"
-                  />
-                </svg>
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    class="w-4.5 h-4.5"
+                    fill="none"
+                    viewBox="0 0 24 24"
+                    stroke="currentColor"
+                    stroke-width="1.7"
+                  >
+                    <path
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                      d="M4.318 6.318a4.5 4.5 0 016.364 
+                0L12 7.636l1.318-1.318a4.5 
+                4.5 0 116.364 6.364L12 21l-7.682-8.318a4.5 
+                4.5 0 010-6.364z"
+                    />
+                  </svg>
+                </span>
+                <span>المفضلة</span>
               </button>
 
               <!-- Cart -->
               <a
                 href="/src/pages/cart.html"
-                class="relative text-xl hover:text-brand-600 transition"
+                class="relative inline-flex flex-col items-center justify-center text-[11px] hover:text-brand-600 transition"
                 title="السلة"
               >
-                <svg
-                  xmlns="http://www.w3.org/2000/svg"
-                  fill="none"
-                  viewBox="0 0 24 24"
-                  stroke-width="1.5"
-                  stroke="currentColor"
-                  class="size-6"
-                >
-                  <path
-                    stroke-linecap="round"
-                    stroke-linejoin="round"
-                    d="M2.25 3h1.386c.51 0 .955.343 1.087.835l.383 1.437M7.5 14.25a3 3 0 0 0-3 3h15.75m-12.75-3h11.218c1.121-2.3 2.1-4.684 2.924-7.138a60.114 60.114 0 0 0-16.536-1.84M7.5 14.25 5.106 5.272M6 20.25a.75.75 0 1 1-1.5 0 .75.75 0 0 1 1.5 0Zm12.75 0a.75.75 0 1 1-1.5 0 .75.75 0 0 1 1.5 0Z"
-                  />
-                </svg>
-
                 <span
-                  id="cart-count-badge"
-                  class="absolute -top-2 -left-2 rounded-full bg-brand-500 text-white text-xs w-5 h-5 flex items-center justify-center"
+                  class="w-9 h-9 rounded-full bg-gradient-to-l from-brand-600 to-brand-500 text-white flex items-center justify-center shadow-md shadow-brand-500/40 mb-0.5"
                 >
-                  0
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    fill="none"
+                    viewBox="0 0 24 24"
+                    stroke-width="1.7"
+                    stroke="currentColor"
+                    class="w-4.5 h-4.5"
+                  >
+                    <path
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                      d="M2.25 3h1.386c.51 0 .955.343 1.087.835l.383 1.437M7.5 14.25a3 3 0 0 0-3 3h15.75m-12.75-3h11.218c1.121-2.3 2.1-4.684 2.924-7.138a60.114 60.114 0 0 0-16.536-1.84M7.5 14.25 5.106 5.272M6 20.25a.75.75 0 1 1-1.5 0 .75.75 0 0 1 1.5 0Zm12.75 0a.75.75 0 1 1-1.5 0 .75.75 0 0 1 1.5 0Z"
+                    />
+                  </svg>
+
+                  <span
+                    id="cart-count-badge"
+                    class="absolute -top-1 -left-1 rounded-full bg-amber-500 text-white text-[10px] w-4.5 h-4.5 flex items-center justify-center border border-white shadow-sm"
+                  >
+                    0
+                  </span>
                 </span>
+                <span class="hidden sm:inline">السلة</span>
               </a>
             </div>
           </div>
 
-          <!-- Mobile search -->
+          <!-- Mobile search row -->
           <div id="mobile-search" class="md:hidden hidden pb-3">
             <form>
               <div
-                class="flex items-center rounded-full bg-slate-100 px-4 py-2 gap-2 border border-slate-200"
+                class="flex items-center rounded-full bg-slate-50 px-4 py-2 gap-2 border border-slate-200"
               >
                 <input
                   type="text"
@@ -240,15 +295,18 @@
             </form>
           </div>
 
-          <!-- Navigation + Mega Menu (desktop) -->
+          <!-- Navigation + Mega Menus (desktop) -->
           <nav
             id="main-nav"
-            class="border-t border-slate-100 pt-3 pb-4 text-sm text-slate-700 hidden md:flex md:border-0 md:py-0"
+            class="border-t border-slate-100 pt-2 pb-3 text-sm text-slate-700 hidden md:flex md:border-0 md:pt-0 md:pb-4"
             aria-label="التنقل الرئيسي"
           >
-            <ul class="flex flex-row gap-6 lg:gap-8">
+            <ul class="flex flex-row gap-5 lg:gap-7 items-center">
               <li>
-                <a href="index.html" class="hover:text-brand-600 font-medium">
+                <a
+                  href="index.html"
+                  class="relative font-semibold text-slate-900 after:absolute after:-bottom-1 after:right-0 after:h-[2px] after:w-0 hover:after:w-full after:bg-brand-500 after:transition-[width] after:duration-200"
+                >
                   الرئيسية
                 </a>
               </li>
@@ -266,11 +324,11 @@
                     fill="none"
                     viewBox="0 0 24 24"
                     stroke="currentColor"
+                    stroke-width="1.5"
                   >
                     <path
                       stroke-linecap="round"
                       stroke-linejoin="round"
-                      stroke-width="1.5"
                       d="M19 9l-7 7-7-7"
                     />
                   </svg>
@@ -278,14 +336,14 @@
 
                 <!-- Mega Panel -->
                 <div
-                  class="invisible opacity-0 group-hover:visible group-hover:opacity-100 transition-all duration-200 absolute right-0 mt-3 w-[min(100vw,900px)]"
+                  class="invisible opacity-0 translate-y-2 group-hover:visible group-hover:opacity-100 group-hover:translate-y-0 transition-all duration-200 absolute right-0 mt-3 w-[min(100vw,900px)]"
                 >
                   <div
                     class="rounded-3xl bg-white shadow-2xl border border-slate-100 p-5 grid grid-cols-2 lg:grid-cols-4 gap-4"
                   >
                     <!-- Column 1 -->
                     <div>
-                      <h4 class="text-xs font-semibold text-slate-500 mb-2">
+                      <h4 class="text-[11px] font-semibold text-slate-500 mb-2">
                         حسب النظام
                       </h4>
                       <ul class="space-y-1 text-xs text-slate-700">
@@ -307,7 +365,7 @@
                           <a
                             href="/src/pages/category.html?category=mobiles&os=feature"
                             class="hover:text-brand-600"
-                            >أجهزة بسيطة (Feature Phones)</a
+                            >أجهزة بسيطة</a
                           >
                         </li>
                       </ul>
@@ -315,7 +373,7 @@
 
                     <!-- Column 2 -->
                     <div>
-                      <h4 class="text-xs font-semibold text-slate-500 mb-2">
+                      <h4 class="text-[11px] font-semibold text-slate-500 mb-2">
                         حسب الفئة السعرية
                       </h4>
                       <ul class="space-y-1 text-xs text-slate-700">
@@ -323,7 +381,7 @@
                           <a
                             href="/src/pages/category.html?category=mobiles&price=budget"
                             class="hover:text-brand-600"
-                            >جوالات اقتصادية</a
+                            >اقتصادية</a
                           >
                         </li>
                         <li>
@@ -337,7 +395,7 @@
                           <a
                             href="/src/pages/category.html?category=mobiles&price=flagship"
                             class="hover:text-brand-600"
-                            >أعلى الفئة (Flagship)</a
+                            >الأعلى (Flagship)</a
                           >
                         </li>
                       </ul>
@@ -345,7 +403,7 @@
 
                     <!-- Column 3 -->
                     <div>
-                      <h4 class="text-xs font-semibold text-slate-500 mb-2">
+                      <h4 class="text-[11px] font-semibold text-slate-500 mb-2">
                         الماركات المميزة
                       </h4>
                       <ul class="space-y-1 text-xs text-slate-700">
@@ -382,14 +440,14 @@
 
                     <!-- Column 4 - Banner -->
                     <div
-                      class="rounded-2xl bg-gradient-to-l from-brand-500 to-brand-400 text-white p-4 flex flex-col justify-between"
+                      class="rounded-2xl bg-gradient-to-l from-brand-600 via-sky-500 to-brand-500 text-white p-4 flex flex-col justify-between"
                     >
-                      <div class="text-xs mb-2 opacity-90">عرض اليوم</div>
+                      <div class="text-[11px] mb-2 opacity-90">عرض اليوم</div>
                       <p class="text-sm font-semibold mb-1">
                         خصم حتى 20٪ على جوالات 5G المختارة
                       </p>
                       <p class="text-[11px] opacity-90 mb-3">
-                        استبدل جوالك القديم بجوال جديد مع ضمان سنتين.
+                        استبدل جوالك القديم بجوال جديد مع ضمان حتى سنتين.
                       </p>
                       <a
                         href="/src/pages/category.html?category=mobiles&tag=deal"
@@ -415,24 +473,24 @@
                     fill="none"
                     viewBox="0 0 24 24"
                     stroke="currentColor"
+                    stroke-width="1.5"
                   >
                     <path
                       stroke-linecap="round"
                       stroke-linejoin="round"
-                      stroke-width="1.5"
                       d="M19 9l-7 7-7-7"
                     />
                   </svg>
                 </button>
 
                 <div
-                  class="invisible opacity-0 group-hover:visible group-hover:opacity-100 transition-all duration-200 absolute right-0 mt-3 w-[min(100vw,900px)]"
+                  class="invisible opacity-0 translate-y-2 group-hover:visible group-hover:opacity-100 group-hover:translate-y-0 transition-all duration-200 absolute right-0 mt-3 w-[min(100vw,900px)]"
                 >
                   <div
                     class="rounded-3xl bg-white shadow-2xl border border-slate-100 p-5 grid grid-cols-2 lg:grid-cols-4 gap-4"
                   >
                     <div>
-                      <h4 class="text-xs font-semibold text-slate-500 mb-2">
+                      <h4 class="text-[11px] font-semibold text-slate-500 mb-2">
                         حسب الاستخدام
                       </h4>
                       <ul class="space-y-1 text-xs text-slate-700">
@@ -460,7 +518,7 @@
                       </ul>
                     </div>
                     <div>
-                      <h4 class="text-xs font-semibold text-slate-500 mb-2">
+                      <h4 class="text-[11px] font-semibold text-slate-500 mb-2">
                         المواصفات الشائعة
                       </h4>
                       <ul class="space-y-1 text-xs text-slate-700">
@@ -470,7 +528,7 @@
                       </ul>
                     </div>
                     <div>
-                      <h4 class="text-xs font-semibold text-slate-500 mb-2">
+                      <h4 class="text-[11px] font-semibold text-slate-500 mb-2">
                         معالجات
                       </h4>
                       <ul class="space-y-1 text-xs text-slate-700">
@@ -481,7 +539,7 @@
                     <div
                       class="rounded-2xl bg-slate-900 text-white p-4 flex flex-col justify-between"
                     >
-                      <div class="text-xs mb-2 opacity-80">
+                      <div class="text-[11px] mb-2 opacity-80">
                         باقة عمل + جيمينج
                       </div>
                       <p class="text-sm font-semibold mb-1">
@@ -498,46 +556,46 @@
                 </div>
               </li>
 
-              <!-- Simple Links -->
+              <!-- Simple links -->
               <li>
                 <a
                   href="/src/pages/category.html?category=desktops"
-                  class="hover:text-brand-600 font-medium"
+                  class="hover:text-brand-600 text-[13px] font-medium"
                   >أجهزة مكتبية</a
                 >
               </li>
               <li>
                 <a
                   href="/src/pages/category.html?category=tvs"
-                  class="hover:text-brand-600 font-medium"
+                  class="hover:text-brand-600 text-[13px] font-medium"
                   >شاشات وتلفزيونات</a
                 >
               </li>
               <li>
                 <a
                   href="/src/pages/category.html?category=audio"
-                  class="hover:text-brand-600 font-medium"
+                  class="hover:text-brand-600 text-[13px] font-medium"
                   >سماعات وصوتيات</a
                 >
               </li>
               <li>
                 <a
                   href="/src/pages/category.html?category=gaming"
-                  class="hover:text-brand-600 font-medium"
+                  class="hover:text-brand-600 text-[13px] font-medium"
                   >أجهزة ألعاب</a
                 >
               </li>
               <li>
                 <a
                   href="/src/pages/category.html?category=accessories"
-                  class="hover:text-brand-600 font-medium"
+                  class="hover:text-brand-600 text-[13px] font-medium"
                   >إكسسوارات</a
                 >
               </li>
               <li>
                 <a
                   href="/src/pages/category.html?category=smarthome"
-                  class="hover:text-brand-600 font-medium"
+                  class="hover:text-brand-600 text-[13px] font-medium"
                   >أجهزة منزلية ذكية</a
                 >
               </li>
@@ -679,22 +737,39 @@
       </main>
 
       <!-- FOOTER -->
-      <footer class="border-t border-slate-200 bg-white mt-10">
+      <footer class="mt-10 border-t border-slate-200 bg-slate-50">
         <div class="container mx-auto px-4 py-10">
-          <div class="grid md:grid-cols-4 gap-8 text-sm">
-            <div>
-              <h4 class="font-semibold mb-3">متجر التقنية</h4>
-              <p class="text-xs text-slate-600 mb-3">
+          <div
+            class="grid gap-8 md:grid-cols-4 text-sm bg-white rounded-3xl p-6 sm:p-8 shadow-[0_18px_45px_rgba(15,23,42,0.06)]"
+          >
+            <div class="space-y-3">
+              <div class="flex items-center gap-2 mb-1.5">
+                <div
+                  class="w-9 h-9 rounded-2xl bg-brand-500 flex items-center justify-center text-white text-sm font-bold shadow-md"
+                >
+                  ⚡
+                </div>
+                <div>
+                  <h4 class="font-semibold text-slate-900">متجر التقنية</h4>
+                  <p class="text-[11px] text-slate-400">
+                    إلكترونيات · جوالات · لابتوبات
+                  </p>
+                </div>
+              </div>
+
+              <p class="text-xs text-slate-600 leading-relaxed">
                 متجر إلكتروني متخصص في بيع الأجهزة الإلكترونية، الجوالات،
                 اللابتوبات، الشاشات، وأجهزة الألعاب مع ضمان معتمد وخدمة ما بعد
                 البيع في العالم العربي.
               </p>
+
               <p class="text-xs text-slate-500">
-                ساعات العمل: من الأحد إلى الخميس، 9 صباحاً - 6 مساءً.
+                🕒 ساعات العمل: من الأحد إلى الخميس، 9 صباحاً - 6 مساءً.
               </p>
             </div>
+
             <div>
-              <h4 class="font-semibold mb-3">روابط مهمة</h4>
+              <h4 class="font-semibold mb-3 text-slate-900">روابط مهمة</h4>
               <ul class="space-y-2 text-xs text-slate-600">
                 <li>
                   <a href="/src/pages/about.html" class="hover:text-brand-600"
@@ -727,8 +802,9 @@
                 </li>
               </ul>
             </div>
+
             <div>
-              <h4 class="font-semibold mb-3">حسابي</h4>
+              <h4 class="font-semibold mb-3 text-slate-900">حسابي</h4>
               <ul class="space-y-2 text-xs text-slate-600">
                 <li>
                   <a href="/src/pages/account.html" class="hover:text-brand-600"
@@ -749,92 +825,92 @@
                 </li>
               </ul>
             </div>
-            <div>
-              <h4 class="font-semibold mb-3">تابعنا وطرق الدفع</h4>
-              <div class="flex gap-4 text-lg mb-3">
-                <!-- Instagram -->
-                <a href="#" class="hover:text-brand-600" aria-label="Instagram">
-                  <svg
-                    xmlns="http://www.w3.org/2000/svg"
-                    class="w-6 h-6"
-                    fill="currentColor"
-                    viewBox="0 0 24 24"
-                  >
-                    <path
-                      d="M7.75 2h8.5A5.75 5.75 0 0 1 22 7.75v8.5A5.75 5.75 0 0 1 16.25 22h-8.5A5.75 5.75 0 0 1 2 16.25v-8.5A5.75 5.75 0 0 1 7.75 2zm0 1.5A4.25 4.25 0 0 0 3.5 7.75v8.5A4.25 4.25 0 0 0 7.75 20.5h8.5A4.25 4.25 0 0 0 20.5 16.25v-8.5A4.25 4.25 0 0 0 16.25 3.5h-8.5zM12 7a5 5 0 1 1 0 10 5 5 0 0 1 0-10zm0 1.5a3.5 3.5 0 1 0 0 7 3.5 3.5 0 0 0 0-7zm5-1.75a1.25 1.25 0 1 1 0 2.5 1.25 1.25 0 0 1 0-2.5z"
-                    />
-                  </svg>
-                </a>
 
-                <!-- Twitter (X) -->
-                <a
-                  href="#"
-                  class="hover:text-brand-600"
-                  aria-label="Twitter / X"
-                >
-                  <svg
-                    xmlns="http://www.w3.org/2000/svg"
-                    class="w-6 h-6"
-                    fill="currentColor"
-                    viewBox="0 0 24 24"
+            <div class="space-y-4">
+              <div>
+                <h4 class="font-semibold mb-3 text-slate-900">
+                  تابعنا وطرق الدفع
+                </h4>
+                <div class="flex gap-3 text-lg mb-3">
+                  <!-- Instagram -->
+                  <a
+                    href="#"
+                    class="inline-flex items-center justify-center w-8 h-8 rounded-full bg-slate-50 text-slate-500 hover:bg-brand-50 hover:text-brand-600 transition"
+                    aria-label="Instagram"
                   >
-                    <path
-                      d="M18.146 2h3.123l-6.817 7.79L22 22h-6.343l-4.96-6.507L4.8 22H1.674l7.31-8.35L2 2h6.47l4.474 5.932L18.146 2zm-2.217 17.597h1.727L8.173 4.295H6.314l9.615 15.302z"
-                    />
-                  </svg>
-                </a>
+                    <svg
+                      xmlns="http://www.w3.org/2000/svg"
+                      class="w-4 h-4"
+                      fill="currentColor"
+                      viewBox="0 0 24 24"
+                    >
+                      <path
+                        d="M7.75 2h8.5A5.75 5.75 0 0 1 22 7.75v8.5A5.75 5.75 0 0 1 16.25 22h-8.5A5.75 5.75 0 0 1 2 16.25v-8.5A5.75 5.75 0 0 1 7.75 2zm0 1.5A4.25 4.25 0 0 0 3.5 7.75v8.5A4.25 4.25 0 0 0 7.75 20.5h8.5A4.25 4.25 0 0 0 20.5 16.25v-8.5A4.25 4.25 0 0 0 16.25 3.5h-8.5zM12 7a5 5 0 1 1 0 10 5 5 0 0 1 0-10zm5-1.75a1.25 1.25 0 1 1 0 2.5 1.25 1.25 0 0 1 0-2.5z"
+                      />
+                    </svg>
+                  </a>
 
-                <!-- TikTok -->
-                <a href="#" class="hover:text-brand-600" aria-label="TikTok">
-                  <svg
-                    xmlns="http://www.w3.org/2000/svg"
-                    class="w-6 h-6"
-                    fill="currentColor"
-                    viewBox="0 0 24 24"
+                  <a
+                    href="#"
+                    class="inline-flex items-center justify-center w-8 h-8 rounded-full bg-slate-50 text-slate-500 hover:bg-brand-50 hover:text-brand-600 transition"
+                    aria-label="Twitter / X"
                   >
-                    <path
-                      d="M12.95 2h3.03c.15 1.33.76 2.54 1.72 3.44A6.3 6.3 0 0 0 19.7 7v3.03a9.3 9.3 0 0 1-3.47-.7 9.55 9.55 0 0 1-1.32-.67v6.55a6.82 6.82 0 0 1-1.25 3.97A6.36 6.36 0 0 1 9.4 22a6.4 6.4 0 0 1-1.9-.29 6.45 6.45 0 0 1-1.62-.83 6.37 6.37 0 0 1-2.31-3.05A6.5 6.5 0 0 1 3.4 15c0-1.3.37-2.56 1.06-3.64A6.37 6.37 0 0 1 7.74 8.4a6.28 6.28 0 0 1 3.48.07v3.29a3.1 3.1 0 0 0-1.47-.38 3.16 3.16 0 0 0-2.19.9A3.3 3.3 0 0 0 6.7 15c0 .86.33 1.66.93 2.26.6.6 1.4.94 2.24.94a3.16 3.16 0 0 0 2.23-.92 3.1 3.1 0 0 0 .93-2.25V2z"
-                    />
-                  </svg>
-                </a>
+                    <svg
+                      xmlns="http://www.w3.org/2000/svg"
+                      class="w-4 h-4"
+                      fill="currentColor"
+                      viewBox="0 0 24 24"
+                    >
+                      <path
+                        d="M18.146 2h3.123l-6.817 7.79L22 22h-6.343l-4.96-6.507L4.8 22H1.674l7.31-8.35L2 2h6.47l4.474 5.932L18.146 2zm-2.217 17.597h1.727L8.173 4.295H6.314l9.615 15.302z"
+                      />
+                    </svg>
+                  </a>
+
+                  <a
+                    href="#"
+                    class="inline-flex items-center justify-center w-8 h-8 rounded-full bg-slate-50 text-slate-500 hover:bg-brand-50 hover:text-brand-600 transition"
+                    aria-label="TikTok"
+                  >
+                    <svg
+                      xmlns="http://www.w3.org/2000/svg"
+                      class="w-4 h-4"
+                      fill="currentColor"
+                      viewBox="0 0 24 24"
+                    >
+                      <path
+                        d="M12.95 2h3.03c.15 1.33.76 2.54 1.72 3.44A6.3 6.3 0 0 0 19.7 7v3.03a9.3 9.3 0 0 1-3.47-.7 9.55 9.55 0 0 1-1.32-.67v6.55a6.82 6.82 0 0 1-1.25 3.97A6.36 6.36 0 0 1 9.4 22a6.4 6.4 0 0 1-1.9-.29 6.45 6.45 0 0 1-1.62-.83 6.37 6.37 0 0 1-2.31-3.05A6.5 6.5 0 0 1 3.4 15c0-1.3.37-2.56 1.06-3.64A6.37 6.37 0 0 1 7.74 8.4a6.28 6.28 0 0 1 3.48.07v3.29a3.1 3.1 0 0 0-1.47-.38 3.16 3.16 0 0 0-2.19.9A3.3 3.3 0 0 0 6.7 15c0 .86.33 1.66.93 2.26.6.6 1.4.94 2.24.94a3.16 3.16 0 0 0 2.23-.92 3.1 3.1 0 0 0 .93-2.25V2z"
+                      />
+                    </svg>
+                  </a>
+                </div>
+
+                <p class="text-xs text-slate-600 mb-2">
+                  اشترك في النشرة البريدية للحصول على أحدث العروض والتخفيضات على
+                  الإلكترونيات.
+                </p>
+
+                <form class="flex gap-2 text-xs">
+                  <input
+                    type="email"
+                    class="flex-1 rounded-full border border-slate-200 px-3 py-1.5 text-[11px] bg-slate-50 focus:outline-none focus:border-brand-500 focus:bg-white"
+                    placeholder="أدخل بريدك الإلكتروني"
+                  />
+                  <button
+                    type="submit"
+                    class="rounded-full bg-brand-600 text-white text-[11px] px-4 py-1.5 hover:bg-brand-700 shadow-sm"
+                  >
+                    اشتراك
+                  </button>
+                </form>
               </div>
 
-              <p class="text-xs text-slate-600 mb-2">
-                اشترك في النشرة البريدية للحصول على أحدث العروض والتخفيضات على
-                الإلكترونيات.
-              </p>
-              <form class="flex gap-2">
-                <input
-                  type="email"
-                  class="flex-1 rounded-full border border-slate-200 px-3 py-1.5 text-xs focus:outline-none focus:border-brand-500"
-                  placeholder="أدخل بريدك الإلكتروني"
-                />
-                <button
-                  type="submit"
-                  class="rounded-full bg-slate-900 text-white text-xs px-4 py-1.5 hover:bg-slate-800"
-                >
-                  اشتراك
-                </button>
-              </form>
-
-              <div class="mt-4">
+              <div>
                 <p class="text-xs mb-2 text-slate-600">طرق الدفع المتاحة:</p>
                 <div class="flex flex-wrap gap-2 text-[11px] text-slate-800">
                   <span
                     class="px-3 py-1 rounded-full bg-slate-100 border border-slate-200"
-                    >مدى</span
-                  >
-                  <span
-                    class="px-3 py-1 rounded-full bg-slate-100 border border-slate-200"
-                    >VISA</span
-                  >
-                  <span
-                    class="px-3 py-1 rounded-full bg-slate-100 border border-slate-200"
-                    >Mastercard</span
-                  >
-                  <span
-                    class="px-3 py-1 rounded-full bg-slate-100 border border-slate-200"
-                    >Apple Pay</span
+                    >محافط الاكترونية</span
                   >
                   <span
                     class="px-3 py-1 rounded-full bg-slate-100 border border-slate-200"
@@ -844,8 +920,9 @@
               </div>
             </div>
           </div>
+
           <div
-            class="mt-8 border-t border-slate-100 pt-4 flex flex-col md:flex-row items-center justify-between text-[11px] text-slate-500 gap-2 px-4"
+            class="mt-6 sm:mt-8 flex flex-col md:flex-row items-center justify-between gap-2 border-t border-slate-200 pt-4 text-[11px] text-slate-500 px-1 sm:px-2"
           >
             <p>© <span id="year"></span> متجر التقنية. جميع الحقوق محفوظة.</p>
             <p>تم تطوير الموقع من قبل م/ايمن عجلان.</p>

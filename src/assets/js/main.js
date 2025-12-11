@@ -222,10 +222,6 @@ window.showToast = function (message, type = "success") {
       setTimeout(() => toast.remove(), 400);
     }, 3000);
   };
-
-
-  
 })();
 
-
-// 
+//
